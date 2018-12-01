@@ -40,7 +40,7 @@ body {
   color: white;
 }
 
-div.content {
+div#content {
   margin-left: 200px;
   padding: 1px 16px;
   height: 1000px;
@@ -53,7 +53,7 @@ div.content {
     position: relative;
   }
   .sidebar a {float: left;}
-  div.content {margin-left: 0;}
+  div#content {margin-left: 0;}
 }
 
 @media screen and (max-width: 400px) {
@@ -69,6 +69,7 @@ div.content {
 <div class="topbar">
 </div>
 <div class="sidebar">
+    {% block sidebar %}
   <a class="active" href="#home">Dashboard</a>
   <a href="#news">Customers</a>
   <a href="#contact">Products and Services</a>
@@ -79,15 +80,11 @@ div.content {
   <a href="#contact">Purchase Order</a>
   <a href="#about">Reports</a>
   <a href="#about">Preferences</a>
-
+    {% endblock %}
 </div>
-
-<div class="content">
-  <h2>Responsive Sidebar Example</h2>
-  <p>This example use media queries to transform the sidebar to a top navigation bar when the screen size is 700px or less.</p>
-  <p>We have also added a media query for screens that are 400px or less, which will vertically stack and center the navigation links.</p>
-  <h3>Resize the browser window to see the effect.</h3>
+<div id="content">
+    {% block content %}
+    {% endblock %}
 </div>
-
 </body>
 </html>
