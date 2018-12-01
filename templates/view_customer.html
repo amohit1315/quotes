@@ -1,0 +1,50 @@
+{% extends "dashboard.html" %}
+{% block title %}HOME{% endblock %}
+
+{% block style %}
+
+#top_base {
+    height: 60px;
+    border-bottom: 1px solid #DCDCDC;
+}
+
+button.left1 {
+    float: right;
+    margin-right: 10px;
+    width: 100px;
+}
+
+button.left2 {
+    float: right;
+    margin-right: 10px;
+    width: 100px;
+    background-color: #f3f7f9;
+}
+
+button.left0 {
+    background-color: #f3f7f9;
+}
+{% endblock %}
+
+{% block content %}
+
+<div id="top_base">
+    <div class="dropdown">
+        <button class="btn btn-default dropdown-toggle btn-lg left0" type="button" data-toggle="dropdown">Filter Customers
+        &ensp;<span class="caret"></span></button>
+        <ul class="dropdown-menu">
+          <li><a href="#">HTML</a></li>
+          <li><a href="#">CSS</a></li>
+          <li><a href="#">JavaScript</a></li>
+        </ul>
+        <button type="button" class="btn btn-default btn-lg left2">Export</button>&ensp;
+        <button type="button" class="btn btn-default btn-lg left2">Import</button>
+        <button type="button" class="btn btn-success btn-lg left1">+ New</button>
+
+
+    </div>
+</div>
+
+
+{% endblock %}
+
