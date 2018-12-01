@@ -8,3 +8,6 @@ from django.http import HttpResponse
 
 def home(request):
     return render(request, "home.html")
+
+def view_customer(request):
+    return render(request, "view_customer.html")
