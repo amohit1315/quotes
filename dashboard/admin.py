@@ -6,3 +6,5 @@ from models import Contact,Customer,Product,Service
 
 admin.site.register(Customer)
 admin.site.register(Contact)
+admin.site.register(Product)
+admin.site.register(Service)
