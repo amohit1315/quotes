@@ -24,7 +24,7 @@ body {
 
 .sidebar a {
   display: block;
-  color: #c3d7e5;
+  color: #808a92;
   padding: 16px;
   text-decoration: none;
   font-family: 'Alegreya Sans';
@@ -74,14 +74,14 @@ div#content {
     {% load staticfiles %}
   <a class="active" href="#home">Dashboard</a>
   <a href="{% url 'view_customer' %}">Customers</a>
-  <a href="#contact">Products and Services</a>
-  <a href="#about">Invoices</a>
-  <a href="#news">Quotes</a>
-  <a href="#about">Delivery Notes</a>
-  <a href="#about">Credit Notes</a>
-  <a href="#contact">Purchase Order</a>
-  <a href="#about">Reports</a>
-  <a href="#about">Preferences</a>
+  <a href="{% url 'view_product' %}">Products and Services</a>
+  <a href="{% url 'view_invoices' %}">Invoices</a>
+  <a href="{% url 'view_quotes' %}">Quotes</a>
+  <a href="{% url 'view_delivery_notes' %}">Delivery Notes</a>
+  <a href="{% url 'view_credit_notes' %}">Credit Notes</a>
+  <a href="{% url 'view_purchase_order' %}">Purchase Order</a>
+  <a href="{% url 'view_report' %}">Reports</a>
+  <a href="{% url 'view_preference' %}">Preferences</a>
     {% endblock %}
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
