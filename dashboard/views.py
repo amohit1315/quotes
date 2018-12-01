@@ -7,4 +7,4 @@ from django.http import HttpResponse
 
 
 def home(request):
-    return render(request, "dashboard.html")
+    return render(request, "home.html")
