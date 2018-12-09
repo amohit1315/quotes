@@ -1,0 +1,72 @@
+{% extends "dashboard.html" %}
+{% block title %}HOME{% endblock %}
+{% block style %}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+    .column {
+        width: 100%;
+    }
+}
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+{% endblock %}
+
+
+{% block content %}
+    <div class="column2">
+    <div class="card">
+        <ul class="nav nav-pills" role="tablist" style="width: 100%">
+            <li style="width: 10%; padding:10px;font-size: large; float:left">New Item</li>
+            <li role="presentation" class="active" style="width: 10%;font-size: large; float:left"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Product</a></li>
+            <li role="presentation" style="width: 10%;font-size: large; float:left"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Service</a></li>
+        </ul>
+        <hr>
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active container " id="home" style="padding:0px; margin:0px; width:100%">
+                <div class="col-sm-6" style="padding:0px">
+                    <div class="form-group form-inline">
+                        <div class="container" style="padding:0px">
+                            <div class="col-sm-2">
+                            <label for="pono" style="padding-top:10px;font-family: 'Alegreya Sans';font-size:15px">Name</label>
+                            </div>
+                            <input type="text" class="form-control" id="pono" style="width:40%">
+                        </div>
+                    </div>
+                    <div class="form-group form-inline" style="padding-top:10px">
+                        <div class="container" style="padding:0px">
+                            <div class="col-sm-2">
+                            <label for="pono2" style="padding-top:10px;font-family: 'Alegreya Sans';font-size:15px">Description</label>
+                            </div>
+                            <input type="text" class="form-control" id="pono2" style="width:40%">
+                        </div>
+                    </div>
+                    <div style="padding:10px 0px 0px 10px">
+                        <p style="font-size:large;font-family: 'Alegreya Sans';">Sales Info</p>
+                    </div>
+                    <hr>
+
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane container " id="profile">
+                <div class="col-sm-6" >
+                    <div class="form-group form-inline">
+                        <label for="pono1" style="padding-right:20px">Po no</label>&ensp;&ensp;
+                        <input type="text" class="form-control" id="pono1">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -11,6 +11,7 @@ urlpatterns = [
     url(r'^view_product/', views.view_product, name='view_product'),
     url(r'^view_purchase_order/', views.view_purchase_order, name='view_purchase_order'),
     url(r'^view_quotes/', views.view_quotes, name='view_quotes'),
-    url(r'^view_report/', views.view_report, name='view_report')
-
+    url(r'^view_report/', views.view_report, name='view_report'),
+    url(r'^new_invoice/', views.new_invoice, name='new_invoice'),
+    url(r'^new_product', views.new_product, name='new_product')
 ]
