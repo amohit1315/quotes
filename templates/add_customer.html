@@ -1,0 +1,312 @@
+{% extends "dashboard.html" %}
+
+{% block title %}
+    Add Customer
+{% endblock %}
+
+{% block content %}
+<style>
+* {
+    box-sizing: border-box;
+}
+
+/* Create two equal columns that floats next to each other */
+.column1 {
+    float: left;
+    width: 60%;
+    padding: 10px;
+}
+.column2 {
+    float: left;
+    width: 40%;
+    padding: 10px;
+
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+    .column {
+        width: 100%;
+    }
+}
+hr {
+width: 100%;
+height: 2.5px;
+margin-left: auto;
+margin-right: auto;
+background-color:lightgray;
+border: 0 none;
+margin-top: 15px;
+margin-bottom:15px;
+}
+.vl {
+  position: absolute;
+  background-color: lightgray;
+  width: 2.5px;
+    top :auto;
+  bottom: auto;
+  left: 60%;
+    height:100%;
+}
+
+
+</style>
+<div class="row">
+    <h3 style="margin-left:12px; font-family: Times New Roman, Times, serif;"><b>Add New Customer</b></h3>
+    </div>
+    <hr>
+  <div class="row">
+  <div class="column1">
+    <form class="col-sm-12" method="post" action="">
+        {% csrf_token %}
+        <div  style="margin-top:35px; margin-bottom:50px">
+            <div class="form-group form-inline" style="margin-bottom:35px">
+                <label style="font-size:20px;margin-right: 3em">Customer Name</label>
+                <input type="text" class="form-control" style="width:60%; height: 3em" name="cname" required="">
+            </div>
+        </div>
+        <div  style="margin-top:35px; margin-bottom:50px">
+            <div class="form-group form-inline" style="margin-bottom:35px">
+                <label style="font-size:20px;margin-right: 7.5em">Phone</label>
+                <input type="text" class="form-control" style="width:60%; height: 3em" name="cphone">
+            </div>
+        </div><div  style="margin-top:35px; margin-bottom:50px">
+            <div class="form-group form-inline" style="margin-bottom:35px">
+                <label style="font-size:20px;margin-right: 8em">Email</label>
+                <input type="text" class="form-control" style="width:60%; height: 3em" name="cemail">
+            </div>
+        </div><div  style="margin-top:35px; margin-bottom:50px">
+            <div class="form-group form-inline" style="margin-bottom:35px">
+                <label style="font-size:20px;margin-right: 7.5em">GSTIN</label>
+                <input type="text" class="form-control" style="width:60%; height: 3em" name="cgstin">
+            </div>
+        </div><div  style="margin-top:35px; margin-bottom:50px">
+            <div class="form-group form-inline" style="margin-bottom:35px">
+                <label style="font-size:20px;margin-right: 9em">TIN</label>
+                <input type="text" class="form-control" style="width:60%; height: 3em" name="ctin">
+            </div>
+        </div><div  style="margin-top:35px; margin-bottom:50px">
+            <div class="form-group form-inline" style="margin-bottom:35px">
+                <label style="font-size:20px;margin-right: 8.5em">PAN</label>
+                <input type="text" class="form-control" style="width:60%; height: 3em" name="cpan" >
+            </div>
+        </div>
+        <div  style="margin-top:35px; margin-bottom:50px">
+            <div class="form-group form-inline" style="margin-bottom:35px">
+                <label style="font-size:20px;margin-right: 8.5em">VAT</label>
+                <input type="text" class="form-control" style="width:60%; height: 3em" name="cvat" >
+            </div>
+        </div>
+        <div  style="margin-top:35px; margin-bottom:50px">
+            <div class="form-group form-inline" style="margin-bottom:35px">
+                <label style="font-size:20px;margin-right: 6.5em">Website</label>
+                <input type="text" class="form-control" style="width:60%; height: 3em" name="cweb" >
+            </div>
+        </div>
+        <div  style="margin-top:35px; margin-bottom:50px">
+            <div class="form-group form-inline" style="margin-bottom:35px">
+                <label style="font-size:20px;margin-right: 3em">Contact Person</label>
+                <input type="text" class="form-control" style="width:60%; height: 3em" name="cperson" >
+            </div>
+        </div>
+        <div  style="margin-top:35px; margin-bottom:50px">
+            <div class="form-group form-inline" style="margin-bottom:35px">
+                <label style="font-size:20px;margin-right: 3.5em">Contact Phone</label>
+                <input type="text" class="form-control" style="width:60%; height: 3em" name="cphone" >
+            </div>
+        </div>
+        <div  style="margin-top:35px; margin-bottom:50px">
+            <div class="form-group form-inline" style="margin-bottom:35px">
+                <label style="font-size:20px;margin-right: 3.5em">Contact Email</label>
+                <input type="text" class="form-control" style="width:60%; height: 3em" name="cemail" >
+            </div>
+        </div>
+        <button type="button" class="btn btn-primary btn-lg" onclick="myfunction1()" id="button2">Add Another Contact</button>
+        <div id="addcontact" hidden="hidden">
+        <div  style="margin-top:35px; margin-bottom:50px">
+            <div class="form-group form-inline" style="margin-bottom:35px">
+                <label style="font-size:20px;margin-right: 3em">Contact Person</label>
+                <input type="text" class="form-control" style="width:60%; height: 3em" name="cperson" >
+            </div>
+        </div>
+        <div  style="margin-top:35px; margin-bottom:50px">
+            <div class="form-group form-inline" style="margin-bottom:35px">
+                <label style="font-size:20px;margin-right: 3.5em">Contact Phone</label>
+                <input type="text" class="form-control" style="width:60%; height: 3em" name="cphone" >
+            </div>
+        </div>
+        <div  style="margin-top:35px; margin-bottom:50px">
+            <div class="form-group form-inline" style="margin-bottom:35px">
+                <label style="font-size:20px;margin-right: 3.5em">Contact Email</label>
+                <input type="text" class="form-control" style="width:60%; height: 3em" name="cemail" >
+            </div>
+        </div>
+        </div>
+        </div>
+      <div class="vl"></div>
+  <div class="column2">
+    <div class="card">
+        <ul class="nav nav-pills" role="tablist" style="width: 100%">
+            <li role="presentation" class="active" style="width: 30%;font-size: large"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Address</a></li>
+            <li role="presentation" style="width: 35%;font-size: large"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Other Info</a></li>
+            <li role="presentation" style="width: 30%;font-size: large"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Notes</a></li>
+        </ul>
+
+<br><br>
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="home">
+                <div class="row">
+                <h3 style="font-family: Times New Roman, Times, serif;"><b>Billing Address</b></h3>
+                </div>
+            <div  style="margin-top:35px; margin-bottom:50px">
+                    <div class="form-group form-inline" style="margin-bottom:35px">
+                <label style="font-size:20px;margin-right: 5em">Address</label>
+                <input type="text" class="form-control" style="width:60%; height: 3em" name="caddress" required="">
+            </div>
+            </div>
+            <div  style="margin-top:35px; margin-bottom:50px">
+                    <div class="form-group form-inline" style="margin-bottom:35px">
+                <label style="font-size:20px;margin-right: 5em">Country</label>
+                <input type="text" class="form-control" style="width:60%; height: 3em" name="ccountry" required="">
+            </div>
+            </div>
+            <div  style="margin-top:35px; margin-bottom:50px">
+                    <div class="form-group form-inline" style="margin-bottom:35px">
+                <label style="font-size:20px;margin-right: 6.5em">State</label>
+                <input type="text" class="form-control" style="width:60%; height: 3em" name="cstate" required="">
+            </div>
+            </div>
+            <div  style="margin-top:35px; margin-bottom:50px">
+                    <div class="form-group form-inline" style="margin-bottom:35px">
+                <label style="font-size:20px;margin-right: 7em">City</label>
+                <input type="text" class="form-control" style="width:60%; height: 3em" name="ccity" required="">
+            </div>
+            </div>
+            <div  style="margin-top:35px; margin-bottom:50px">
+                    <div class="form-group form-inline" style="margin-bottom:35px">
+                <label style="font-size:20px;margin-right: 5em">Pincode</label>
+                <input type="text" class="form-control" style="width:60%; height: 3em" name="cpincode" required="">
+            </div>
+            </div>
+            <button type="button" class="btn btn-primary btn-lg" onclick="myfunction()" id="button1">Add Shipping Address</button>
+            <div id ="shippingaddress" hidden = "hidden" >
+            <div class="row" >
+                <h3 style="font-family: Times New Roman, Times, serif;"><b>Shipping Address</b></h3>
+                </div>
+            <div  style="margin-top:35px; margin-bottom:50px">
+                    <div class="form-group form-inline" style="margin-bottom:35px">
+                <label style="font-size:20px;margin-right: 5em">Address</label>
+                <input type="text" class="form-control" style="width:60%; height: 3em" name="csaddress" required="">
+            </div>
+            </div>
+            <div  style="margin-top:35px; margin-bottom:50px">
+                    <div class="form-group form-inline" style="margin-bottom:35px">
+                <label style="font-size:20px;margin-right: 5em">Country</label>
+                <input type="text" class="form-control" style="width:60%; height: 3em" name="cscountry" required="">
+            </div>
+            </div>
+            <div  style="margin-top:35px; margin-bottom:50px">
+                    <div class="form-group form-inline" style="margin-bottom:35px">
+                <label style="font-size:20px;margin-right: 6.5em">State</label>
+                <input type="text" class="form-control" style="width:60%; height: 3em" name="csstate" required="">
+            </div>
+            </div>
+            <div  style="margin-top:35px; margin-bottom:50px">
+                    <div class="form-group form-inline" style="margin-bottom:35px">
+                <label style="font-size:20px;margin-right: 7em">City</label>
+                <input type="text" class="form-control" style="width:60%; height: 3em" name="cscity" required="">
+            </div>
+            </div>
+            <div  style="margin-top:35px; margin-bottom:50px">
+                    <div class="form-group form-inline" style="margin-bottom:35px">
+                <label style="font-size:20px;margin-right: 5em">Pincode</label>
+                <input type="text" class="form-control" style="width:60%; height: 3em" name="cspincode" required="">
+            </div>
+            </div>
+            </div>
+
+            </div>
+            <div role="tabpanel" class="tab-pane" id="profile">
+                <div  style="margin-top:35px; margin-bottom:50px">
+                    <div class="form-group form-inline" style="margin-bottom:35px">
+                <label style="font-size:20px;margin-right: 5em">Facebook</label>
+                <input type="text" class="form-control" style="width:60%; height: 3em" name="cfacebook" required="">
+            </div>
+            </div>
+                <div  style="margin-top:35px; margin-bottom:50px">
+                    <div class="form-group form-inline" style="margin-bottom:35px">
+                <label style="font-size:20px;margin-right: 7.5em">LST</label>
+                <input type="text" class="form-control" style="width:60%; height: 3em" name="clst" required="">
+            </div>
+            </div>
+                <div  style="margin-top:35px; margin-bottom:50px">
+                    <div class="form-group form-inline" style="margin-bottom:35px">
+                <label style="font-size:20px;margin-right: 7.5em">CST</label>
+                <input type="text" class="form-control" style="width:60%; height: 3em" name="ccst" required="">
+            </div>
+            </div>
+                <div  style="margin-top:35px; margin-bottom:50px">
+                    <div class="form-group form-inline" style="margin-bottom:35px">
+                <label style="font-size:20px;margin-right: 2em">Service Tax No.</label>
+                <input type="text" class="form-control" style="width:60%; height: 3em" name="ccst" required="">
+            </div>
+            </div>
+                </div>
+            <div role="tabpanel" class="tab-pane" id="messages">
+            <div class="form-group form-inline" style="margin-bottom:35px">
+                <textarea rows="15" cols="70" class="form-control" placeholder="" name="csnotes" style="margin-left: 5%"></textarea>
+            </div>
+            </div>
+        </div>
+</div>
+  </div>
+  </form>
+</div>
+ <div class="row">
+ <button type="button" class="btn btn-success btn-block btn-lg">Save</button>
+ </div>
+<script>
+function myfunction() {
+    var y = document.getElementById("button1");
+    var x =document.getElementById("shippingaddress");
+    if(x.style.display === "none")
+    {
+        y.style.display = "none";
+        x.style.display = "block";
+    }
+    else
+    {
+        y.style.display = "block";
+        x.style.display = "none";
+    }
+
+}
+
+function myfunction1() {
+
+    var y = document.getElementById("button2");
+    var x =document.getElementById("addcontact");
+    if(x.style.display === "none")
+    {
+        y.style.display = "none";
+        x.style.display = "block";
+    }
+    else
+    {
+        y.style.display = "block";
+        x.style.display = "none";
+    }
+
+}
+
+</script>
+
+
+{% endblock %}
