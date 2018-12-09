@@ -47,3 +47,13 @@ def view_quotes(request):
 
 def view_report(request):
     return render(request, "view_report.html")
+
+
+def new_invoice(request):
+    return render(request, "new_invoice.html")
+
+
+def new_product(request):
+    return render(request, "new_product.html")
+
+
