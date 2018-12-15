@@ -4,7 +4,6 @@ from django.conf.urls  import *
 urlpatterns = [
     url(r'^$', views.home, name='home'),
     url(r'^customer/', views.view_customer, name='view_customer'),
-    url(r'addcustomer/',views.add_customer,name='add_customer'),
     url(r'^view_credit_notes/', views.view_credit_notes, name='view_credit_notes'),
     url(r'^view_delivery_notes/', views.view_delivery_notes, name='view_delivery_notes'),
     url(r'^view_invoices/', views.view_invoices, name='view_invoices'),
