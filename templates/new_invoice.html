@@ -1,122 +1,286 @@
 {% extends "dashboard.html" %}
 {% block title %}HOME{% endblock %}
 {% block style %}
-.first {
-    height: 50px;
-    border-bottom: 1px solid #DCDCDC;
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+    .column {
+        width: 100%;
+    }
+}
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
 }
 
-.second {
-    font-family: 'Alegreya Sans';
-    border-bottom: 1px solid #DCDCDC;
-    color: #526069;
-    background-color: #f9fafb;
-    padding: 10px 10px 10px 0px;
+* {
+    box-sizing: border-box;
 }
 
-.third {
-    font-family: 'Alegreya Sans';
-    border-bottom: 1px solid #DCDCDC;
-    color: #526069;
+div.header {
+    padding: 15px;
+}
+
+input[type=checkbox] {
+ -ms-transform: scale(2); /* IE */
+ -moz-transform: scale(2); /* FF */
+ -webkit-transform: scale(2); /* Safari and Chrome */
+ -o-transform: scale(2); /* Opera */
+  padding: 10px;
+}
+
+div.row {
+    color: #7a858f;
+    font-size: 13px;
     display: block;
-    padding: 20px 10px 20px 10px;
+    user-select: none;
+    cursor: pointer;
+    font-family: "Open Sans", "Martel Sans", Arial, "Helvetica Neue", Helvetica, sans-serif;
 }
-
-.sel1 {
-    height: 40px;
-    width: 100%;
-}
-
-
 {% endblock %}
-
 
 {% block content %}
 
-<div class="first">
-    <h4>Add New Invoice</h4>
+<div class="column2" style="height: 100%">
+    <div class="card" style="height: 100%">
+        <div class="header" style="border-bottom: 1px solid #7a858f; padding-bottom:10px;">
+            <p style="font-size: large">Add New Invoice</p>
+        </div>
+        <form class="form-horizontal" style="height: 85%" id="form1">
+            <div class="container-fluid" style="height: 85%; margin:0px">
+                <div class="row" style="border-bottom: 1px solid #7a858f; padding-bottom:10px; padding-top:20px; background-color:#f9fafb;">
+                    <div class="col-sm-8">
+                        <div class="form-group">
+                            <label for="inputlg1" class="col-sm-2 control-label" style="text-align:left">Client Name</label>
+                            <div class="col-sm-10">
+                                <input class="form-control input-lg" id="inputlg1" type="text">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="border-bottom: 1px solid #7a858f; padding-top:20px; padding-bottom:10px">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="inputlg2" class="col-sm-3 control-label" style="text-align:left">Invoice no</label>
+                                    <div class="col-sm-4">
+                                        <input class="form-control input-lg" id="inputlg2" type="text">
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <input class="form-control input-lg" id="" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="inputlg3" class="col-sm-4 control-label" style="text-align:right">Invoice Date</label>
+                                    <div class="col-sm-8">
+                                        <input class="form-control input-lg" id="inputlg3" type="date">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="inputlg4" class="col-sm-4 control-label" style="text-align:right">Payment Terms</label>
+                                    <div class="col-sm-8">
+                                        <input class="form-control input-lg" id="inputlg4" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="inputlg6" class="col-sm-3 control-label" style="text-align:left">PO no</label>
+                                    <div class="col-sm-9">
+                                        <input class="form-control input-lg" id="inputlg6" type="number">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="inputlg5" class="col-sm-4 control-label" style="text-align:right">Due Date</label>
+                                    <div class="col-sm-8">
+                                        <input class="form-control input-lg" id="inputlg5" type="date">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="header1" style="padding-top:10px;">
+                    <p style="font-size: large"><strong>Invoice</strong></p>
+                </div>
+                <div class="row" style="margin-left:-30px; margin-right:-30px">
+                    <div class="col-sm-12">
+                        <div class="table-responsive">
+                            <table class="table table-sm table-striped" align="right" cellpadding="0" cellspacing="0"  style="width:100%" id="myTable">
+                              <thead class="thead-light" style="width:100%; background-color:#dce4e9">
+                                <tr>
+                                    <th class="col-sm-1">No</th>
+                                    <th class="col-sm-5">Item Name</th>
+                                    <th class="col-sm-1" style="text-align:center;">Unit</th>
+                                    <th class="col-sm-1" style="text-align:center;">Qty</th>
+                                    <th class="col-sm-1" style="text-align:center;">Price</th>
+                                    <th class="col-sm-1" style="text-align:center;">Discount (%)</th>
+                                    <th class="col-sm-1" style="text-align:center;">Tax</th>
+                                    <th class="col-sm-1" style="text-align:center;">Total</th>
+                                </tr>
+                              </thead>
+                                <tbody id="myTabl" style="width:100%;"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-1">1</div>
+                            <div class="col-sm-5">
+                                <div class="form-group" style="padding:0px; margin:0px;">
+                                    <div class="col-sm-12" style="padding:0px; margin:0px;">
+                                        <input class="form-control input-lg" id="itemname" type="text" style="padding:10px">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-1" >
+                                <div class="form-group" style="padding:0px; margin-right:0px;">
+                                    <div class="col-sm-12" style="padding:0px; margin:0px;">
+                                        <input class="form-control input-lg" id="unit" type="number" style="padding:10px; margin:0px;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-1" >
+                                <div class="form-group" style="padding:0px; margin-right:0px;">
+                                    <div class="col-sm-12" style="padding:0px; margin:0px;">
+                                        <input class="form-control input-lg" id="qty" type="number" style="padding:10px; margin:0px;" value="1">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-1" >
+                                <div class="form-group" style="padding:0px; margin-right:0px;">
+                                    <div class="col-sm-12" style="padding:0px; margin:0px;">
+                                        <input class="form-control input-lg" id="price" type="number" style="padding:10px; margin:0px;">
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" id="counter" value="1">
+                            <div class="col-sm-1" >
+                                <div class="form-group" style="padding:0px; margin-right:0px;">
+                                    <div class="col-sm-12" style="padding:0px; margin:0px;">
+                                        <input class="form-control input-lg" id="discount" type="text" style="padding:10px; margin:0px;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-1" >
+                                <div class="form-group" style="padding:0px; margin-right:0px;">
+                                    <div class="col-sm-12" style="padding:0px; margin:0px;">
+                                        <input class="form-control input-lg" id="tax" type="text" style="padding:10px; margin:0px;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-1" >
+                                <button type="button" class="btn btn-primary" onclick="myFunction()" style="padding:10px; font-size:15px">+ Add line</button>
+                            </div>
+                            <script>
+                                function myFunction() {
+                                    <!--get value-->
+                                    itemname = document.getElementById("itemname").value;
+                                    unit = document.getElementById("unit").value;
+                                    qty = document.getElementById("qty").value;
+                                    price = document.getElementById("price").value;
+                                    discount = document.getElementById("discount").value;
+                                    tax = document.getElementById("tax").value;
+                                    desc = document.getElementById("desc").value;
+                                    counter = document.getElementById("counter").value;
+                                    document.getElementById("counter").value = parseInt(counter) + 1;
+                                    var table = document.getElementById("myTabl");
+
+                                    <!--insert row-->
+
+                                    var row = table.insertRow(counter-1);
+                                    var cell1 = row.insertCell(0);
+                                    var cell2 = row.insertCell(1);
+                                    var cell3 = row.insertCell(2);
+                                    var cell4 = row.insertCell(3);
+                                    var cell5 = row.insertCell(4);
+                                    var cell6 = row.insertCell(5);
+                                    var cell7 = row.insertCell(6);
+                                    var cell8 = row.insertCell(7);
+                                    cell1.innerHTML = counter;
+                                    cell2.rowSpan = "2"
+                                    cell2.innerHTML = "" + itemname + " \ " + itemname
+                                    cell3.innerHTML = unit;
+                                    cell4.innerHTML = qty;
+                                    cell5.innerHTML = price;
+                                    cell6.innerHTML = discount;
+                                    cell7.innerHTML = tax;
+                                    cell8.innerHTML = parseInt(qty) * parseInt(price) - parseInt(discount) * parseInt(price) / 100
+
+                                    <!--empty cells-->
+                                    document.getElementById("itemname").value = '';
+                                    document.getElementById("unit").value = '';
+                                    document.getElementById("qty").value = '';
+                                    document.getElementById("price").value = '';
+                                    document.getElementById("discount").value = '';
+                                    document.getElementById("tax").value = '';
+                                    document.getElementById("desc").value = '';
+                                }
+                            </script>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="border-bottom: 1px solid #7a858f; padding-bottom:30px; padding-top:10px;">
+                    <div class="col-sm-1" style="padding:0px; margin:0px; border:10px"></div>
+                    <div class="col-sm-5">
+                        <div class="form-group" style="padding:0px; margin:0px;">
+                            <div class="col-sm-12" style="padding:0px; margin:0px;">
+                                <textarea class="form-control input-lg" rows="4" id="desc" style="padding:10px"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="border-bottom: 1px solid #7a858f; padding-bottom:10px; padding-top:20px;">
+                    <div class="col-sm-6">
+                        <div class="checkbox" style="padding:0px 20px 20px 0px">
+                            <label><input type="checkbox" value=""><span style="padding:20px">Add shipping charges</span></label>
+                        </div>
+                        <div class="checkbox" style="padding:0px 20px 20px 0px">
+                            <label><input type="checkbox" value=""><span style="padding:20px">Add discount to all</span></label>
+                        </div>
+                        <div style="padding:0px 20px 20px 0px; color:#266a95;" >
+                            + &ensp; Add advance payment
+                        </div>
+                        <div class="checkbox" style="padding:0px 20px 20px 0px">
+                            <label><input type="checkbox" value=""><span style="padding:20px">Transport labels</span></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="border-bottom: 1px solid #7a858f; padding-bottom:30px; padding-top:20px; background-color:#f9fafb;">
+                    <div class="col-sm-6">
+                        <p>Terms and Conditions</p>
+                        <div class="form-group" style="padding:0px; margin:0px;">
+                            <textarea class="form-control input-lg" rows="4" style="padding:10px"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <p>Private notes&ensp;(not shown to client)</p>
+                        <div class="form-group" style="padding:0px; margin:0px;">
+                            <textarea class="form-control input-lg" rows="4" style="padding:10px"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="fixed-bottom" style="padding-bottom:20px; padding-top:20px;">
+                    <input type="submit" class="btn btn-success btn-lg" value="Preview and save">
+                    <input type="button" class="btn btn-info btn-lg" value="Cancel">
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
-{% csrf_token %}
-<form class="form-horizontal" action="/action_page.php">
-    <div class="form-group second" style="margin: 0px">
-      <label class="control-label col-sm-1" for="client" style="left:0; text-align:left; padding:10px">Client Name</label>
-        <div class="col-sm-7">
-          <select class="mdb-select md-form sel1" searchable="Search here.." id="client">
-              <option value="" disabled selected>Select Client</option>
-              <option value="1">USA</option>
-              <option value="2">Germany</option>
-              <option value="3">France</option>
-              <option value="3">Poland</option>
-              <option value="3">Japan</option>
-          </select>
-        </div>
-    </div>
-    <div class="form-inline third">
-        <div class="form-group container" style="width:100%; margin-bottom: 10px">
-            <div class="col-sm-4" style="padding:0">
-                <label for="invoiceno">Invoice no</label>&ensp;&ensp;
-                <input type="text" class="form-control" id="invoiceno">&ensp;&ensp;
-                <input type="number" class="form-control">
-            </div>
-            <div class="col-sm-4 container" style="padding:0">
-                <label for="invoicedate" class="col-sm-3">Invoice date</label>&ensp;&ensp;
-                <input type="date" class="form-control" style="width:60%" id="invoicedate">
-            </div>
-            <div class="col-sm-4" style="padding:0">
-                <div class="container" style="width:100%; padding:0px">
-                <label class="control-label col-sm-4" for="payment" >Payment terms</label>
-                <select class="mdb-select md-form sel1 col-sm-8" searchable="Search here.." id="payment">
-                  <option value="1">On Reciept</option>
-                  <option value="2">NET 7</option>
-                  <option value="3">NET 15</option>
-                  <option value="3">NET 30</option>
-                  <option value="3">NET 45</option>
-                    <option value="3">NET 60</option>
-                    <option value="3">NET 90</option>
-                </select>
-            </div>
-            </div>
-        </div>
-        <div class="form-group container" style="width:100%">
-            <div class="col-sm-4 container" style="padding:0">
-                <label for="pono" style="padding-right:20px">Po no</label>&ensp;&ensp;
-                <input type="text" class="form-control" id="pono" style="width:70%">&ensp;&ensp;
-            </div>
-            <div class="col-sm-4 container" style="padding:0">
-                <label for="duedate" class="col-sm-3">Due date</label>&ensp;&ensp;
-                <input type="date" class="form-control" style="width:60%" id="duedate">
-            </div>
-        </div>
-    </div>
-    <h2 style="margin-bottom:20px">Invoice</h2>
-    <div class="container table-responsive" style="margin:0px; width:auto">
-        <table class="table table-dark">
-            <tr>
-                <th width="4%">No</th>
-                <th width="35%">Item Name</th>
-                <th width="10">Unit</th>
-                <th width="10%">Qty</th>
-                <th width="10%">Price</th>
-                <th width="10%">Discount(%)</th>
-                <th width="10%">Tax</th>
-                <th width="10%">Total</th>
-            </tr>
-            <tr>
-                <td></td>
-                <td width="35%"><input type="text" style="width:100%"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td width="35%"><input type="text" style="width:100%"></td>
-            </tr>
-        </table>
-    </div>
-</form>
+</div>
 
 {% endblock %}
