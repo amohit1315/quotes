@@ -54,7 +54,7 @@ div.row {
                     <div class="col-sm-8">
                         <div class="form-group">
                             <label for="inputlg1" class="col-sm-2 control-label" style="text-align:left">Client Name</label>
-                            <div class="col-sm-10">
+                            <div class="col-sm-10" id="hiddeninput">
                                 <input class="form-control input-lg" id="inputlg1" type="text">
                             </div>
                         </div>
@@ -149,7 +149,7 @@ div.row {
                             <div class="col-sm-1" >
                                 <div class="form-group" style="padding:0px; margin-right:0px;">
                                     <div class="col-sm-12" style="padding:0px; margin:0px;">
-                                        <input class="form-control input-lg" id="unit" type="number" style="padding:10px; margin:0px;">
+                                        <input class="form-control input-lg" id="unit" type="text" style="padding:10px; margin:0px;">
                                     </div>
                                 </div>
                             </div>
@@ -171,7 +171,7 @@ div.row {
                             <div class="col-sm-1" >
                                 <div class="form-group" style="padding:0px; margin-right:0px;">
                                     <div class="col-sm-12" style="padding:0px; margin:0px;">
-                                        <input class="form-control input-lg" id="discount" type="text" style="padding:10px; margin:0px;">
+                                        <input class="form-control input-lg" id="discount" type="number" style="padding:10px; margin:0px;">
                                     </div>
                                 </div>
                             </div>
@@ -196,8 +196,9 @@ div.row {
                                     tax = document.getElementById("tax").value;
                                     desc = document.getElementById("desc").value;
                                     counter = document.getElementById("counter").value;
-                                    document.getElementById("counter").value = parseInt(counter) + 1;
                                     var table = document.getElementById("myTabl");
+                                    var div1 = document.createElement("div");
+                                    var div2 = document.createElement("div");
 
                                     <!--insert row-->
 
@@ -211,8 +212,10 @@ div.row {
                                     var cell7 = row.insertCell(6);
                                     var cell8 = row.insertCell(7);
                                     cell1.innerHTML = counter;
-                                    cell2.rowSpan = "2"
-                                    cell2.innerHTML = "" + itemname + " \ " + itemname
+                                    div1.innerHTML = itemname
+                                    div2.innerHTML = desc
+                                    cell2.appendChild(div1);
+                                    cell2.appendChild(div2);
                                     cell3.innerHTML = unit;
                                     cell4.innerHTML = qty;
                                     cell5.innerHTML = price;
@@ -228,6 +231,48 @@ div.row {
                                     document.getElementById("discount").value = '';
                                     document.getElementById("tax").value = '';
                                     document.getElementById("desc").value = '';
+
+                                    <!--create dummy hidden field-->
+                                    var item = document.createElement("input");
+                                    item.type = "hidden";
+                                    item.value = String(itemname);
+                                    item.name = "item" + counter
+                                    var unit1 = document.createElement("input");
+                                    unit1.type = "hidden";
+                                    unit1.value = unit;
+                                    unit1.name = "unit" + counter
+                                    var qty1 = document.createElement("input");
+                                    qty1.type = "hidden";
+                                    qty1.value = String(qty);
+                                    qty1.name = "qty" + counter
+                                    var price1 = document.createElement("input");
+                                    price1.type = "hidden";
+                                    price1.value = String(price);
+                                    price1.name = "price" + counter
+                                    var discount1 = document.createElement("input");
+                                    discount1.type = "hidden";
+                                    discount1.value = String(discount);
+                                    discount1.name = "discount" + counter
+                                    var tax1 = document.createElement("input");
+                                    tax1.type = "hidden";
+                                    tax1.value = String(tax);
+                                    tax1.name = "tax" + counter
+                                    var desc1 = document.createElement("input");
+                                    desc1.type = "hidden";
+                                    desc1.value = String(desc);
+                                    desc1.name = "desc" + counter
+
+                                    var hid = document.getElementById("hiddeninput");
+                                    hid.appendChild(item);
+                                    hid.appendChild(unit1);
+                                    hid.appendChild(qty1);
+                                    hid.appendChild(price1);
+                                    hid.appendChild(discount1);
+                                    hid.appendChild(tax1);
+                                    hid.appendChild(desc1);
+
+                                    document.getElementById("counter").value = parseInt(counter) + 1;
+
                                 }
                             </script>
                         </div>
