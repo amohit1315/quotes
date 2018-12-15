@@ -80,9 +80,11 @@ class Product(models.Model):
     prod_hsn = models.CharField(blank=True, null=True, max_length=500)
     sales_unit_price = models.CharField(blank=True, null=True, max_length=500)
     sales_currency = models.CharField(blank=True, null=True, max_length=500)
+    sales_cess_percent = models.CharField(blank=True, null=True, max_length=500)
     sales_cess = models.CharField(blank=True, null=True, max_length=500)
     purchase_unit_price = models.CharField(blank=True, null=True, max_length=500)
     puchase_currency = models.CharField(blank=True, null=True, max_length=500)
+    purchase_cess_percent = models.CharField(blank=True, null=True, max_length=500)
     purchase_cess = models.CharField(blank=True, null=True, max_length=500)
     master_company = models.ForeignKey(MasterCompany, blank=True, null=True, on_delete=models.SET_NULL)
 

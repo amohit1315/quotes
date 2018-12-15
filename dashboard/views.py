@@ -248,7 +248,11 @@ def view_preference(request):
 
 
 def view_product(request):
-    return render(request, "view_product.html")
+    current_user = request.user.email
+    x = DBUser.objects.get(email=current_user)
+    m = x.master_company
+    products = Product.objects.filter(master_company=m)
+    return render(request, "view_product.html", {'products':products})
 
 
 def view_purchase_order(request):
@@ -269,5 +273,44 @@ def new_invoice(request):
 
 def new_product(request):
     return render(request, "new_product.html")
+
+def save_product(request):
+    if request.method == 'POST':
+        product_name = request.POST['pname']
+        product_description = request.POST['pdesc']
+        product_sales_price = request.POST['psprice']
+        product_sales_cess_percent = request.POST['pscesspercent']
+        product_sales_currency = request.POST['pscurrency']
+        product_sales_cess = request.POST['pscess']
+        product_quantity = request.POST['pquant']
+        product_unit = request.POST['punit']
+        product_tax = request.POST['ptax']
+        product_hsn = request.POST['phsn']
+        product_purchase_price = request.POST['ppprice']
+        product_purchase_cess_percent = request.POST['ppcesspercent']
+        product_purchase_currency = request.POST['ppcurrency']
+        product_purchase_cess = request.POST['ppcess']
+        prod = Product()
+        prod.prod_name = product_name
+        prod.prod_description = product_description
+        prod.prod_quantity = product_quantity
+        prod.prod_unit = product_unit
+        prod.prod_tax = product_tax
+        prod.prod_hsn = product_hsn
+        prod.sales_unit_price = product_sales_price
+        prod.sales_cess_percent = product_sales_cess_percent
+        prod.sales_cess = product_sales_cess
+        prod.sales_currency = product_sales_currency
+        prod.purchase_unit_price = product_purchase_price
+        prod.purchase_cess_percent = product_purchase_cess_percent
+        prod.purchase_cess = product_purchase_cess
+        prod.puchase_currency = product_purchase_currency
+        current_user = request.user.email
+        x = DBUser.objects.get(email=current_user)
+        m = x.master_company
+        prod.master_company = m
+        prod.save()
+        return HttpResponse("Added Successfully")
+
 
 
