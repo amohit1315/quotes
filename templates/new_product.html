@@ -23,50 +23,259 @@
 
 
 {% block content %}
-    <div class="column2">
-    <div class="card">
-        <ul class="nav nav-pills" role="tablist" style="width: 100%">
+    <div class="column2" style="height: 100%">
+    <div class="card" style="height: 100%">
+        <ul class="nav nav-pills" role="tablist">
             <li style="width: 10%; padding:10px;font-size: large; float:left">New Item</li>
             <li role="presentation" class="active" style="width: 10%;font-size: large; float:left"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Product</a></li>
             <li role="presentation" style="width: 10%;font-size: large; float:left"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Service</a></li>
         </ul>
-        <hr>
-        <div class="tab-content">
-            <div role="tabpanel" class="tab-pane active container " id="home" style="padding:0px; margin:0px; width:100%">
-                <div class="col-sm-6" style="padding:0px">
-                    <div class="form-group form-inline">
-                        <div class="container" style="padding:0px">
-                            <div class="col-sm-2">
-                            <label for="pono" style="padding-top:10px;font-family: 'Alegreya Sans';font-size:15px">Name</label>
+        <hr  style="margin-top:20px">
+        <div class="tab-content" style="height: 100%">
+            <div role="tabpanel" class="tab-pane active" id="home" style="padding:0px; margin:0px; width:100%; height:100%">
+                <form class="form-horizontal" style="height: 85%">
+                <div class="container-fluid" style="height: 85%">
+                  <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="inputlg1" class="col-sm-2 control-label" style="text-align:left">Name</label>
+                            <div class="col-sm-10">
+                                <input class="form-control input-lg" id="inputlg1" type="text">
                             </div>
-                            <input type="text" class="form-control" id="pono" style="width:40%">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputlg2" class="col-sm-2 control-label" style="text-align:left">Description</label>
+                            <div class="col-sm-10">
+                                <input class="form-control input-lg" id="inputlg2" type="text">
+                            </div>
+                        </div>
+                        <h4 style="margin-bottom:0px; margin-top:20px">Sales Info</h4>
+                        <hr  style="margin-top:5px">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="inputlg3" class="col-sm-4 control-label" style="text-align:left">Unit Price</label>
+                                    <div class="col-sm-8">
+                                        <input class="form-control input-lg" id="inputlg3" type="text">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputlg4" class="col-sm-4 control-label" style="text-align:left">CESS%</label>
+                                    <div class="col-sm-8">
+                                        <input class="form-control input-lg" id="inputlg4" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="inputlg5" class="col-sm-4 control-label" style="text-align:left">Currency</label>
+                                    <div class="col-sm-8">
+                                        <input class="form-control input-lg" id="inputlg5" type="text">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputlg6" class="col-sm-4 control-label" style="text-align:left">+ CESS</label>
+                                    <div class="col-sm-8">
+                                        <input class="form-control input-lg" id="inputlg6" type="text">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group form-inline" style="padding-top:10px">
-                        <div class="container" style="padding:0px">
-                            <div class="col-sm-2">
-                            <label for="pono2" style="padding-top:10px;font-family: 'Alegreya Sans';font-size:15px">Description</label>
+                    <div class="col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="inputl1" class="col-sm-4 control-label" style="text-align:left">Quantity</label>
+                                    <div class="col-sm-8">
+                                        <input class="form-control input-lg" id="inputl1" type="text">
+                                    </div>
+                                </div>
                             </div>
-                            <input type="text" class="form-control" id="pono2" style="width:40%">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="inputl2" class="col-sm-4 control-label" style="text-align:left">Unit</label>
+                                    <div class="col-sm-8">
+                                        <input class="form-control input-lg" id="inputl2" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="inputl3" class="col-sm-4 control-label" style="text-align:left">Tax</label>
+                                    <div class="col-sm-8">
+                                        <input class="form-control input-lg" id="inputl3" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputl01" class="col-sm-1 control-label" style="text-align:left">HSN</label>
+                            <div class="col-sm-11">
+                                <input class="form-control input-lg" id="inputl01" type="text">
+                            </div>
+                        </div>
+                        <h4 style="margin-bottom:0px; margin-top:20px">Purchase Info</h4>
+                        <hr  style="margin-top:5px">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="inputlg03" class="col-sm-4 control-label" style="text-align:left">Unit Price</label>
+                                    <div class="col-sm-8">
+                                        <input class="form-control input-lg" id="inputlg03" type="text">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputlg04" class="col-sm-4 control-label" style="text-align:left">CESS%</label>
+                                    <div class="col-sm-8">
+                                        <input class="form-control input-lg" id="inputlg04" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="inputlg05" class="col-sm-4 control-label" style="text-align:left">Currency</label>
+                                    <div class="col-sm-8">
+                                        <input class="form-control input-lg" id="inputlg05" type="text">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputlg06" class="col-sm-4 control-label" style="text-align:left">+ CESS</label>
+                                    <div class="col-sm-8">
+                                        <input class="form-control input-lg" id="inputlg06" type="text">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div style="padding:10px 0px 0px 10px">
-                        <p style="font-size:large;font-family: 'Alegreya Sans';">Sales Info</p>
-                    </div>
+                  </div>
+                </div>
                     <hr>
-
-                </div>
-            </div>
-            <div role="tabpanel" class="tab-pane container " id="profile">
-                <div class="col-sm-6" >
-                    <div class="form-group form-inline">
-                        <label for="pono1" style="padding-right:20px">Po no</label>&ensp;&ensp;
-                        <input type="text" class="form-control" id="pono1">
+                    <div class="fixed-bottom">
+                        <input type="submit" class="btn btn-success btn-lg" value="Submit">
+                        <input type="button" class="btn btn-info btn-lg" value="Cancel">
                     </div>
+                </form>
+            </div>
+            <div role="tabpanel" class="tab-pane container " id="profile" style="padding:0px; margin:0px; width:100%; height:100%">
+                <form class="form-horizontal" style="height: 85%">
+                    <div class="container-fluid" style="height: 85%">
+                  <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="1inputlg1" class="col-sm-2 control-label" style="text-align:left">Name</label>
+                            <div class="col-sm-10">
+                                <input class="form-control input-lg" id="1inputlg1" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="1inputlg2" class="col-sm-2 control-label" style="text-align:left">Description</label>
+                            <div class="col-sm-10">
+                                <input class="form-control input-lg" id="1inputlg2" type="text">
+                            </div>
+                        </div>
+                        <h4 style="margin-bottom:0px; margin-top:20px">Sales Info</h4>
+                        <hr  style="margin-top:5px">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="2inputlg3" class="col-sm-4 control-label" style="text-align:left">Unit Price</label>
+                                    <div class="col-sm-8">
+                                        <input class="form-control input-lg" id="2inputlg3" type="text">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="2inputlg4" class="col-sm-4 control-label" style="text-align:left">CESS%</label>
+                                    <div class="col-sm-8">
+                                        <input class="form-control input-lg" id="2inputlg4" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="1inputlg5" class="col-sm-4 control-label" style="text-align:left">Currency</label>
+                                    <div class="col-sm-8">
+                                        <input class="form-control input-lg" id="1inputlg5" type="text">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="1inputlg6" class="col-sm-4 control-label" style="text-align:left">+ CESS</label>
+                                    <div class="col-sm-8">
+                                        <input class="form-control input-lg" id="1inputlg6" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="1inputl2" class="col-sm-4 control-label" style="text-align:left">Unit</label>
+                                    <div class="col-sm-8">
+                                        <input class="form-control input-lg" id="1inputl2" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="1inputl3" class="col-sm-4 control-label" style="text-align:right">Tax</label>
+                                    <div class="col-sm-8">
+                                        <input class="form-control input-lg" id="1inputl3" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="1inputl01" class="col-sm-2 control-label" style="text-align:left">HSN</label>
+                            <div class="col-sm-10">
+                                <input class="form-control input-lg" id="1inputl01" type="text">
+                            </div>
+                        </div>
+                        <h4 style="margin-bottom:0px; margin-top:20px">Purchase Info</h4>
+                        <hr  style="margin-top:5px">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="1inputlg03" class="col-sm-4 control-label" style="text-align:left">Unit Price</label>
+                                    <div class="col-sm-8">
+                                        <input class="form-control input-lg" id="1inputlg03" type="text">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="1inputlg04" class="col-sm-4 control-label" style="text-align:left">CESS%</label>
+                                    <div class="col-sm-8">
+                                        <input class="form-control input-lg" id="1inputlg04" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="1inputlg05" class="col-sm-4 control-label" style="text-align:left">Currency</label>
+                                    <div class="col-sm-8">
+                                        <input class="form-control input-lg" id="1inputlg05" type="text">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="1inputlg06" class="col-sm-4 control-label" style="text-align:left">+ CESS</label>
+                                    <div class="col-sm-8">
+                                        <input class="form-control input-lg" id="1inputlg06" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
                 </div>
+                <div class="fixed-bottom">
+                    <input type="submit" class="btn btn-success btn-lg" value="Submit">
+                    <input type="button" class="btn btn-info btn-lg" value="Cancel">
+                </div>
+                </form>
             </div>
         </div>
     </div>
 </div>
+
 
 {% endblock %}
