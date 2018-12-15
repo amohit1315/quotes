@@ -231,7 +231,6 @@ def save_customer(request):
             cu.save()
         return HttpResponse("Added Successfully")
 
-
 def view_credit_notes(request):
     return render(request, "view_credit_notes.html")
 
