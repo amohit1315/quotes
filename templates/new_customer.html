@@ -64,7 +64,7 @@ margin-bottom:15px;
     <hr>
   <div class="row">
   <div class="column1">
-    <form class="col-sm-12" method="post" action="">
+    <form class="col-sm-12" method="post" action="{% url 'save_customer' %}">
         {% csrf_token %}
         <div  style="margin-top:35px; margin-bottom:50px">
             <div class="form-group form-inline" style="margin-bottom:35px">
@@ -113,19 +113,19 @@ margin-bottom:15px;
         <div  style="margin-top:35px; margin-bottom:50px">
             <div class="form-group form-inline" style="margin-bottom:35px">
                 <label style="font-size:20px;margin-right: 3em">Contact Person</label>
-                <input type="text" class="form-control" style="width:60%; height: 3em" name="cperson" >
+                <input type="text" class="form-control" style="width:60%; height: 3em" name="cperson" required="">
             </div>
         </div>
         <div  style="margin-top:35px; margin-bottom:50px">
             <div class="form-group form-inline" style="margin-bottom:35px">
                 <label style="font-size:20px;margin-right: 3.5em">Contact Phone</label>
-                <input type="text" class="form-control" style="width:60%; height: 3em" name="cphone" >
+                <input type="text" class="form-control" style="width:60%; height: 3em" name="cpphone" required="">
             </div>
         </div>
         <div  style="margin-top:35px; margin-bottom:50px">
             <div class="form-group form-inline" style="margin-bottom:35px">
                 <label style="font-size:20px;margin-right: 3.5em">Contact Email</label>
-                <input type="text" class="form-control" style="width:60%; height: 3em" name="cemail" >
+                <input type="text" class="form-control" style="width:60%; height: 3em" name="cemail" required="">
             </div>
         </div>
         <button type="button" class="btn btn-primary btn-lg" onclick="myfunction1()" id="button2">Add Another Contact</button>
@@ -133,19 +133,19 @@ margin-bottom:15px;
         <div  style="margin-top:35px; margin-bottom:50px">
             <div class="form-group form-inline" style="margin-bottom:35px">
                 <label style="font-size:20px;margin-right: 3em">Contact Person</label>
-                <input type="text" class="form-control" style="width:60%; height: 3em" name="cperson" >
+                <input type="text" class="form-control" style="width:60%; height: 3em" name="cperson1" >
             </div>
         </div>
         <div  style="margin-top:35px; margin-bottom:50px">
             <div class="form-group form-inline" style="margin-bottom:35px">
                 <label style="font-size:20px;margin-right: 3.5em">Contact Phone</label>
-                <input type="text" class="form-control" style="width:60%; height: 3em" name="cphone" >
+                <input type="text" class="form-control" style="width:60%; height: 3em" name="cpphone1" >
             </div>
         </div>
         <div  style="margin-top:35px; margin-bottom:50px">
             <div class="form-group form-inline" style="margin-bottom:35px">
                 <label style="font-size:20px;margin-right: 3.5em">Contact Email</label>
-                <input type="text" class="form-control" style="width:60%; height: 3em" name="cemail" >
+                <input type="text" class="form-control" style="width:60%; height: 3em" name="cemail1" >
             </div>
         </div>
         </div>
@@ -203,31 +203,31 @@ margin-bottom:15px;
             <div  style="margin-top:35px; margin-bottom:50px">
                     <div class="form-group form-inline" style="margin-bottom:35px">
                 <label style="font-size:20px;margin-right: 5em">Address</label>
-                <input type="text" class="form-control" style="width:60%; height: 3em" name="csaddress" required="">
+                <input type="text" class="form-control" style="width:60%; height: 3em" name="csaddress">
             </div>
             </div>
             <div  style="margin-top:35px; margin-bottom:50px">
                     <div class="form-group form-inline" style="margin-bottom:35px">
                 <label style="font-size:20px;margin-right: 5em">Country</label>
-                <input type="text" class="form-control" style="width:60%; height: 3em" name="cscountry" required="">
+                <input type="text" class="form-control" style="width:60%; height: 3em" name="cscountry">
             </div>
             </div>
             <div  style="margin-top:35px; margin-bottom:50px">
                     <div class="form-group form-inline" style="margin-bottom:35px">
                 <label style="font-size:20px;margin-right: 6.5em">State</label>
-                <input type="text" class="form-control" style="width:60%; height: 3em" name="csstate" required="">
+                <input type="text" class="form-control" style="width:60%; height: 3em" name="csstate">
             </div>
             </div>
             <div  style="margin-top:35px; margin-bottom:50px">
                     <div class="form-group form-inline" style="margin-bottom:35px">
                 <label style="font-size:20px;margin-right: 7em">City</label>
-                <input type="text" class="form-control" style="width:60%; height: 3em" name="cscity" required="">
+                <input type="text" class="form-control" style="width:60%; height: 3em" name="cscity">
             </div>
             </div>
             <div  style="margin-top:35px; margin-bottom:50px">
                     <div class="form-group form-inline" style="margin-bottom:35px">
                 <label style="font-size:20px;margin-right: 5em">Pincode</label>
-                <input type="text" class="form-control" style="width:60%; height: 3em" name="cspincode" required="">
+                <input type="text" class="form-control" style="width:60%; height: 3em" name="cspincode">
             </div>
             </div>
             </div>
@@ -237,40 +237,40 @@ margin-bottom:15px;
                 <div  style="margin-top:35px; margin-bottom:50px">
                     <div class="form-group form-inline" style="margin-bottom:35px">
                 <label style="font-size:20px;margin-right: 5em">Facebook</label>
-                <input type="text" class="form-control" style="width:60%; height: 3em" name="cfacebook" required="">
+                <input type="text" class="form-control" style="width:60%; height: 3em" name="cfacebook">
             </div>
             </div>
                 <div  style="margin-top:35px; margin-bottom:50px">
                     <div class="form-group form-inline" style="margin-bottom:35px">
                 <label style="font-size:20px;margin-right: 7.5em">LST</label>
-                <input type="text" class="form-control" style="width:60%; height: 3em" name="clst" required="">
+                <input type="text" class="form-control" style="width:60%; height: 3em" name="clst">
             </div>
             </div>
                 <div  style="margin-top:35px; margin-bottom:50px">
                     <div class="form-group form-inline" style="margin-bottom:35px">
                 <label style="font-size:20px;margin-right: 7.5em">CST</label>
-                <input type="text" class="form-control" style="width:60%; height: 3em" name="ccst" required="">
+                <input type="text" class="form-control" style="width:60%; height: 3em" name="ccst" >
             </div>
             </div>
                 <div  style="margin-top:35px; margin-bottom:50px">
                     <div class="form-group form-inline" style="margin-bottom:35px">
                 <label style="font-size:20px;margin-right: 2em">Service Tax No.</label>
-                <input type="text" class="form-control" style="width:60%; height: 3em" name="ccst" required="">
+                <input type="text" class="form-control" style="width:60%; height: 3em" name="cstn" >
             </div>
             </div>
                 </div>
             <div role="tabpanel" class="tab-pane" id="messages">
             <div class="form-group form-inline" style="margin-bottom:35px">
-                <textarea rows="15" cols="70" class="form-control" placeholder="" name="csnotes" style="margin-left: 5%"></textarea>
+                <textarea rows="15" cols="70" class="form-control" placeholder="" name="cnotes" style="margin-left: 5%"></textarea>
             </div>
             </div>
         </div>
 </div>
   </div>
-  </form>
 </div>
  <div class="row">
- <button type="button" class="btn btn-success btn-block btn-lg">Save</button>
+ <input type="submit" value="Save" class="btn btn-success btn-block btn-lg" >
+ </form>
  </div>
 <script>
 function myfunction() {
