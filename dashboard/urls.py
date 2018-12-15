@@ -3,7 +3,7 @@ from django.conf.urls  import *
 from django.contrib.auth import views as v
 
 urlpatterns = [
-<<<<<<< HEAD
+
     url(r'^$', views.index, name='index'),
     url(r'^loginpage/$', views.gologin, name='gologin'),
     url(r'^login/$', views.signin, name='login'),
@@ -15,10 +15,6 @@ urlpatterns = [
     url(r'^view_customer/', views.view_customer, name='view_customer'),
     url(r'^new_customer/',views.new_customer,name='new_customer'),
     url(r'^save_customer',views.save_customer,name='save_customer'),
-=======
-    url(r'^$', views.home, name='home'),
-    url(r'^customer/', views.view_customer, name='view_customer'),
->>>>>>> 93d8e874d6fe9a6a765edbf512155f87ecf20db0
     url(r'^view_credit_notes/', views.view_credit_notes, name='view_credit_notes'),
     url(r'^view_delivery_notes/', views.view_delivery_notes, name='view_delivery_notes'),
     url(r'^view_invoices/', views.view_invoices, name='view_invoices'),
