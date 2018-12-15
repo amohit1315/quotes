@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" >
+{% load staticfiles %}
+<head>
+  <meta charset="UTF-8">
+  <title>Bootstrap MultiStep Form</title>
+      <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
+
+      <link rel="stylesheet" href="{% static 'log/style.css' %}">
+
+
+</head>
+
+<body>
+
+  <!-- MultiStep Form -->
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <form id="msform" method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+
+             <fieldset>
+                 <div id="logo" style="color:black">COMPANY LOGO</div>
+                 <h3>LOGIN DETAILS</h3>
+                 <input type="text" name="usern" placeholder="Email"/>
+                 <input type="password" name="password" placeholder="Password"/>
+                 <input type="submit" value="LOGIN" style="background-color: black; color: red; font-size: 18px">
+                 <h6><a href="{% url 'gohome' %}">GO TO HOME PAGE</a></h6>
+             </fieldset>
+        </form>
+    </div>
+</div>
+</body>
+</html>
