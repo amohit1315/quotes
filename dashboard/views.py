@@ -14,9 +14,6 @@ def view_customer(request):
     return render(request, "view_customer.html")
 
 
-def add_customer(request):
-    return render(request, "add_customer.html")
-
 def view_credit_notes(request):
     return render(request, "view_credit_notes.html")
 
