@@ -101,6 +101,10 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+)
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
@@ -119,3 +123,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+ os.path.join(BASE_DIR, "static"),
+]
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'eshan.gulhati@gmail.com'
+EMAIL_HOST_PASSWORD = 'silvershark'
+EMAIL_PORT = 587
+
+
+LOGIN_URL = 'gologin'
+LOGIN_REDIRECT_URL = 'home'
