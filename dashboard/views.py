@@ -138,7 +138,8 @@ def view_customer(request):
     print m
     customers = Customer.objects.filter(master_company=m)
     print customers
-    return render(request, "view_customer.html",{customers:'cust'})
+
+    return render(request, "view_customer.html",{'customers':customers})
 
 
 def new_customer(request):
@@ -439,6 +440,9 @@ def save_service(request):
         service.master_company = m
         service.save()
         return HttpResponse("Added Successfully")
+
+
+
 
 
 
