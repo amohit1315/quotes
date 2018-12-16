@@ -16,6 +16,20 @@ class MasterCompany(models.Model):
         return self.company_name
 
 
+class Tax(models.Model):
+    master_company = models.ForeignKey(MasterCompany, blank=True, null=True,
+                                       on_delete=models.SET_NULL)
+    name = models.CharField(blank=True, null=True,max_length=200)
+    tax = models.CharField(blank=True, null=True,max_length=200)
+
+
+class Unit(models.Model):
+    master_company = models.ForeignKey(MasterCompany, blank=True, null=True,
+                                       on_delete=models.SET_NULL)
+    name = models.CharField(blank=True, null=True, max_length=200)
+    code = models.CharField(blank=True, null=True, max_length=200)
+
+
 class DBUser(models.Model):
     first_name = models.CharField(blank=True, null=True,max_length=200)
     last_name = models.CharField(blank=True, null=True, max_length=200)

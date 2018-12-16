@@ -10,7 +10,7 @@ from .tokens import account_activation_token
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
-from models import DBUser,MasterCompany,Customer,Product_Service,Contact
+from models import DBUser,MasterCompany,Customer,Product_Service,Contact, Tax, Unit
 from datetime import datetime, timedelta
 from django.contrib.auth.hashers import check_password
 
@@ -270,7 +270,10 @@ def view_report(request):
 def new_invoice(request):
     prod = Product_Service.objects.all
     client = Customer.objects.all()
-    return render(request, "new_invoice.html", {"prod": prod, "client": client})
+    tax = Tax.objects.all()
+    unit = Unit.objects.all()
+    return render(request, "new_invoice.html", {"prod": prod, "client": client
+                                                , "tax": tax, "unit": unit})
 
 
 def new_product(request):
