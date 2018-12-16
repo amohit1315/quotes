@@ -26,6 +26,7 @@ urlpatterns = [
     url(r'^new_invoice/', views.new_invoice, name='new_invoice'),
     url(r'^new_product', views.new_product, name='new_product'),
     url(r'^save_product', views.save_product, name='save_product'),
+    url(r'^save_service', views.save_service, name='save_service'),
     url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
         views.activate, name='activate')
 ]
