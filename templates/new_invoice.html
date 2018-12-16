@@ -55,7 +55,11 @@ div.row {
                         <div class="form-group">
                             <label for="inputlg1" class="col-md-2 control-label" style="text-align:left">Client Name</label>
                             <div class="col-md-10" id="hiddeninput">
-                                <input class="form-control input-lg" id="inputlg1" type="text">
+                                <select class="form-control" id="inputlg1" name="clientname">
+                                    {% for cl in client %}
+                                        <option value="cust_name">cl.cust_name</option>
+                                    {% endfor %}
+                                </select>
                             </div>
                         </div>
                     </div>

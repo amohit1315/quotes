@@ -268,7 +268,9 @@ def view_report(request):
 
 
 def new_invoice(request):
-    return render(request, "new_invoice.html")
+    prod = Product_Service.objects.all
+    client = Customer.objects.all()
+    return render(request, "new_invoice.html", {"prod": prod, "client": client})
 
 
 def new_product(request):
