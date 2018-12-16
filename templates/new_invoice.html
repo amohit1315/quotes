@@ -47,6 +47,7 @@ div.row {
         <div class="header" style="border-bottom: 1px solid #7a858f; padding-bottom:10px;">
             <p style="font-size: large">Add New Invoice</p>
         </div>
+        {% csrf_token %}
         <form class="form-horizontal" style="height: 85%" id="form1">
             <div class="container-fluid" style="height: 85%; margin:0px">
                 <div class="row" style="border-bottom: 1px solid #7a858f; padding-bottom:10px; padding-top:20px; background-color:#f9fafb;">
@@ -64,7 +65,7 @@ div.row {
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="inputlg2" class="col-md-3 control-label" style="text-align:left">Invoice no</label>
+                                    <label for="inputlg2" class="col-md-3 control-label" name="invoiecno" style="text-align:left">Invoice no</label>
                                     <div class="col-md-4">
                                         <input class="form-control input-lg" id="inputlg2" type="text">
                                     </div>
@@ -75,7 +76,7 @@ div.row {
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="inputlg3" class="col-md-4 control-label" style="text-align:right">Invoice Date</label>
+                                    <label for="inputlg3" class="col-md-4 control-label" name="invoicedate" style="text-align:right">Invoice Date</label>
                                     <div class="col-md-8">
                                         <input class="form-control input-lg" id="inputlg3" type="date">
                                     </div>
@@ -83,7 +84,7 @@ div.row {
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="inputlg4" class="col-md-4 control-label" style="text-align:right">Payment Terms</label>
+                                    <label for="inputlg4" class="col-md-4 control-label" name="paymentterms" style="text-align:right">Payment Terms</label>
                                     <div class="col-md-8">
                                         <input class="form-control input-lg" id="inputlg4" type="text">
                                     </div>
@@ -93,7 +94,7 @@ div.row {
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="inputlg6" class="col-md-3 control-label" style="text-align:left">PO no</label>
+                                    <label for="inputlg6" class="col-md-3 control-label" name="pono" style="text-align:left">PO no</label>
                                     <div class="col-md-9">
                                         <input class="form-control input-lg" id="inputlg6" type="number">
                                     </div>
@@ -101,7 +102,7 @@ div.row {
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="inputlg5" class="col-md-4 control-label" style="text-align:right">Due Date</label>
+                                    <label for="inputlg5" class="col-md-4 control-label" name="duedate" style="text-align:right">Due Date</label>
                                     <div class="col-md-8">
                                         <input class="form-control input-lg" id="inputlg5" type="date">
                                     </div>
@@ -166,7 +167,7 @@ div.row {
                                     </div>
                                 </div>
                             </div>
-                            <input type="hidden" id="counter" value="1">
+                            <input type="hidden" id="counter" name="counter" value="1">
                             <div class="col-md-1" >
                                 <div class="form-group" style="padding:0px; margin-right:0px;">
                                     <div class="col-md-12" style="padding:0px; margin:0px;">
@@ -290,16 +291,16 @@ div.row {
                 <div class="row" style="border-bottom: 1px solid #7a858f; padding-bottom:10px; padding-top:20px;">
                     <div class="col-md-6">
                         <div class="checkbox" style="padding:0px 20px 20px 0px">
-                            <label><input type="checkbox" value=""><span style="padding:20px">Add shipping charges</span></label>
+                            <label><input type="checkbox" name="shipping" value=""><span style="padding:20px">Add shipping charges</span></label>
                         </div>
                         <div class="checkbox" style="padding:0px 20px 20px 0px">
-                            <label><input type="checkbox" value=""><span style="padding:20px">Add discount to all</span></label>
+                            <label><input type="checkbox" name="adddiscount" value=""><span style="padding:20px">Add discount to all</span></label>
                         </div>
                         <div style="padding:0px 20px 20px 0px; color:#266a95;" >
                             + &ensp; Add advance payment
                         </div>
                         <div class="checkbox" style="padding:0px 20px 20px 0px">
-                            <label><input type="checkbox" value=""><span style="padding:20px">Transport labels</span></label>
+                            <label><input type="checkbox" name="transport" value=""><span style="padding:20px">Transport labels</span></label>
                         </div>
                     </div>
                 </div>
@@ -307,13 +308,13 @@ div.row {
                     <div class="col-md-6">
                         <p>Terms and Conditions</p>
                         <div class="form-group" style="padding:0px; margin:0px;">
-                            <textarea class="form-control input-lg" rows="4" style="padding:10px"></textarea>
+                            <textarea class="form-control input-lg" rows="4" name="terms" style="padding:10px"></textarea>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <p>Private notes&ensp;(not shown to client)</p>
                         <div class="form-group" style="padding:0px; margin:0px;">
-                            <textarea class="form-control input-lg" rows="4" style="padding:10px"></textarea>
+                            <textarea class="form-control input-lg" name="notes" rows="4" style="padding:10px"></textarea>
                         </div>
                     </div>
                 </div>
