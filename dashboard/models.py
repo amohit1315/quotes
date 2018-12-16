@@ -71,13 +71,13 @@ class Customer(models.Model):
     def __str__(self):
         return self.cust_name
 
-class Product(models.Model):
-    prod_name = models.CharField(primary_key=True, max_length=500)
-    prod_description = models.CharField(blank=True, null=True, max_length=1000)
-    prod_quantity = models.CharField(blank=True, null=True, max_length=500)
-    prod_unit = models.CharField(max_length=500, blank=True, null=True)
-    prod_tax = models.CharField(blank=True, null=True, max_length=500)
-    prod_hsn = models.CharField(blank=True, null=True, max_length=500)
+class Product_Service(models.Model):
+    name = models.CharField(primary_key=True, max_length=500)
+    description = models.CharField(blank=True, null=True, max_length=1000)
+    quantity = models.CharField(blank=True, null=True, max_length=500)
+    unit = models.CharField(max_length=500, blank=True, null=True)
+    tax = models.CharField(blank=True, null=True, max_length=500)
+    hsn = models.CharField(blank=True, null=True, max_length=500)
     sales_unit_price = models.CharField(blank=True, null=True, max_length=500)
     sales_currency = models.CharField(blank=True, null=True, max_length=500)
     sales_cess_percent = models.CharField(blank=True, null=True, max_length=500)
@@ -87,26 +87,11 @@ class Product(models.Model):
     purchase_cess_percent = models.CharField(blank=True, null=True, max_length=500)
     purchase_cess = models.CharField(blank=True, null=True, max_length=500)
     master_company = models.ForeignKey(MasterCompany, blank=True, null=True, on_delete=models.SET_NULL)
-
+    type = models.CharField(null=True,blank=True,max_length=500)
+    sac = models.CharField(null=True,blank=True,max_length=500)
     def __str__(self):
-        return self.prod_name
+        return self.name
 
-class Service(models.Model):
-    service_name = models.CharField(primary_key=True, max_length=500)
-    service_description = models.CharField(blank=True, null=True, max_length=1000)
-    service_unit = models.CharField(max_length=500, blank=True, null=True)
-    service_tax = models.CharField(blank=True, null=True, max_length=500)
-    service_sac = models.CharField(blank=True, null=True, max_length=500)
-    sales_unit_price = models.CharField(blank=True, null=True, max_length=500)
-    sales_currency = models.CharField(blank=True, null=True, max_length=500)
-    sales_cess = models.CharField(blank=True, null=True, max_length=500)
-    purchase_unit_price = models.CharField(blank=True, null=True, max_length=500)
-    puchase_currency = models.CharField(blank=True, null=True, max_length=500)
-    purchase_cess = models.CharField(blank=True, null=True, max_length=500)
-    master_company = models.ForeignKey(MasterCompany, blank=True, null=True, on_delete=models.SET_NULL)
-
-    def __str__(self):
-        return self.service_name
 
 
 

@@ -10,7 +10,7 @@ from .tokens import account_activation_token
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
-from models import DBUser,MasterCompany,Customer,Product,Contact,Service
+from models import DBUser,MasterCompany,Customer,Product_Service,Contact
 from datetime import datetime, timedelta
 from django.contrib.auth.hashers import check_password
 
@@ -251,8 +251,8 @@ def view_product(request):
     current_user = request.user.email
     x = DBUser.objects.get(email=current_user)
     m = x.master_company
-    products = Product.objects.filter(master_company=m)
-    return render(request, "view_product.html", {'products':products})
+    ps = Product_Service.objects.filter(master_company=m)
+    return render(request, "view_product.html", {'ps':ps})
 
 
 def view_purchase_order(request):
@@ -276,41 +276,168 @@ def new_product(request):
 
 def save_product(request):
     if request.method == 'POST':
-        product_name = request.POST['pname']
-        product_description = request.POST['pdesc']
-        product_sales_price = request.POST['psprice']
-        product_sales_cess_percent = request.POST['pscesspercent']
-        product_sales_currency = request.POST['pscurrency']
-        product_sales_cess = request.POST['pscess']
-        product_quantity = request.POST['pquant']
-        product_unit = request.POST['punit']
-        product_tax = request.POST['ptax']
-        product_hsn = request.POST['phsn']
-        product_purchase_price = request.POST['ppprice']
-        product_purchase_cess_percent = request.POST['ppcesspercent']
-        product_purchase_currency = request.POST['ppcurrency']
-        product_purchase_cess = request.POST['ppcess']
-        prod = Product()
-        prod.prod_name = product_name
-        prod.prod_description = product_description
-        prod.prod_quantity = product_quantity
-        prod.prod_unit = product_unit
-        prod.prod_tax = product_tax
-        prod.prod_hsn = product_hsn
-        prod.sales_unit_price = product_sales_price
-        prod.sales_cess_percent = product_sales_cess_percent
-        prod.sales_cess = product_sales_cess
-        prod.sales_currency = product_sales_currency
-        prod.purchase_unit_price = product_purchase_price
-        prod.purchase_cess_percent = product_purchase_cess_percent
-        prod.purchase_cess = product_purchase_cess
-        prod.puchase_currency = product_purchase_currency
+        product_name = request.POST.get('pname','')
+        product_description = request.POST.get('pdesc','')
+        product_sales_price = request.POST.get('psprice','')
+        product_sales_cess_percent = request.POST.get('pscesspercent',False)
+        product_sales_currency = request.POST.get('pscurrency',False)
+        product_sales_cess = request.POST.get('pscess',False)
+        product_quantity = request.POST.get('pquant',False)
+        product_unit = request.POST.get('punit',False)
+        product_tax = request.POST.get('ptax',False)
+        product_hsn = request.POST.get('phsn',False)
+        product_purchase_price = request.POST.get('ppprice',False)
+        product_purchase_cess_percent = request.POST.get('ppcesspercent',False)
+        product_purchase_currency = request.POST.get('ppcurrency',False)
+        product_purchase_cess = request.POST.get('ppcess',False)
+        prod = Product_Service()
+        if product_name != 'False':
+            prod.name = product_name
+            if product_description != 'False':
+                prod.description = product_description
+            else :
+                prod.description = ''
+            if product_sales_price != 'False':
+                prod.sales_unit_price = product_sales_price
+            else:
+                prod.sales_unit_price = ''
+            if product_quantity != 'False':
+                prod.quantity = product_quantity
+            else :
+                prod.quantity = ''
+            if product_unit != 'False' :
+                prod.unit = product_unit
+            else:
+                prod.unit = ''
+            if product_tax != 'False':
+                prod.tax = product_tax
+            else:
+                prod.tax = ''
+            if product_hsn != 'False':
+                prod.hsn = product_hsn
+            else:
+                prod_hsn = ''
+            if product_sales_price !='False':
+                prod.sales_unit_price = product_sales_price
+            else:
+                prod.sales_unit_price = ''
+            if product_sales_cess_percent != 'False':
+                prod.sales_cess_percent = product_sales_cess_percent
+            else:
+                prod.sales_cess_percent = ''
+            if product_sales_cess !='False':
+                prod.sales_cess = product_sales_cess
+            else:
+                prod.sales_cess = ''
+            if product_sales_currency != 'False':
+                prod.sales_currency = product_sales_currency
+            else:
+                prod.sales_currency = ''
+            if product_purchase_price != 'False':
+                prod.purchase_unit_price = product_purchase_price
+            else:
+                prod.purchase_unit_price = ''
+            if product_purchase_cess_percent != 'False':
+                prod.purchase_cess_percent = product_purchase_cess_percent
+            else:
+                prod.purchase_cess_percent = ''
+            if product_purchase_cess != 'False':
+                prod.purchase_cess = product_purchase_cess
+            else:
+                prod.purchase_cess = ''
+            if product_purchase_currency != 'False':
+                prod.purchase_currency = product_purchase_currency
+            else:
+                prod.purchase_currency = ''
+            prod.type = 'Product'
+            prod.sac= ''
+
         current_user = request.user.email
         x = DBUser.objects.get(email=current_user)
         m = x.master_company
         prod.master_company = m
         prod.save()
         return HttpResponse("Added Successfully")
+
+def save_service(request):
+    if request.method == 'POST':
+        service_name = request.POST.get('sname', False)
+        service_description = request.POST.get('sdesc', False)
+        service_sales_price = request.POST.get('ssprice', False)
+        service_sales_cess_percent = request.POST.get('sscesspercent', False)
+        service_sales_currency = request.POST.get('sscurrency', False)
+        service_sales_cess = request.POST.get('sscess', False)
+        service_unit = request.POST.get('sunit', False)
+        service_tax = request.POST.get('stax', False)
+        service_sac = request.POST.get('ssac', False)
+        service_purchase_price = request.POST.get('spprice', False)
+        service_purchase_cess_percent = request.POST.get('spcesspercent', False)
+        service_purchase_currency = request.POST.get('spcurrency', False)
+        service_purchase_cess = request.POST.get('spcess', False)
+        service = Product_Service()
+        service.name = service_name
+        if service_description != 'False':
+            service.description = service_description
+        else:
+            service.description = ''
+        if service_sales_price != 'False':
+            service.sales_unit_price = service_sales_price
+        else:
+            service.sales_unit_price = ''
+        if service_sac != 'False':
+            service.sac = service_sac
+        else:
+            service.sac = ''
+        if service_unit != 'False':
+            service.unit = service_unit
+        else:
+            service.unit = ''
+        if service_tax != 'False':
+            service.tax = service_tax
+        else:
+            service.tax = ''
+        service.quantity = ''
+        service.hsn = ''
+        if service_sales_price != 'False':
+            service.sales_unit_price = service_sales_price
+        else:
+            service.sales_unit_price = ''
+        if service_sales_cess_percent != 'False':
+            service.sales_cess_percent = service_sales_cess_percent
+        else:
+            service.sales_cess_percent = ''
+        if service_sales_cess != 'False':
+            service.sales_cess = service_sales_cess
+        else:
+            service.sales_cess = ''
+        if service_sales_currency != 'False':
+            service.sales_currency = service_sales_currency
+        else:
+            service.sales_currency = ''
+        if service_purchase_price != 'False':
+            service.purchase_unit_price = service_purchase_price
+        else:
+            service.purchase_unit_price = ''
+        if service_purchase_cess_percent != 'False':
+            service.purchase_cess_percent = service_purchase_cess_percent
+        else:
+            service.purchase_cess_percent = ''
+        if service_purchase_cess != 'False':
+            service.purchase_cess = service_purchase_cess
+        else:
+            service.purchase_cess = ''
+        if service_purchase_currency != 'False':
+            service.purchase_currency = service_purchase_currency
+        else:
+            service.purchase_currency = ''
+        service.type = 'Service'
+        current_user = request.user.email
+        x = DBUser.objects.get(email=current_user)
+        m = x.master_company
+        service.master_company = m
+        service.save()
+        return HttpResponse("Added Successfully")
+
 
 
 
