@@ -42,7 +42,6 @@ div.row {
 {% endblock %}
 
 {% block content %}
-
 <div class="column2" style="height: 100%">
     <div class="card" style="height: 100%">
         <div class="header" style="border-bottom: 1px solid #7a858f; padding-bottom:10px;">
@@ -51,59 +50,59 @@ div.row {
         <form class="form-horizontal" style="height: 85%" id="form1">
             <div class="container-fluid" style="height: 85%; margin:0px">
                 <div class="row" style="border-bottom: 1px solid #7a858f; padding-bottom:10px; padding-top:20px; background-color:#f9fafb;">
-                    <div class="col-sm-8">
+                    <div class="col-md-8">
                         <div class="form-group">
-                            <label for="inputlg1" class="col-sm-2 control-label" style="text-align:left">Client Name</label>
-                            <div class="col-sm-10" id="hiddeninput">
+                            <label for="inputlg1" class="col-md-2 control-label" style="text-align:left">Client Name</label>
+                            <div class="col-md-10" id="hiddeninput">
                                 <input class="form-control input-lg" id="inputlg1" type="text">
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="row" style="border-bottom: 1px solid #7a858f; padding-top:20px; padding-bottom:10px">
-                    <div class="col-sm-12">
+                    <div class="col-md-12">
                         <div class="row">
-                            <div class="col-sm-4">
+                            <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="inputlg2" class="col-sm-3 control-label" style="text-align:left">Invoice no</label>
-                                    <div class="col-sm-4">
+                                    <label for="inputlg2" class="col-md-3 control-label" style="text-align:left">Invoice no</label>
+                                    <div class="col-md-4">
                                         <input class="form-control input-lg" id="inputlg2" type="text">
                                     </div>
-                                    <div class="col-sm-5">
+                                    <div class="col-md-5">
                                         <input class="form-control input-lg" id="" type="text">
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-4">
+                            <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="inputlg3" class="col-sm-4 control-label" style="text-align:right">Invoice Date</label>
-                                    <div class="col-sm-8">
+                                    <label for="inputlg3" class="col-md-4 control-label" style="text-align:right">Invoice Date</label>
+                                    <div class="col-md-8">
                                         <input class="form-control input-lg" id="inputlg3" type="date">
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-4">
+                            <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="inputlg4" class="col-sm-4 control-label" style="text-align:right">Payment Terms</label>
-                                    <div class="col-sm-8">
+                                    <label for="inputlg4" class="col-md-4 control-label" style="text-align:right">Payment Terms</label>
+                                    <div class="col-md-8">
                                         <input class="form-control input-lg" id="inputlg4" type="text">
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-4">
+                            <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="inputlg6" class="col-sm-3 control-label" style="text-align:left">PO no</label>
-                                    <div class="col-sm-9">
+                                    <label for="inputlg6" class="col-md-3 control-label" style="text-align:left">PO no</label>
+                                    <div class="col-md-9">
                                         <input class="form-control input-lg" id="inputlg6" type="number">
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-4">
+                            <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="inputlg5" class="col-sm-4 control-label" style="text-align:right">Due Date</label>
-                                    <div class="col-sm-8">
+                                    <label for="inputlg5" class="col-md-4 control-label" style="text-align:right">Due Date</label>
+                                    <div class="col-md-8">
                                         <input class="form-control input-lg" id="inputlg5" type="date">
                                     </div>
                                 </div>
@@ -115,19 +114,19 @@ div.row {
                     <p style="font-size: large"><strong>Invoice</strong></p>
                 </div>
                 <div class="row" style="margin-left:-30px; margin-right:-30px">
-                    <div class="col-sm-12">
+                    <div class="col-md-12">
                         <div class="table-responsive">
                             <table class="table table-sm table-striped" align="right" cellpadding="0" cellspacing="0"  style="width:100%" id="myTable">
                               <thead class="thead-light" style="width:100%; background-color:#dce4e9">
                                 <tr>
-                                    <th class="col-sm-1">No</th>
-                                    <th class="col-sm-5">Item Name</th>
-                                    <th class="col-sm-1" style="text-align:center;">Unit</th>
-                                    <th class="col-sm-1" style="text-align:center;">Qty</th>
-                                    <th class="col-sm-1" style="text-align:center;">Price</th>
-                                    <th class="col-sm-1" style="text-align:center;">Discount (%)</th>
-                                    <th class="col-sm-1" style="text-align:center;">Tax</th>
-                                    <th class="col-sm-1" style="text-align:center;">Total</th>
+                                    <th class="col-md-1">No</th>
+                                    <th class="col-md-5">Item Name</th>
+                                    <th class="col-md-1" style="text-align:center;">Unit</th>
+                                    <th class="col-md-1" style="text-align:center;">Qty</th>
+                                    <th class="col-md-1" style="text-align:center;">Price</th>
+                                    <th class="col-md-1" style="text-align:center;">Discount (%)</th>
+                                    <th class="col-md-1" style="text-align:center;">Tax</th>
+                                    <th class="col-md-1" style="text-align:center;">Total</th>
                                 </tr>
                               </thead>
                                 <tbody id="myTabl" style="width:100%;"></tbody>
@@ -136,53 +135,53 @@ div.row {
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-12">
+                    <div class="col-md-12">
                         <div class="row">
-                            <div class="col-sm-1">1</div>
-                            <div class="col-sm-5">
+                            <div class="col-md-1">1</div>
+                            <div class="col-md-5">
                                 <div class="form-group" style="padding:0px; margin:0px;">
-                                    <div class="col-sm-12" style="padding:0px; margin:0px;">
+                                    <div class="col-md-12" style="padding:0px; margin:0px;">
                                         <input class="form-control input-lg" id="itemname" type="text" style="padding:10px">
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-1" >
+                            <div class="col-md-1" >
                                 <div class="form-group" style="padding:0px; margin-right:0px;">
-                                    <div class="col-sm-12" style="padding:0px; margin:0px;">
+                                    <div class="col-md-12" style="padding:0px; margin:0px;">
                                         <input class="form-control input-lg" id="unit" type="text" style="padding:10px; margin:0px;">
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-1" >
+                            <div class="col-md-1" >
                                 <div class="form-group" style="padding:0px; margin-right:0px;">
-                                    <div class="col-sm-12" style="padding:0px; margin:0px;">
+                                    <div class="col-md-12" style="padding:0px; margin:0px;">
                                         <input class="form-control input-lg" id="qty" type="number" style="padding:10px; margin:0px;" value="1">
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-1" >
+                            <div class="col-md-1" >
                                 <div class="form-group" style="padding:0px; margin-right:0px;">
-                                    <div class="col-sm-12" style="padding:0px; margin:0px;">
+                                    <div class="col-md-12" style="padding:0px; margin:0px;">
                                         <input class="form-control input-lg" id="price" type="number" style="padding:10px; margin:0px;">
                                     </div>
                                 </div>
                             </div>
                             <input type="hidden" id="counter" value="1">
-                            <div class="col-sm-1" >
+                            <div class="col-md-1" >
                                 <div class="form-group" style="padding:0px; margin-right:0px;">
-                                    <div class="col-sm-12" style="padding:0px; margin:0px;">
+                                    <div class="col-md-12" style="padding:0px; margin:0px;">
                                         <input class="form-control input-lg" id="discount" type="number" style="padding:10px; margin:0px;">
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-1" >
+                            <div class="col-md-1" >
                                 <div class="form-group" style="padding:0px; margin-right:0px;">
-                                    <div class="col-sm-12" style="padding:0px; margin:0px;">
+                                    <div class="col-md-12" style="padding:0px; margin:0px;">
                                         <input class="form-control input-lg" id="tax" type="text" style="padding:10px; margin:0px;">
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-1" >
+                            <div class="col-md-1" >
                                 <button type="button" class="btn btn-primary" onclick="myFunction()" style="padding:10px; font-size:15px">+ Add line</button>
                             </div>
                             <script>
@@ -279,17 +278,17 @@ div.row {
                     </div>
                 </div>
                 <div class="row" style="border-bottom: 1px solid #7a858f; padding-bottom:30px; padding-top:10px;">
-                    <div class="col-sm-1" style="padding:0px; margin:0px; border:10px"></div>
-                    <div class="col-sm-5">
+                    <div class="col-md-1" style="padding:0px; margin:0px; border:10px"></div>
+                    <div class="col-md-5">
                         <div class="form-group" style="padding:0px; margin:0px;">
-                            <div class="col-sm-12" style="padding:0px; margin:0px;">
+                            <div class="col-md-12" style="padding:0px; margin:0px;">
                                 <textarea class="form-control input-lg" rows="4" id="desc" style="padding:10px"></textarea>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="row" style="border-bottom: 1px solid #7a858f; padding-bottom:10px; padding-top:20px;">
-                    <div class="col-sm-6">
+                    <div class="col-md-6">
                         <div class="checkbox" style="padding:0px 20px 20px 0px">
                             <label><input type="checkbox" value=""><span style="padding:20px">Add shipping charges</span></label>
                         </div>
@@ -305,13 +304,13 @@ div.row {
                     </div>
                 </div>
                 <div class="row" style="border-bottom: 1px solid #7a858f; padding-bottom:30px; padding-top:20px; background-color:#f9fafb;">
-                    <div class="col-sm-6">
+                    <div class="col-md-6">
                         <p>Terms and Conditions</p>
                         <div class="form-group" style="padding:0px; margin:0px;">
                             <textarea class="form-control input-lg" rows="4" style="padding:10px"></textarea>
                         </div>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-md-6">
                         <p>Private notes&ensp;(not shown to client)</p>
                         <div class="form-group" style="padding:0px; margin:0px;">
                             <textarea class="form-control input-lg" rows="4" style="padding:10px"></textarea>
