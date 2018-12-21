@@ -92,6 +92,33 @@ class Product_Service(models.Model):
     def __str__(self):
         return self.name
 
+class Tax(models.Model):
+    tax_category = models.CharField(primary_key=True,max_length=500)
+
+    def __str__(self):
+        return self.tax_category
+
+class UserTax(models.Model):
+    tax_category = models.CharField(primary_key=True,max_length=500)
+    master_company = models.ForeignKey(MasterCompany, blank=True, null=True, on_delete=models.SET_NULL)
+
+    def __str__(self):
+        return self.tax_category
+
+
+class Unit(models.Model):
+    unit_type = models.CharField(primary_key=True,max_length=500)
+
+    def __str__(self):
+        return self.unit_type
+
+class UserUnit(models.Model):
+    unit_type = models.CharField(primary_key=True,max_length=500)
+    master_company = models.ForeignKey(MasterCompany, blank=True, null=True, on_delete=models.SET_NULL)
+    def __str__(self):
+        return self.unit_type
+
+
 
 
 
