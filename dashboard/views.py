@@ -10,7 +10,7 @@ from .tokens import account_activation_token
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
-from models import DBUser,MasterCompany,Customer,Product_Service,Contact
+from models import DBUser,MasterCompany,Customer,Product_Service,Contact,Tax,Unit,UserUnit,UserTax
 from datetime import datetime, timedelta
 from django.contrib.auth.hashers import check_password
 
@@ -269,9 +269,16 @@ def view_report(request):
 
 
 def new_invoice(request):
-    prod = Product_Service.objects.all
-    client = Customer.objects.all()
-    return render(request, "new_invoice.html", {"prod": prod, "client": client})
+    current_user = request.user.email
+    x = DBUser.objects.get(email=current_user)
+    m = x.master_company
+    prod = Product_Service.objects.filter(master_company=m)
+    client = Customer.objects.filter(master_company=m)
+    tax = Tax.objects.all()
+    unit = Unit.objects.all()
+    usertax = UserTax.objects.filter(master_company=m)
+    userunit = UserUnit.objects.filter(master_company=m)
+    return render(request, "new_invoice.html", {"prod": prod, "client": client , 'tax' : tax, 'unit': unit ,'usertax' : usertax, userunit : 'userunit'})
 
 
 def new_product(request):
