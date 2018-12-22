@@ -107,6 +107,13 @@ class UserTax(models.Model):
     def __str__(self):
         return self.tax_category
 
+class Invoice(models.Model):
+    client_name = models.CharField(max_length=500,null=True,blank=True)
+    invoice_no = models.CharField(max_length=500,primary_key=True)
+    invoice_date = models.CharField(max_length=500,null=True,blank=True)
+    payment_terms = models.CharField(max_length=500,null=True,blank=True)
+    po_no = models.CharField(max_length=500,null=True,blank=True)
+    due_date = models.CharField(max_length=500,null=True,blank=True)
 
 class Unit(models.Model):
     unit_type = models.CharField(primary_key=True,max_length=500)
@@ -119,7 +126,6 @@ class UserUnit(models.Model):
     master_company = models.ForeignKey(MasterCompany, blank=True, null=True, on_delete=models.SET_NULL)
     def __str__(self):
         return self.unit_type
-
 
 
 
