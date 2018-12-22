@@ -500,6 +500,30 @@ def save_service(request):
         service.save()
         return HttpResponse("Added Successfully")
 
+def filterclient(request):
+    if request.method == 'POST':
+        company = request.POST.get('cpname', "")
+        email = request.POST.get('cemail', "")
+        phone = request.POST.get('cphone', "")
+        city = request.POST.get('ccity', "")
+        current_user = request.user.email
+        x = DBUser.objects.get(email=current_user)
+        m = x.master_company
+        temp = "Customer.objects.filter(master_company=m"
+        if company != "":
+            temp = temp + ", cust_name=company"
+        if email != "":
+            temp = temp + ", cust_email=email"
+        if phone != "":
+            temp = temp + ", cust_phone=phone"
+        if city != "":
+            temp = temp + ", cust_city=city"
+        temp = temp + ")"
+        customers = eval(temp)
+        return render(request, "view_customer.html", {'customers': customers})
+
+
+
 
 
 

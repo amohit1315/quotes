@@ -35,10 +35,39 @@ button.left0 {
     <div class="dropdown">
         <button class="btn btn-default dropdown-toggle btn-lg left0" type="button" data-toggle="dropdown">Filter Customers
         &ensp;<span class="caret"></span></button>
-        <ul class="dropdown-menu">
-          <li><a href="#">HTML</a></li>
-          <li><a href="#">CSS</a></li>
-          <li><a href="#">JavaScript</a></li>
+        <ul class="dropdown-menu" style="padding:20px; width:40%;">
+          <form action="{% url 'filterclient' %}" method="post">
+              {% csrf_token %}
+              <div class="form-group">
+                    <label for="inputlg1" class="control-label" style="text-align:left">Company Name</label>
+                    <input class="form-control input-lg" id="inputlg1" type="text" name="cpname">
+              </div>
+              <div class="form-group">
+                    <label for="inputlg3" class="control-label" style="text-align:left">Email</label>
+                    <input class="form-control input-lg" id="inputlg3" type="email" name="cemail">
+              </div>
+              <div class="form-group">
+                  <div class="row">
+                  <div class="col-sm-6">
+                    <label for="inputlg4" class="control-label" style="text-align:left">Phone</label>
+                    <input class="form-control input-lg" id="inputlg4" type="number" name="cphone">
+                  </div>
+                  <div class="col-sm-6">
+                    <label for="inputlg5" class="control-label" style="text-align:left">City</label>
+                    <input class="form-control input-lg" id="inputlg5" type="text" name="ccity">
+                  </div>
+                  </div>
+              </div>
+              <div>
+              <input style="margin:10px 0px 5px 10px;padding:10px 30px 10px 30px;width:92%" type="submit" class="btn btn-success btn-lg" value="Apply">
+                  </div>
+          </form>
+            <div>
+                <form action="{% url 'clearclientfilter' %}">
+                    <input style="margin:10px 0px 5px 10px;padding:10px 30px 10px 30px;width:92%" type="submit" class="btn btn-danger btn-lg" value="Clear filter">
+                </form>
+            </div>
+
         </ul>
         <button type="button" class="btn btn-default btn-lg left2" onclick="location.href ='{% url 'export_customer' %}' ">Export</button>
         <button type="button" class="btn btn-default btn-lg left2" >Import</button>
