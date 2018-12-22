@@ -31,6 +31,9 @@ input[type=checkbox] {
   padding: 10px;
 }
 
+select.input-lg {
+    padding:10px;
+}
 div.row {
     color: #7a858f;
     font-size: 13px;
@@ -42,19 +45,22 @@ div.row {
 {% endblock %}
 
 {% block content %}
+<script>
+function myFunc() {
+  var x = document.getElementById("transport");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
 <div class="column2" style="height: 100%">
     <div class="card" style="height: 100%">
         <div class="header" style="border-bottom: 1px solid #7a858f; padding-bottom:10px;">
             <p style="font-size: large">Add New Invoice</p>
         </div>
-<<<<<<< HEAD
-<<<<<<< HEAD
         {%  csrf_token %}
-=======
-        {% csrf_token %}
->>>>>>> 47bf23ee288e2ffeb964d9f4f904d9ca92793115
-=======
->>>>>>> 29ae18e1ff29d77272c03642429dc2eaca992fe5
         <form class="form-horizontal" style="height: 85%" id="form1">
            {% csrf_token %}
             <div class="container-fluid" style="height: 85%; margin:0px">
@@ -65,7 +71,7 @@ div.row {
                             <div class="col-md-10" id="hiddeninput">
                                 <select class="form-control" id="inputlg1" name="clientname">
                                     {% for cl in client %}
-                                        <option value="cust_name">cl.cust_name</option>
+                                        <option value="{{ cl.cust_name }}">{{ cl.cust_name }}</option>
                                     {% endfor %}
                                 </select>
                             </div>
@@ -151,17 +157,62 @@ div.row {
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-1">1</div>
+                            <script>
+                                function setMail(){
+                                    <!--get value-->
+                                        var e = document.getElementById("itemname")
+                                        var u = document.getElementById("unit");
+                                        var t = document.getElementById("tax");
+                                        var itemname = e.options[e.selectedIndex].value;
+                                        {% for x in prod %}
+                                        var name = "{{x.name}}"
+                                        var unit = "{{x.unit}}"
+                                        var qty = "{{x.quantity}}"
+                                        var price = "{{x.sales_unit_price}}"
+                                        var tax = "{{x.tax}}"
+                                            if (name == itemname) {
+                                                document.getElementById("qty").value = qty;
+                                                document.getElementById("price").value = price;
+                                                for(i=0; i<u.options.length;i++){
+                                                    if (u.options[i].value == unit) {
+                                                        u.selectedIndex = i;
+                                                        break;
+                                                    }
+                                                }
+                                                for(i=0; i<t.options.length;i++){
+                                                    if (t.options[i].text == tax) {
+                                                        t.selectedIndex = i;
+                                                        break;
+                                                    }
+                                                }
+                                            }
+                                        {% endfor %}
+                                }
+                            </script>
                             <div class="col-md-5">
                                 <div class="form-group" style="padding:0px; margin:0px;">
                                     <div class="col-md-12" style="padding:0px; margin:0px;">
-                                        <input class="form-control input-lg" id="itemname" type="text" style="padding:10px">
+                                        <select class="form-control input-lg sel" id="itemname" name="itemname" onChange="return setMail()">
+                                            <option value="" ></option>
+                                        {% for cl in prod %}
+                                            <option value="{{ cl.name }}" >{{ cl.name }}</option>
+                                        {% endfor %}
+                                        </select>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-1" >
                                 <div class="form-group" style="padding:0px; margin-right:0px;">
                                     <div class="col-md-12" style="padding:0px; margin:0px;">
-                                        <input class="form-control input-lg" id="unit" type="text" style="padding:10px; margin:0px;">
+                                        <select class="form-control input-lg sel" id="unit" name="clientname">
+                                            <option value="" ></option>
+                                        {% for cl in unit %}
+                                            <option value="{{ cl.unit_type }}" >{{ cl.unit_type }}</option>
+                                        {% endfor %}
+                                        {% for cl in userunit %}
+                                            <option value="{{ cl.unit_type }}" >{{ cl.unit_type }}</option>
+                                        {% endfor %}
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -180,6 +231,7 @@ div.row {
                                 </div>
                             </div>
                             <input type="hidden" id="counter" name="counter" value="1">
+                            <input type="hidden" id="totalp" name="totalp" value="0">
                             <div class="col-md-1" >
                                 <div class="form-group" style="padding:0px; margin-right:0px;">
                                     <div class="col-md-12" style="padding:0px; margin:0px;">
@@ -190,7 +242,15 @@ div.row {
                             <div class="col-md-1" >
                                 <div class="form-group" style="padding:0px; margin-right:0px;">
                                     <div class="col-md-12" style="padding:0px; margin:0px;">
-                                        <input class="form-control input-lg" id="tax" type="text" style="padding:10px; margin:0px;">
+                                        <select class="form-control input-lg sel" id="tax" name="clientname" >
+                                            <option value="0" style="background-color: black;"></option>
+                                        {% for cl in tax %}
+                                            <option value="{{ cl.tax_value }}" >{{ cl.tax_category }} ({{ cl.tax_value }}%)</option>
+                                        {% endfor %}
+                                        {% for cl in usertax %}
+                                            <option value="{{ cl.tax_value }}" >{{ cl.tax_category }} ({{ cl.tax_value }}%)</option>
+                                        {% endfor %}
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -198,14 +258,33 @@ div.row {
                                 <button type="button" class="btn btn-primary" onclick="myFunction()" style="padding:10px; font-size:15px">+ Add line</button>
                             </div>
                             <script>
+
+                                function doit() {
+                                  var x = document.getElementById("ytransport");
+                                  if (x.style.display === "none") {
+                                    x.style.display = "block";
+                                  } else {
+                                    x.style.display = "none";
+                                  }
+                                }
+
                                 function myFunction() {
                                     <!--get value-->
-                                    itemname = document.getElementById("itemname").value;
-                                    unit = document.getElementById("unit").value;
+                                    var e = document.getElementById("itemname")
+                                    var p = document.getElementById("totalp").value
+                                    itemname = e.options[e.selectedIndex].value;
+                                    subtotalval = document.getElementById("subtotalval").innerText
+                                    e = document.getElementById("unit")
+                                    unit = e.options[e.selectedIndex].value;
                                     qty = document.getElementById("qty").value;
                                     price = document.getElementById("price").value;
                                     discount = document.getElementById("discount").value;
-                                    tax = document.getElementById("tax").value;
+                                    if (discount == "") {
+                                        discount = "0";
+                                    }
+                                    e = document.getElementById("tax")
+                                    tax = e.options[e.selectedIndex].value;
+                                    z = e.options[e.selectedIndex].text;
                                     desc = document.getElementById("desc").value;
                                     counter = document.getElementById("counter").value;
                                     var table = document.getElementById("myTabl");
@@ -232,8 +311,9 @@ div.row {
                                     cell4.innerHTML = qty;
                                     cell5.innerHTML = price;
                                     cell6.innerHTML = discount;
-                                    cell7.innerHTML = tax;
-                                    cell8.innerHTML = parseInt(qty) * parseInt(price) - parseInt(discount) * parseInt(price) / 100
+                                    cell7.innerHTML = z;
+                                    pr = parseInt(qty) * parseInt(price)
+                                    cell8.innerHTML = pr - parseInt(discount) * parseInt(pr) / 100 + parseInt(tax) * parseInt(pr) / 100
 
                                     <!--empty cells-->
                                     document.getElementById("itemname").value = '';
@@ -243,6 +323,9 @@ div.row {
                                     document.getElementById("discount").value = '';
                                     document.getElementById("tax").value = '';
                                     document.getElementById("desc").value = '';
+                                    document.getElementById("totalp").value = parseInt(p) + parseInt(cell8.innerHTML)
+                                    document.getElementById("subtotalval").innerText = parseInt(pr) + parseInt(document.getElementById("subtotalval").innerText)
+                                    document.getElementById("totalval").innerText =  parseInt(document.getElementById("totalp").value)
 
                                     <!--create dummy hidden field-->
                                     var item = document.createElement("input");
@@ -301,19 +384,79 @@ div.row {
                     </div>
                 </div>
                 <div class="row" style="border-bottom: 1px solid #7a858f; padding-bottom:10px; padding-top:20px;">
-                    <div class="col-md-6">
-                        <div class="checkbox" style="padding:0px 20px 20px 0px">
-                            <label><input type="checkbox" name="shipping" value=""><span style="padding:20px">Add shipping charges</span></label>
+                    <div class="col-sm-8">
+                        <div class="checkbox" style="padding:20px 20px 40px 0px">
+                            <label><input type="checkbox" name="shipping" value=""><span style="padding:20px; font-size:16px">Add shipping charges</span></label>
                         </div>
-                        <div class="checkbox" style="padding:0px 20px 20px 0px">
-                            <label><input type="checkbox" name="adddiscount" value=""><span style="padding:20px">Add discount to all</span></label>
+                        <div class="checkbox" style="padding:0px 20px 40px 0px">
+                            <label><input type="checkbox" name="adddiscount" value=""><span style="padding:20px; font-size:16px">Add discount to all</span></label>
                         </div>
-                        <div style="padding:0px 20px 20px 0px; color:#266a95;" >
-                            + &ensp; Add advance payment
+                        <p style="padding:0px 20px 40px 0px; color:#266a95; font-size:16px" class="show1" onclick="doit()">
+                            + &ensp; Add Transport labels
+                        </p>
+                        <div class="row" id="ytransport" style="display:none">
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="waybillno" class="col-md-5 control-label" name="waybillno" style="text-align:left">Waybill No.</label>
+                                <div class="col-md-7">
+                                    <input class="form-control input-lg" id="waybillno" type="text">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="lr" class="col-md-5 control-label" name="lr" style="text-align:left">LR No.</label>
+                                <div class="col-md-7">
+                                    <input class="form-control input-lg" id="lr" type="text">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="challan" class="col-md-5 control-label" name="challan" style="text-align:left">Challan No.</label>
+                                <div class="col-md-7">
+                                    <input class="form-control input-lg" id="challan" type="text">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="vehicle" class="col-md-5 control-label" name="vehicale" style="text-align:left">Vehicle No.</label>
+                                <div class="col-md-7">
+                                    <input class="form-control input-lg" id="vehicle" type="text">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="ship" class="col-md-5 control-label" name="ship" style="text-align:left">Ship by</label>
+                                <div class="col-md-7">
+                                    <input class="form-control input-lg" id="ship" type="text">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="t1" class="col-md-5 control-label" name="t1" style="text-align:left">Transporter name</label>
+                                <div class="col-md-7">
+                                    <input class="form-control input-lg" id="t1" type="text">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="t2" class="col-md-5 control-label" name="t2" style="text-align:left">Transporter id</label>
+                                <div class="col-md-7">
+                                    <input class="form-control input-lg" id="t2" type="text">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="t3" class="col-md-5 control-label" name="t3" style="text-align:left">Transporter GSTIN</label>
+                                <div class="col-md-7">
+                                    <input class="form-control input-lg" id="t3" type="text">
+                                </div>
+                            </div>
+                            </div>
                         </div>
-                        <div class="checkbox" style="padding:0px 20px 20px 0px">
-                            <label><input type="checkbox" name="transport" value=""><span style="padding:20px">Transport labels</span></label>
-                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <p style="height:40px;padding:20px;">
+                            <strong id="subtotal" style="float:left;font-size:16px;color:black">Subtotal:</strong>
+                            <strong id="subtotalval" style="float:right;font-size:16px;padding:0px 20px 0px 0px;color:black">0</strong>
+                        </p>
+                        <p style="background-color:#f8fafc;height:40px;padding:10px;">
+                            <strong id="totalv" style="float:left;color:green;font-size:16px">Total:</strong>
+                            <strong id="totalval" style="float:right;font-size:16px;padding:0px 20px 0px 0px;color:green">0</strong>
+                        </p>
                     </div>
                 </div>
                 <div class="row" style="border-bottom: 1px solid #7a858f; padding-bottom:30px; padding-top:20px; background-color:#f9fafb;">

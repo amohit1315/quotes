@@ -93,13 +93,15 @@ class Product_Service(models.Model):
         return self.name
 
 class Tax(models.Model):
-    tax_category = models.CharField(primary_key=True,max_length=500)
+    tax_category = models.CharField(primary_key=True, max_length=500)
+    tax_value = models.CharField( max_length=500, null=True)
 
     def __str__(self):
         return self.tax_category
 
 class UserTax(models.Model):
     tax_category = models.CharField(primary_key=True,max_length=500)
+    tax_value = models.CharField(max_length=500, null=True)
     master_company = models.ForeignKey(MasterCompany, blank=True, null=True, on_delete=models.SET_NULL)
 
     def __str__(self):

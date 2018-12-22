@@ -275,14 +275,23 @@ def new_invoice(request):
     prod = Product_Service.objects.filter(master_company=m)
     client = Customer.objects.filter(master_company=m)
     tax = Tax.objects.all()
-    unit = Unit.objects.all()
     usertax = UserTax.objects.filter(master_company=m)
+    unit = Unit.objects.all()
     userunit = UserUnit.objects.filter(master_company=m)
-    return render(request, "new_invoice.html", {"prod": prod, "client": client , 'tax' : tax, 'unit': unit ,'usertax' : usertax, userunit : 'userunit'})
+    return render(request, "new_invoice.html", {"prod": prod, "client": client, 'tax' : tax, 'unit': unit ,'usertax' : usertax, userunit : 'userunit'})
 
 
 def new_product(request):
-    return render(request, "new_product.html")
+    current_user = request.user.email
+    x = DBUser.objects.get(email=current_user)
+    m = x.master_company
+    prod = Product_Service.objects.filter(master_company=m)
+    client = Customer.objects.filter(master_company=m)
+    tax = Tax.objects.all()
+    usertax = UserTax.objects.filter(master_company=m)
+    unit = Unit.objects.all()
+    userunit = UserUnit.objects.filter(master_company=m)
+    return render(request, "new_product.html", {'tax' : tax, 'unit': unit ,'usertax' : usertax, userunit : 'userunit'})
 
 def save_product(request):
     if request.method == 'POST':
