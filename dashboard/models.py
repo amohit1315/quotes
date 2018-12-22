@@ -107,14 +107,6 @@ class UserTax(models.Model):
     def __str__(self):
         return self.tax_category
 
-class Invoice(models.Model):
-    client_name = models.CharField(max_length=500,null=True,blank=True)
-    invoice_no = models.CharField(max_length=500,primary_key=True)
-    invoice_date = models.CharField(max_length=500,null=True,blank=True)
-    payment_terms = models.CharField(max_length=500,null=True,blank=True)
-    po_no = models.CharField(max_length=500,null=True,blank=True)
-    due_date = models.CharField(max_length=500,null=True,blank=True)
-
 class Unit(models.Model):
     unit_type = models.CharField(primary_key=True,max_length=500)
 
@@ -128,6 +120,108 @@ class UserUnit(models.Model):
         return self.unit_type
 
 
+class Dummy_Product(models.Model):
+    name = models.CharField(max_length=500,null=True,blank=True)
+    unit = models.CharField(max_length=500,blank=True,null=True)
+    quantity = models.CharField(max_length=500,blank=True,null=True)
+    price = models.CharField(max_length=500,blank=True,null=True)
+    discount = models.CharField(max_length=500,blank=True,null=True)
+    tax = models.CharField(max_length=500,blank=True,null=True)
+    item_total = models.CharField(max_length=500,blank=True,null=True)
+    source = models.CharField(max_length=500,blank=True,null=True)
+
+    def __str__(self):
+        return self.name
 
 
+class Invoice(models.Model):
+    client_name = models.CharField(max_length=500)
+    invoice_no = models.CharField(max_length=500,primary_key=True)
+    invoice_date = models.CharField(max_length=500,blank=True,null=True)
+    payment_terms = models.CharField(max_length=500,blank=True,null=True)
+    po_no = models.CharField(max_length=500,blank=True,null=True)
+    due_date = models.CharField(max_length=500,blank=True,null=True)
+    items = models.ManyToManyField(Dummy_Product)
+    shipping_charges = models.CharField(max_length=500,blank=True,null=True)
+    waybill_no = models.CharField(max_length=500,blank=True,null=True)
+    lr_no = models.CharField(max_length=500,blank=True,null=True)
+    challan_no = models.CharField(max_length=500,blank=True,null=True)
+    vehicle_no = models.CharField(max_length=500,blank=True,null=True)
+    ship_by = models.CharField(max_length=500,blank=True,null=True)
+    transporter_name = models.CharField(max_length=500,blank=True,null=True)
+    transporter_id = models.CharField(max_length=500,blank=True,null=True)
+    transporter_gstin = models.CharField(max_length=500,blank=True,null=True)
+    terms_conditions = models.CharField(max_length=3000,blank=True,null=True)
+    private_notes = models.CharField(max_length=3000,blank=True,null=True)
+    total_amount = models.CharField(max_length=3000,blank=True,null=True)
 
+    def __str__(self):
+        return self.invoice_no
+
+class Delivery_Notes(models.Model):
+    client_name = models.CharField(max_length=500)
+    invoice_no = models.CharField(max_length=500,primary_key=True)
+    invoice_date = models.CharField(max_length=500,blank=True,null=True)
+    po_no = models.CharField(max_length=500,blank=True,null=True)
+    due_date = models.CharField(max_length=500,blank=True,null=True)
+    items = models.ManyToManyField(Dummy_Product)
+    waybill_no = models.CharField(max_length=500,blank=True,null=True)
+    lr_no = models.CharField(max_length=500,blank=True,null=True)
+    challan_no = models.CharField(max_length=500,blank=True,null=True)
+    vehicle_no = models.CharField(max_length=500,blank=True,null=True)
+    ship_by = models.CharField(max_length=500,blank=True,null=True)
+    transporter_name = models.CharField(max_length=500,blank=True,null=True)
+    tansporter_id = models.CharField(max_length=500,blank=True,null=True)
+    transporter_gstin = models.CharField(max_length=500,blank=True,null=True)
+    terms_conditions = models.CharField(max_length=3000,blank=True,null=True)
+    private_notes = models.CharField(max_length=3000,blank=True,null=True)
+    total_amount = models.CharField(max_length=3000,blank=True,null=True)
+
+    def __str__(self):
+        return self.invoice_no
+
+class Credit_Notes(models.Model):
+    client_name = models.CharField(max_length=500)
+    no = models.CharField(max_length=500, primary_key=True)
+    date = models.CharField(max_length=500, blank=True, null=True)
+    invoice_no = models.CharField(max_length=500, blank=True,null=True)
+    invoice_date = models.CharField(max_length=500, blank=True, null=True)
+    reason = models.CharField(max_length=500, blank=True, null=True)
+    items = models.ManyToManyField(Dummy_Product)
+    shipping_charges = models.CharField(max_length=500, blank=True, null=True)
+    terms_conditions = models.CharField(max_length=3000, blank=True, null=True)
+    private_notes = models.CharField(max_length=3000, blank=True, null=True)
+    total_amount = models.CharField(max_length=3000, blank=True, null=True)
+
+    def __str__(self):
+        return self.no
+
+class Purchase_Order(models.Model):
+    client_name = models.CharField(max_length=500)
+    no = models.CharField(max_length=500, primary_key=True)
+    po_date = models.CharField(max_length=500, blank=True, null=True)
+    invoice_no = models.CharField(max_length=500,null=True,blank=True)
+    due_date = models.CharField(max_length=500, blank=True, null=True)
+    items = models.ManyToManyField(Dummy_Product)
+    shipping_charges = models.CharField(max_length=500, blank=True, null=True)
+    terms_conditions = models.CharField(max_length=3000, blank=True, null=True)
+    private_notes = models.CharField(max_length=3000, blank=True, null=True)
+    total_amount = models.CharField(max_length=3000, blank=True, null=True)
+
+    def __str__(self):
+        return self.no
+
+class Quotes(models.Model):
+    client_name = models.CharField(max_length=500)
+    invoice_no = models.CharField(max_length=500, primary_key=True)
+    invoice_date = models.CharField(max_length=500, blank=True, null=True)
+    po_no = models.CharField(max_length=500, blank=True, null=True)
+    due_date = models.CharField(max_length=500, blank=True, null=True)
+    items = models.ManyToManyField(Dummy_Product)
+    shipping_charges = models.CharField(max_length=500, blank=True, null=True)
+    terms_conditions = models.CharField(max_length=3000, blank=True, null=True)
+    private_notes = models.CharField(max_length=3000, blank=True, null=True)
+    total_amount = models.CharField(max_length=3000, blank=True, null=True)
+
+    def __str__(self):
+        return self.invoice_no
