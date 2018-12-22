@@ -82,28 +82,28 @@ function myFunc() {
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="inputlg2" class="col-md-3 control-label" name="invoiecno" style="text-align:left">Invoice no</label>
+                                    <label for="inputlg2" class="col-md-3 control-label" style="text-align:left">Invoice no</label>
                                     <div class="col-md-4">
-                                        <input class="form-control input-lg" id="inputlg2" type="text">
+                                        <input class="form-control input-lg" name="invoiecno1" id="inputlg2" type="text">
                                     </div>
                                     <div class="col-md-5">
-                                        <input class="form-control input-lg" id="" type="text">
+                                        <input class="form-control input-lg" name="invoiecno2" id="" type="text">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="inputlg3" class="col-md-4 control-label" name="invoicedate" style="text-align:right">Invoice Date</label>
+                                    <label for="inputlg3" class="col-md-4 control-label" style="text-align:right">Invoice Date</label>
                                     <div class="col-md-8">
-                                        <input class="form-control input-lg" id="inputlg3" type="date">
+                                        <input class="form-control input-lg" id="inputlg3" name="invoicedate" type="date">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="inputlg4" class="col-md-4 control-label" name="paymentterms" style="text-align:right">Payment Terms</label>
+                                    <label for="inputlg4" class="col-md-4 control-label" style="text-align:right">Payment Terms</label>
                                     <div class="col-md-8">
-                                        <input class="form-control input-lg" id="inputlg4" type="text">
+                                        <input class="form-control input-lg" id="inputlg4" name="paymentterms" type="text">
                                     </div>
                                 </div>
                             </div>
@@ -111,17 +111,17 @@ function myFunc() {
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="inputlg6" class="col-md-3 control-label" name="pono" style="text-align:left">PO no</label>
+                                    <label for="inputlg6" class="col-md-3 control-label" style="text-align:left">PO no</label>
                                     <div class="col-md-9">
-                                        <input class="form-control input-lg" id="inputlg6" type="number">
+                                        <input class="form-control input-lg" id="inputlg6" name="pono" type="number">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="inputlg5" class="col-md-4 control-label" name="duedate" style="text-align:right">Due Date</label>
+                                    <label for="inputlg5" class="col-md-4 control-label" style="text-align:right">Due Date</label>
                                     <div class="col-md-8">
-                                        <input class="form-control input-lg" id="inputlg5" type="date">
+                                        <input class="form-control input-lg" id="inputlg5" name="duedate" type="date">
                                     </div>
                                 </div>
                             </div>
@@ -231,6 +231,8 @@ function myFunc() {
                             </div>
                             <input type="hidden" id="counter" name="counter" value="1">
                             <input type="hidden" id="totalp" name="totalp" value="0">
+                            <input type="hidden" id="di" name="d" value="0">
+                            <input type="hidden" id="tap" name="t" value="0">
                             <div class="col-md-1" >
                                 <div class="form-group" style="padding:0px; margin-right:0px;">
                                     <div class="col-md-12" style="padding:0px; margin:0px;">
@@ -304,8 +306,8 @@ function myFunc() {
                                     var cell7 = row.insertCell(6);
                                     var cell8 = row.insertCell(7);
                                     cell1.innerHTML = counter;
-                                    div1.innerHTML = itemname
-                                    div2.innerHTML = desc
+                                    div1.innerHTML = itemname;
+                                    div2.innerHTML = desc;
                                     cell2.appendChild(div1);
                                     cell2.appendChild(div2);
                                     cell3.innerHTML = unit;
@@ -313,8 +315,8 @@ function myFunc() {
                                     cell5.innerHTML = price;
                                     cell6.innerHTML = discount;
                                     cell7.innerHTML = z;
-                                    pr = parseInt(qty) * parseInt(price)
-                                    cell8.innerHTML = pr - parseInt(discount) * parseInt(pr) / 100 + parseInt(tax) * parseInt(pr) / 100
+                                    pr = parseInt(qty) * parseInt(price);
+                                    cell8.innerHTML = pr - parseInt(discount) * parseInt(pr) / 100 + parseInt(tax) * parseInt(pr) / 100;
 
                                     <!--empty cells-->
                                     document.getElementById("itemname").value = '';
@@ -324,10 +326,17 @@ function myFunc() {
                                     document.getElementById("discount").value = '';
                                     document.getElementById("tax").value = '';
                                     document.getElementById("desc").value = '';
-                                    document.getElementById("totalp").value = parseInt(p) + parseInt(cell8.innerHTML)
-                                    document.getElementById("subtotalval").innerText = parseInt(pr) + parseInt(document.getElementById("subtotalval").innerText)
-                                    document.getElementById("totalval").innerText =  parseInt(document.getElementById("totalp").value)
-
+                                    document.getElementById("totalp").value = parseInt(p) + parseInt(cell8.innerHTML);
+                                    document.getElementById("subtotalval").innerText = parseInt(pr) + parseInt(document.getElementById("subtotalval").innerText);
+                                    document.getElementById("totalval").innerText =  parseInt(document.getElementById("totalp").value);
+                                    document.getElementById("di").value = parseInt(document.getElementById("di").value) + parseInt(discount) * parseInt(pr) / 100;
+                                    document.getElementById("tap").value = parseInt(document.getElementById("tap").value) + parseInt(tax) * parseInt(pr) / 100;
+                                    document.getElementById("taval").innerText = document.getElementById("tap").value;
+                                    var ship = document.getElementById("shippingval").innerText;
+                                    if (ship == "") {
+                                        ship = "0";
+                                    }
+                                    document.getElementById("discval").innerText = document.getElementById("di").value;
                                     <!--create dummy hidden field-->
                                     var item = document.createElement("input");
                                     item.type = "hidden";
@@ -352,7 +361,7 @@ function myFunc() {
                                     var tax1 = document.createElement("input");
                                     tax1.type = "hidden";
                                     tax1.value = String(tax);
-                                    tax1.name = "tax" + counter
+                                    tax1.name = "taxu" + counter
                                     var desc1 = document.createElement("input");
                                     desc1.type = "hidden";
                                     desc1.value = String(desc);
@@ -386,11 +395,54 @@ function myFunc() {
                 </div>
                 <div class="row" style="border-bottom: 1px solid #7a858f; padding-bottom:10px; padding-top:20px;">
                     <div class="col-sm-8">
-                        <div class="checkbox" style="padding:20px 20px 40px 0px">
-                            <label><input type="checkbox" name="shipping" value=""><span style="padding:20px; font-size:16px">Add shipping charges</span></label>
+                        <div class="row" style="margin:0px; padding-bottom:20px">
+                            <script>
+                                function validate() {
+                                    if (document.getElementById('hola').checked) {
+                                        var x = document.getElementById("hola1");
+                                        x.style.display = "block";
+                                    } else {
+                                        var x = document.getElementById("hola1");
+                                        document.getElementById("val").innerText = 0;
+                                        document.getElementById("val").value = 0;
+                                        x.style.display = "none";
+                                        z = document.getElementById("totalp").value;
+                                        if (z == 0) {
+                                            z = "0";
+                                        }
+                                        document.getElementById("totalval").innerText = z;
+                                        document.getElementById("shippingval").innerText = "0";
+                                    }
+                                }
+                                function keyup() {
+                                    var x = document.getElementById("val").value;
+                                    if (x == "") {
+                                     x = "0";
+                                    }
+                                    document.getElementById("shippingval").innerText = x;
+                                    var y = document.getElementById("totalp").value;
+                                    if (y == "") {
+                                        y = "0";
+                                    }
+                                    console.log(y);
+                                    console.log(x);
+                                    document.getElementById("totalval").innerText = parseInt(y) + parseInt(x);
+                                    document.getElementById("totalp").value = parseInt(y) + parseInt(x);
+                                }
+                            </script>
+                        <div class="form-group">
+                            <div class="checkbox" style="padding:20px 20px 20px 0px" onclick="validate()">
+                                <label class="col-md-12">
+                                    <div class="col-md-3">
+                                        <input id="hola" type="checkbox" name="shipping" value="">
+                                        <span style="padding:20px; font-size:16px">Add shipping charges</span>
+                                    </div>
+                                    <div class="col-md-3" style="display:none" id="hola1">
+                                        <input type="number" class="form-control input-lg" id="val" name="cship" value="0" onkeyup="keyup()">
+                                    </div>
+                                </label>
+                            </div>
                         </div>
-                        <div class="checkbox" style="padding:0px 20px 40px 0px">
-                            <label><input type="checkbox" name="adddiscount" value=""><span style="padding:20px; font-size:16px">Add discount to all</span></label>
                         </div>
                         <p style="padding:0px 20px 40px 0px; color:#266a95; font-size:16px" class="show1" onclick="doit()">
                             + &ensp; Add Transport labels
@@ -399,60 +451,72 @@ function myFunc() {
                             <div class="col-sm-1"></div>
                             <div class="col-sm-6">
                             <div class="form-group">
-                                <label for="waybillno" class="col-md-5 control-label" name="waybillno" style="text-align:left">Waybill No.</label>
+                                <label for="waybillno" class="col-md-5 control-label" style="text-align:left">Waybill No.</label>
                                 <div class="col-md-7">
-                                    <input class="form-control input-lg" id="waybillno" type="text">
+                                    <input class="form-control input-lg" id="waybillno" name="waybillno" type="text">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="lr" class="col-md-5 control-label" name="lr" style="text-align:left">LR No.</label>
+                                <label for="lr" class="col-md-5 control-label" style="text-align:left">LR No.</label>
                                 <div class="col-md-7">
-                                    <input class="form-control input-lg" id="lr" type="text">
+                                    <input class="form-control input-lg" id="lr" name="lr" type="text">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="challan" class="col-md-5 control-label" name="challan" style="text-align:left">Challan No.</label>
+                                <label for="challan" class="col-md-5 control-label" style="text-align:left">Challan No.</label>
                                 <div class="col-md-7">
-                                    <input class="form-control input-lg" id="challan" type="text">
+                                    <input class="form-control input-lg" id="challan" name="challan" type="text">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="vehicle" class="col-md-5 control-label" name="vehicale" style="text-align:left">Vehicle No.</label>
+                                <label for="vehicle" class="col-md-5 control-label" style="text-align:left">Vehicle No.</label>
                                 <div class="col-md-7">
-                                    <input class="form-control input-lg" id="vehicle" type="text">
+                                    <input class="form-control input-lg" id="vehicle" name="vehicle" type="text">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="ship" class="col-md-5 control-label" name="ship" style="text-align:left">Ship by</label>
+                                <label for="ship" class="col-md-5 control-label" style="text-align:left">Ship by</label>
                                 <div class="col-md-7">
-                                    <input class="form-control input-lg" id="ship" type="text">
+                                    <input class="form-control input-lg" id="ship" name="ship" type="text">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="t1" class="col-md-5 control-label" name="t1" style="text-align:left">Transporter name</label>
+                                <label for="t1" class="col-md-5 control-label" style="text-align:left">Transporter name</label>
                                 <div class="col-md-7">
-                                    <input class="form-control input-lg" id="t1" type="text">
+                                    <input class="form-control input-lg" id="t1" name="t1" type="text">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="t2" class="col-md-5 control-label" name="t2" style="text-align:left">Transporter id</label>
+                                <label for="t2" class="col-md-5 control-label" style="text-align:left">Transporter id</label>
                                 <div class="col-md-7">
-                                    <input class="form-control input-lg" id="t2" type="text">
+                                    <input class="form-control input-lg" id="t2" name="t2" type="text">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="t3" class="col-md-5 control-label" name="t3" style="text-align:left">Transporter GSTIN</label>
+                                <label for="t3" class="col-md-5 control-label" style="text-align:left">Transporter GSTIN</label>
                                 <div class="col-md-7">
-                                    <input class="form-control input-lg" id="t3" type="text">
+                                    <input class="form-control input-lg" id="t3" name="t3" type="text">
                                 </div>
                             </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-4">
-                        <p style="height:40px;padding:20px;">
+                        <p style="height:40px;padding:20px 20px 0px 20px;">
                             <strong id="subtotal" style="float:left;font-size:16px;color:black">Subtotal:</strong>
                             <strong id="subtotalval" style="float:right;font-size:16px;padding:0px 20px 0px 0px;color:black">0</strong>
+                        </p>
+                        <p style="height:30px;padding:5px 20px 0px 20px;">
+                            <strong id="shipping" style="float:left;font-size:16px;color:black">Shipping and Packaging:</strong>
+                            <strong id="shippingval" style="float:right;font-size:16px;padding:0px 20px 0px 0px;color:black">0</strong>
+                        </p>
+                        <p style="height:30px;padding:0px 20px 0px 20px;">
+                            <strong id="disc" style="float:left;font-size:16px;color:black">Discount:</strong>
+                            <strong id="discval" style="float:right;font-size:16px;padding:0px 20px 0px 0px;color:black">0</strong>
+                        </p>
+                        <p style="height:30px;padding:0px 20px 0px 20px;">
+                            <strong id="ta" style="float:left;font-size:16px;color:black">Total tax:</strong>
+                            <strong id="taval" style="float:right;font-size:16px;padding:0px 20px 0px 0px;color:black">0</strong>
                         </p>
                         <p style="background-color:#f8fafc;height:40px;padding:10px;">
                             <strong id="totalv" style="float:left;color:green;font-size:16px">Total:</strong>
