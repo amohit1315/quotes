@@ -1,7 +1,8 @@
 from . import views
 from django.conf.urls  import *
 from django.contrib.auth import views as v
-
+from django.conf.urls.static import static
+from django.conf import settings
 urlpatterns = [
 
     url(r'^$', views.index, name='index'),
@@ -27,6 +28,11 @@ urlpatterns = [
     url(r'^new_product', views.new_product, name='new_product'),
     url(r'^save_product', views.save_product, name='save_product'),
     url(r'^save_service', views.save_service, name='save_service'),
+    url(r'^export_customer',views.export_customer,name='export_customer'),
+    url(r'^export_product',views.export_product,name='export_product'),
+    url(r'^import_customer',views.import_customer,name='import_customer'),
     url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
         views.activate, name='activate')
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

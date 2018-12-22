@@ -57,7 +57,8 @@
                                 <div class="form-group">
                                     <label for="inputlg3" class="col-sm-4 control-label" style="text-align:left">Unit Price</label>
                                     <div class="col-sm-8">
-                                        <input class="form-control input-lg" id="inputlg3" type="text" name="psprice">
+                                        <input class="form-control input-lg" id="inputlg3" name="psprice" type="text">
+
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -97,7 +98,15 @@
                                 <div class="form-group">
                                     <label for="inputl2" class="col-sm-4 control-label" style="text-align:left">Unit</label>
                                     <div class="col-sm-8">
-                                        <input class="form-control input-lg" id="inputl2" type="text" name="punit">
+                                        <select class="form-control input-lg sel" id="inputl2" name="punit">
+                                            <option value="" ></option>
+                                        {% for cl in unit %}
+                                            <option value="{{ cl.unit_type }}" >{{ cl.unit_type }}</option>
+                                        {% endfor %}
+                                        {% for cl in userunit %}
+                                            <option value="{{ cl.unit_type }}" >{{ cl.unit_type }}</option>
+                                        {% endfor %}
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -105,7 +114,15 @@
                                 <div class="form-group">
                                     <label for="inputl3" class="col-sm-4 control-label" style="text-align:left">Tax</label>
                                     <div class="col-sm-8">
-                                        <input class="form-control input-lg" id="inputl3" type="text" name="ptax">
+                                        <select class="form-control input-lg sel" id="inputl3" name="ptax" >
+                                            <option value="0" style="background-color: black;"></option>
+                                        {% for cl in tax %}
+                                            <option value="{{ cl.tax_category }} ({{ cl.tax_value }}%)" >{{ cl.tax_category }} ({{ cl.tax_value }}%)</option>
+                                        {% endfor %}
+                                        {% for cl in usertax %}
+                                            <option value="{{ cl.tax_category }} ({{ cl.tax_value }}%)" >{{ cl.tax_category }} ({{ cl.tax_value }}%)</option>
+                                        {% endfor %}
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -184,6 +201,7 @@
                                     <label for="2inputlg3" class="col-sm-4 control-label" style="text-align:left">Unit Price</label>
                                     <div class="col-sm-8">
                                         <input class="form-control input-lg" id="2inputlg3" type="text" name="ssprice">
+
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -215,7 +233,15 @@
                                 <div class="form-group">
                                     <label for="1inputl2" class="col-sm-4 control-label" style="text-align:left">Unit</label>
                                     <div class="col-sm-8">
-                                        <input class="form-control input-lg" id="1inputl2" type="text"name="sunit">
+                                        <select class="form-control input-lg sel" id="1inputl2" name="sunit">
+                                            <option value="" ></option>
+                                        {% for cl in unit %}
+                                            <option value="{{ cl.unit_type }}" >{{ cl.unit_type }}</option>
+                                        {% endfor %}
+                                        {% for cl in userunit %}
+                                            <option value="{{ cl.unit_type }}" >{{ cl.unit_type }}</option>
+                                        {% endfor %}
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -223,7 +249,15 @@
                                 <div class="form-group">
                                     <label for="1inputl3" class="col-sm-4 control-label" style="text-align:right">Tax</label>
                                     <div class="col-sm-8">
-                                        <input class="form-control input-lg" id="1inputl3" type="text" name="stax">
+                                        <select class="form-control input-lg sel" id="1inputl3" name="ptstaxax" >
+                                            <option value="0" style="background-color: black;"></option>
+                                        {% for cl in tax %}
+                                            <option value="{{ cl.tax_category }} ({{ cl.tax_value }}%)" >{{ cl.tax_category }} ({{ cl.tax_value }}%)</option>
+                                        {% endfor %}
+                                        {% for cl in usertax %}
+                                            <option value="{{ cl.tax_category }} ({{ cl.tax_value }}%)" >{{ cl.tax_category }} ({{ cl.tax_value }}%)</option>
+                                        {% endfor %}
+                                        </select>
                                     </div>
                                 </div>
                             </div>

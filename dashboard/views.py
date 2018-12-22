@@ -12,6 +12,8 @@ from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
 from models import DBUser,MasterCompany,Customer,Product_Service,Contact,Tax,Unit,UserUnit,UserTax
 from datetime import datetime, timedelta
+import csv
+from django.core.files.storage import FileSystemStorage
 from django.contrib.auth.hashers import check_password
 
 
@@ -135,12 +137,37 @@ def view_customer(request):
     current_user = request.user.email
     x = DBUser.objects.get(email=current_user)
     m = x.master_company
-    print m
     customers = Customer.objects.filter(master_company=m)
-    print customers
-
     return render(request, "view_customer.html",{'customers':customers})
 
+
+def export_customer(request):
+    current_user = request.user.email
+    x = DBUser.objects.get(email=current_user)
+    m = x.master_company
+    customers = Customer.objects.filter(master_company=m)
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="customers.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['Company Name', 'Phone', 'Email', 'GSTIN','PAN','TIN','VAT','Website','Billing Address','Country','State','City','Pincode','Shipping Address','Country','State','City','Pincode','Facebook','LST','CST','Service Tax No.','Notes','Primary Contact Name','Primary Contact Phone','Primary Contact Email', 'Secondary Contact Name', 'Seconadary Contact Phone','Secondary Contact Email'])
+    for cust in customers:
+        writer.writerow([cust.cust_name,cust.cust_phone,cust.cust_email,cust.cust_gstin,cust.cust_pan,cust.cust_tin,cust.cust_vat,cust.cust_website,cust.cust_company_address,cust.cust_country,cust.cust_state,cust.cust_city,cust.cust_pincode,cust.cust_shipping_address,cust.cust_shiiping_country,cust.cust_shipping_state,cust.cust_shipping_city,cust.cust_shipping_pincode,cust.cust_facebook,cust.cust_lst,cust.cust_cst,cust.cust_service_tax_no,cust.cust_notes,cust.cust_contact.all()[0].name,cust.cust_contact.all()[0].phone,cust.cust_contact.all()[0].email,cust.cust_contact.all()[1].name,cust.cust_contact.all()[1].phone,cust.cust_contact.all()[1].email])
+    return response
+
+
+def import_customer(request):
+    current_user = request.user.email
+    x = DBUser.objects.get(email=current_user)
+    m = x.master_company
+    if request.method == 'POST':
+        csv_file = request.FILES['importfile']
+        fs = FileSystemStorage()
+        filename = fs.save(csv_file.name,csv_file)
+        uploaded_file_url = fs.url(filename)
+        print uploaded_file_url
+
+    return HttpResponse("Ajbds")
 
 def new_customer(request):
     return render(request, "new_customer.html")
@@ -252,8 +279,28 @@ def view_product(request):
     current_user = request.user.email
     x = DBUser.objects.get(email=current_user)
     m = x.master_company
+    tax = Tax.objects.all()
+    unit = Unit.objects.all()
+    usertax = UserTax.objects.filter(master_company=m)
+    userunit = Us
     ps = Product_Service.objects.filter(master_company=m)
     return render(request, "view_product.html", {'ps':ps})
+
+def export_product(request):
+    current_user = request.user.email
+    x = DBUser.objects.get(email=current_user)
+    m = x.master_company
+    products = Product_Service.objects.filter(master_company=m)
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="products.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['Name', 'Description', 'Quantity', 'Unit','Tax','HSN','Sales Unit Price','Sales Currency','Sales Cess Percent','Sales Cess','Purchase Unit Price','Purchase Currency','Purchase Cess Percent','Purchase Cess','Type','SAC'])
+    for prod in products:
+        writer.writerow([prod.name,prod.description,prod.quantity,prod.unit,prod.tax,prod.hsn,prod.sales_unit_price,prod.sales_currency,prod.sales_cess_percent,prod.sales_cess,prod.purchase_unit_price,prod.puchase_currency,prod.purchase_cess_percent,prod.purchase_cess,prod.type,prod.sac])
+    return response
+
+
 
 
 def view_purchase_order(request):
@@ -275,14 +322,23 @@ def new_invoice(request):
     prod = Product_Service.objects.filter(master_company=m)
     client = Customer.objects.filter(master_company=m)
     tax = Tax.objects.all()
-    unit = Unit.objects.all()
     usertax = UserTax.objects.filter(master_company=m)
+    unit = Unit.objects.all()
     userunit = UserUnit.objects.filter(master_company=m)
-    return render(request, "new_invoice.html", {"prod": prod, "client": client , 'tax' : tax, 'unit': unit ,'usertax' : usertax, userunit : 'userunit'})
+    return render(request, "new_invoice.html", {"prod": prod, "client": client, 'tax' : tax, 'unit': unit ,'usertax' : usertax, userunit : 'userunit'})
 
 
 def new_product(request):
-    return render(request, "new_product.html")
+    current_user = request.user.email
+    x = DBUser.objects.get(email=current_user)
+    m = x.master_company
+    prod = Product_Service.objects.filter(master_company=m)
+    client = Customer.objects.filter(master_company=m)
+    tax = Tax.objects.all()
+    usertax = UserTax.objects.filter(master_company=m)
+    unit = Unit.objects.all()
+    userunit = UserUnit.objects.filter(master_company=m)
+    return render(request, "new_product.html", {'tax' : tax, 'unit': unit ,'usertax' : usertax, userunit : 'userunit'})
 
 def save_product(request):
     if request.method == 'POST':
