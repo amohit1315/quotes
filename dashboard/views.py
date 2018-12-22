@@ -279,10 +279,6 @@ def view_product(request):
     current_user = request.user.email
     x = DBUser.objects.get(email=current_user)
     m = x.master_company
-    tax = Tax.objects.all()
-    unit = Unit.objects.all()
-    usertax = UserTax.objects.filter(master_company=m)
-    userunit = Us
     ps = Product_Service.objects.filter(master_company=m)
     return render(request, "view_product.html", {'ps':ps})
 
