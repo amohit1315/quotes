@@ -10,7 +10,7 @@ from .tokens import account_activation_token
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
-from models import DBUser,MasterCompany,Customer,Product_Service,Contact,Tax,Unit,UserUnit,UserTax
+from models import DBUser,MasterCompany,Customer,Product_Service,Contact,Tax,Unit,UserUnit,UserTax,Invoice,Credit_Notes,Delivery_Notes,Dummy_Product,Purchase_Order,Quotes
 from datetime import datetime, timedelta
 import csv
 from django.core.files.storage import FileSystemStorage
@@ -500,6 +500,77 @@ def save_service(request):
         service.save()
         return HttpResponse("Added Successfully")
 
+def save_invoice(request):
+    if request.method == 'POST':
+        client_name = request.POST['clientname']
+        invoice_no1 = request.POST['invoiceno1']
+        invoice_no2 = request.POST['invoiceno2']
+        invoice_no = invoice_no1 + ' ' + invoice_no2
+        invoice_date = request.POST['invoicedate']
+        payment_terms = request.POST['paymentterms']
+        po_no = request.POST['pono']
+        due_date = request.POST['duedate']
+        total_discount =  request.POST['d']
+        total_tax = request.POST['t']
+        total_price = request.POST['totalp']
+        shipping_price = request.POST['cship']
+        waybill_no = request.POST['waybillno']
+        challan_no = request.POST['challan']
+        vehicle_no = request.POST['vehicle']
+        lr_no = request.POST['lr']
+        ship_by = request.POST['ship']
+        transporter_name = request.POST['t1']
+        transporter_id = request.POST['t2']
+        transporter_gstin = request.POST['t3']
+        notes = request.POST['notes']
+        terms = request.POST['terms']
+        current_user = request.user.email
+        x = DBUser.objects.get(email=current_user)
+        m = x.master_company
+        invoice = Invoice()
+        invoice.client_name = client_name
+        invoice.invoice_no = invoice_no
+        invoice.invoice_date = invoice_date
+        invoice.payment_terms = payment_terms
+        invoice.po_no = po_no
+        invoice.due_date = due_date
+        invoice.total_discount = total_discount
+        invoice.total_tax = total_tax
+        invoice.total_amount = total_price
+        invoice.shipping_charges = shipping_price
+        invoice.waybill_no = waybill_no
+        invoice.challan_no = challan_no
+        invoice.vehicle_no = vehicle_no
+        invoice.lr_no = lr_no
+        invoice.ship_by = ship_by
+        invoice.transporter_name = transporter_name
+        invoice.transporter_gstin =transporter_gstin
+        invoice.transporter_id = transporter_id
+        invoice.private_notes = notes
+        invoice.terms_conditions = terms
+        invoice.master_company = m
+        invoice.save()
+        counter = int(request.POST['counter'])
+        for x in range(0,counter-1):
+            item_name = request.POST['item'+str(x+1)]
+            unit = request.POST['unit'+str(x+1)]
+            quantity = request.POST['qty'+str(x+1)]
+            price = request.POST['price'+str(x+1)]
+            discount = request.POST['discount'+str(x+1)]
+            tax = request.POST['taxu'+str(x+1)]
+            description = request.POST['desc'+str(x+1)]
+            print(request.POST['total'+str(x+1)])
+            total = request.POST['total'+str(x+1)]
+            print x, counter
+            d = Dummy_Product.objects.create(name=item_name, unit=unit, quantity=quantity, price=price,
+                                             discount=discount, tax=tax, description=description, source='Invoice',item_total=total)
+            i = Invoice.objects.get(invoice_no=invoice_no)
+            print i
+            i.items.add(d)
+            i.save()
+        return HttpResponse("Added Successfully")
+
+      
 def filterclient(request):
     if request.method == 'POST':
         company = request.POST.get('cpname', "")
@@ -526,8 +597,6 @@ def filterclient(request):
 
 
 
-
-
-
+        
 
 

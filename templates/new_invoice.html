@@ -60,7 +60,7 @@ function myFunc() {
         <div class="header" style="border-bottom: 1px solid #7a858f; padding-bottom:10px;">
             <p style="font-size: large">Add New Invoice</p>
         </div>
-        <form class="form-horizontal" style="height: 85%" id="form1">
+        <form class="form-horizontal" style="height: 85%" id="form1" action="{%  url 'save_invoice' %}" method="post">
            {% csrf_token %}
             <div class="container-fluid" style="height: 85%; margin:0px">
                 <div class="row" style="border-bottom: 1px solid #7a858f; padding-bottom:10px; padding-top:20px; background-color:#f9fafb;">
@@ -84,10 +84,10 @@ function myFunc() {
                                 <div class="form-group">
                                     <label for="inputlg2" class="col-md-3 control-label" style="text-align:left">Invoice no</label>
                                     <div class="col-md-4">
-                                        <input class="form-control input-lg" name="invoiecno1" id="inputlg2" type="text">
+                                        <input class="form-control input-lg" name="invoiceno1" id="inputlg2" type="text">
                                     </div>
                                     <div class="col-md-5">
-                                        <input class="form-control input-lg" name="invoiecno2" id="" type="text">
+                                        <input class="form-control input-lg" name="invoiceno2" id="" type="text">
                                     </div>
                                 </div>
                             </div>
@@ -203,7 +203,7 @@ function myFunc() {
                             <div class="col-md-1" >
                                 <div class="form-group" style="padding:0px; margin-right:0px;">
                                     <div class="col-md-12" style="padding:0px; margin:0px;">
-                                        <select class="form-control input-lg sel" id="unit" name="clientname">
+                                        <select class="form-control input-lg sel" id="unit" name="clientname1">
                                             <option value="" ></option>
                                         {% for cl in unit %}
                                             <option value="{{ cl.unit_type }}" >{{ cl.unit_type }}</option>
@@ -243,7 +243,7 @@ function myFunc() {
                             <div class="col-md-1" >
                                 <div class="form-group" style="padding:0px; margin-right:0px;">
                                     <div class="col-md-12" style="padding:0px; margin:0px;">
-                                        <select class="form-control input-lg sel" id="tax" name="clientname" >
+                                        <select class="form-control input-lg sel" id="tax" name="clientname3" >
                                             <option value="0" style="background-color: black;"></option>
                                         {% for cl in tax %}
                                             <option value="{{ cl.tax_value }}" >{{ cl.tax_category }} ({{ cl.tax_value }}%)</option>
@@ -285,7 +285,7 @@ function myFunc() {
                                     if (discount == "") {
                                         discount = "0";
                                     }
-                                    e = document.getElementById("tax")
+                                    e = document.getElementById("tax");
                                     tax = e.options[e.selectedIndex].value;
                                     z = e.options[e.selectedIndex].text;
                                     desc = document.getElementById("desc").value;
@@ -341,31 +341,36 @@ function myFunc() {
                                     var item = document.createElement("input");
                                     item.type = "hidden";
                                     item.value = String(itemname);
-                                    item.name = "item" + counter
+                                    item.name = "item" + counter;
                                     var unit1 = document.createElement("input");
                                     unit1.type = "hidden";
                                     unit1.value = unit;
-                                    unit1.name = "unit" + counter
+                                    unit1.name = "unit" + counter;
                                     var qty1 = document.createElement("input");
                                     qty1.type = "hidden";
                                     qty1.value = String(qty);
-                                    qty1.name = "qty" + counter
+                                    qty1.name = "qty" + counter;
                                     var price1 = document.createElement("input");
                                     price1.type = "hidden";
                                     price1.value = String(price);
-                                    price1.name = "price" + counter
+                                    price1.name = "price" + counter;
                                     var discount1 = document.createElement("input");
                                     discount1.type = "hidden";
                                     discount1.value = String(discount);
-                                    discount1.name = "discount" + counter
+                                    discount1.name = "discount" + counter;
                                     var tax1 = document.createElement("input");
                                     tax1.type = "hidden";
                                     tax1.value = String(tax);
-                                    tax1.name = "taxu" + counter
+                                    tax1.name = "taxu" + counter;
                                     var desc1 = document.createElement("input");
                                     desc1.type = "hidden";
                                     desc1.value = String(desc);
-                                    desc1.name = "desc" + counter
+                                    desc1.name = "desc" + counter;
+                                    var total1 = document.createElement("input");
+                                    total1.type = "hidden";
+                                    total1.value = String(cell8.innerHTML);
+                                    total1.name = "total" + counter;
+
 
                                     var hid = document.getElementById("hiddeninput");
                                     hid.appendChild(item);
@@ -375,7 +380,7 @@ function myFunc() {
                                     hid.appendChild(discount1);
                                     hid.appendChild(tax1);
                                     hid.appendChild(desc1);
-
+                                    hid.appendChild(total1);
                                     document.getElementById("counter").value = parseInt(counter) + 1;
 
                                 }

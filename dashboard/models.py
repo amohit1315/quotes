@@ -129,6 +129,7 @@ class Dummy_Product(models.Model):
     tax = models.CharField(max_length=500,blank=True,null=True)
     item_total = models.CharField(max_length=500,blank=True,null=True)
     source = models.CharField(max_length=500,blank=True,null=True)
+    description = models.CharField(max_length=5000,blank=True,null=True)
 
     def __str__(self):
         return self.name
@@ -156,6 +157,7 @@ class Invoice(models.Model):
     total_amount = models.CharField(max_length=3000,blank=True,null=True)
     total_discount = models.CharField(max_length=500,blank=True,null=True)
     total_tax = models.CharField(max_length=500,blank=True,null=True)
+    master_company = models.ForeignKey(MasterCompany, blank=True, null=True, on_delete=models.SET_NULL)
     def __str__(self):
         return self.invoice_no
 
@@ -179,6 +181,7 @@ class Delivery_Notes(models.Model):
     total_amount = models.CharField(max_length=3000,blank=True,null=True)
     total_discount = models.CharField(max_length=500, blank=True, null=True)
     total_tax = models.CharField(max_length=500, blank=True, null=True)
+    master_company = models.ForeignKey(MasterCompany, blank=True, null=True, on_delete=models.SET_NULL)
     def __str__(self):
         return self.invoice_no
 
@@ -196,6 +199,7 @@ class Credit_Notes(models.Model):
     total_amount = models.CharField(max_length=3000, blank=True, null=True)
     total_discount = models.CharField(max_length=500, blank=True, null=True)
     total_tax = models.CharField(max_length=500, blank=True, null=True)
+    master_company = models.ForeignKey(MasterCompany, blank=True, null=True, on_delete=models.SET_NULL)
     def __str__(self):
         return self.no
 
@@ -212,6 +216,7 @@ class Purchase_Order(models.Model):
     total_amount = models.CharField(max_length=3000, blank=True, null=True)
     total_discount = models.CharField(max_length=500, blank=True, null=True)
     total_tax = models.CharField(max_length=500, blank=True, null=True)
+    master_company = models.ForeignKey(MasterCompany, blank=True, null=True, on_delete=models.SET_NULL)
     def __str__(self):
         return self.no
 
@@ -228,5 +233,6 @@ class Quotes(models.Model):
     total_amount = models.CharField(max_length=3000, blank=True, null=True)
     total_discount = models.CharField(max_length=500, blank=True, null=True)
     total_tax = models.CharField(max_length=500, blank=True, null=True)
+    master_company = models.ForeignKey(MasterCompany, blank=True, null=True, on_delete=models.SET_NULL)
     def __str__(self):
         return self.invoice_no

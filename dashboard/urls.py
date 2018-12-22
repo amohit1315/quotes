@@ -30,6 +30,7 @@ urlpatterns = [
     url(r'^new_product', views.new_product, name='new_product'),
     url(r'^save_product', views.save_product, name='save_product'),
     url(r'^save_service', views.save_service, name='save_service'),
+    url(r'^save_invoice',views.save_invoice,name ='save_invoice'),
     url(r'^export_customer',views.export_customer,name='export_customer'),
     url(r'^export_product',views.export_product,name='export_product'),
     url(r'^import_customer',views.import_customer,name='import_customer'),
