@@ -247,7 +247,9 @@ function myFunc() {
                                             <option value="{{ cl.tax_value }}" >{{ cl.tax_category }} ({{ cl.tax_value }}%)</option>
                                         {% endfor %}
                                         {% for cl in usertax %}
-                                            <option value="{{ cl.tax_value }}" >{{ cl.tax_category }} ({{ cl.tax_value }}%)</option>
+                                            {%  if usertax  %}
+                                                <option value="{{ cl.tax_value }}" >{{ cl.tax_category }} ({{ cl.tax_value }}%)</option>
+                                            {%  endif %}
                                         {% endfor %}
                                         </select>
                                     </div>
