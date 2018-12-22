@@ -154,7 +154,8 @@ class Invoice(models.Model):
     terms_conditions = models.CharField(max_length=3000,blank=True,null=True)
     private_notes = models.CharField(max_length=3000,blank=True,null=True)
     total_amount = models.CharField(max_length=3000,blank=True,null=True)
-
+    total_discount = models.CharField(max_length=500,blank=True,null=True)
+    total_tax = models.CharField(max_length=500,blank=True,null=True)
     def __str__(self):
         return self.invoice_no
 
@@ -176,7 +177,8 @@ class Delivery_Notes(models.Model):
     terms_conditions = models.CharField(max_length=3000,blank=True,null=True)
     private_notes = models.CharField(max_length=3000,blank=True,null=True)
     total_amount = models.CharField(max_length=3000,blank=True,null=True)
-
+    total_discount = models.CharField(max_length=500, blank=True, null=True)
+    total_tax = models.CharField(max_length=500, blank=True, null=True)
     def __str__(self):
         return self.invoice_no
 
@@ -192,7 +194,8 @@ class Credit_Notes(models.Model):
     terms_conditions = models.CharField(max_length=3000, blank=True, null=True)
     private_notes = models.CharField(max_length=3000, blank=True, null=True)
     total_amount = models.CharField(max_length=3000, blank=True, null=True)
-
+    total_discount = models.CharField(max_length=500, blank=True, null=True)
+    total_tax = models.CharField(max_length=500, blank=True, null=True)
     def __str__(self):
         return self.no
 
@@ -207,7 +210,8 @@ class Purchase_Order(models.Model):
     terms_conditions = models.CharField(max_length=3000, blank=True, null=True)
     private_notes = models.CharField(max_length=3000, blank=True, null=True)
     total_amount = models.CharField(max_length=3000, blank=True, null=True)
-
+    total_discount = models.CharField(max_length=500, blank=True, null=True)
+    total_tax = models.CharField(max_length=500, blank=True, null=True)
     def __str__(self):
         return self.no
 
@@ -222,6 +226,7 @@ class Quotes(models.Model):
     terms_conditions = models.CharField(max_length=3000, blank=True, null=True)
     private_notes = models.CharField(max_length=3000, blank=True, null=True)
     total_amount = models.CharField(max_length=3000, blank=True, null=True)
-
+    total_discount = models.CharField(max_length=500, blank=True, null=True)
+    total_tax = models.CharField(max_length=500, blank=True, null=True)
     def __str__(self):
         return self.invoice_no
