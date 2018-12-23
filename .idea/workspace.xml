@@ -4,6 +4,7 @@
     <list default="true" id="a3420fb8-59f0-4e43-ad20-19a29ed407eb" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/urls.py" afterPath="$PROJECT_DIR$/dashboard/urls.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/views.py" afterPath="$PROJECT_DIR$/dashboard/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/view_credit_notes.html" afterPath="$PROJECT_DIR$/templates/view_credit_notes.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/view_delivery_notes.html" afterPath="$PROJECT_DIR$/templates/view_delivery_notes.html" />
@@ -37,7 +38,7 @@
         <entry file="file://$PROJECT_DIR$/dashboard/models.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="580">
-              <caret line="238" column="0" selection-start-line="238" selection-start-column="0" selection-end-line="238" selection-end-column="0" />
+              <caret line="237" column="32" selection-start-line="237" selection-start-column="32" selection-end-line="237" selection-end-column="32" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -45,124 +46,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="new_quote.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/new_quote.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="62" column="95" selection-start-line="62" selection-start-column="95" selection-end-line="62" selection-end-column="95" />
-              <folding>
-                <element signature="e#1161#1181#0#HTML" expanded="true" />
-                <element signature="e#1430#1449#0#HTML" expanded="true" />
-                <element signature="e#1577#1608#0#HTML" expanded="true" />
-                <element signature="e#1643#1749#0#HTML" expanded="true" />
-                <element signature="e#1924#1947#0#HTML" expanded="true" />
-                <element signature="e#2533#2612#0#HTML" expanded="true" />
-                <element signature="e#2897#2920#0#HTML" expanded="true" />
-                <element signature="e#3653#3677#0#HTML" expanded="true" />
-                <element signature="e#4270#4293#0#HTML" expanded="true" />
-                <element signature="e#4798#4822#0#HTML" expanded="true" />
-                <element signature="e#5257#5282#0#HTML" expanded="true" />
-                <element signature="e#5307#5331#0#HTML" expanded="true" />
-                <element signature="e#5419#5464#0#HTML" expanded="true" />
-                <element signature="e#5684#5702#0#HTML" expanded="true" />
-                <element signature="e#5774#5818#0#HTML" expanded="true" />
-                <element signature="e#6051#6077#0#HTML" expanded="true" />
-                <element signature="e#6145#6171#0#HTML" expanded="true" />
-                <element signature="e#6238#6264#0#HTML" expanded="true" />
-                <element signature="e#6333#6359#0#HTML" expanded="true" />
-                <element signature="e#6435#6461#0#HTML" expanded="true" />
-                <element signature="e#6528#6554#0#HTML" expanded="true" />
-                <element signature="e#6694#6713#0#HTML" expanded="true" />
-                <element signature="e#9245#9277#0#HTML" expanded="true" />
-                <element signature="e#9338#9370#0#HTML" expanded="true" />
-                <element signature="e#10072#10110#0#HTML" expanded="true" />
-                <element signature="e#10171#10203#0#HTML" expanded="true" />
-                <element signature="e#11112#11150#0#HTML" expanded="true" />
-                <element signature="e#11211#11243#0#HTML" expanded="true" />
-                <element signature="e#11345#11378#0#HTML" expanded="true" />
-                <element signature="e#11615#11653#0#HTML" expanded="true" />
-                <element signature="e#11714#11746#0#HTML" expanded="true" />
-                <element signature="e#11850#11883#0#HTML" expanded="true" />
-                <element signature="e#12439#12477#0#HTML" expanded="true" />
-                <element signature="e#12538#12570#0#HTML" expanded="true" />
-                <element signature="e#12677#12710#0#HTML" expanded="true" />
-                <element signature="e#12937#12975#0#HTML" expanded="true" />
-                <element signature="e#13036#13068#0#HTML" expanded="true" />
-                <element signature="e#13244#13276#0#HTML" expanded="true" />
-                <element signature="e#14227#14263#0#HTML" expanded="true" />
-                <element signature="e#22885#22965#0#HTML" expanded="true" />
-                <element signature="e#23009#23053#0#HTML" expanded="true" />
-                <element signature="e#23152#23184#0#HTML" expanded="true" />
-                <element signature="e#23237#23269#0#HTML" expanded="true" />
-                <element signature="e#23362#23382#0#HTML" expanded="true" />
-                <element signature="e#23544#23624#0#HTML" expanded="true" />
-                <element signature="e#23710#23749#0#HTML" expanded="true" />
-                <element signature="e#26000#26034#0#HTML" expanded="true" />
-                <element signature="e#26319#26355#0#HTML" expanded="true" />
-                <element signature="e#26485#26505#0#HTML" expanded="true" />
-                <element signature="e#26868#26947#0#HTML" expanded="true" />
-                <element signature="e#27010#27016#0#HTML" expanded="true" />
-                <element signature="e#27124#27144#0#HTML" expanded="true" />
-                <element signature="e#27393#27416#0#HTML" expanded="true" />
-                <element signature="e#27816#27839#0#HTML" expanded="true" />
-                <element signature="e#28225#28248#0#HTML" expanded="true" />
-                <element signature="e#28649#28672#0#HTML" expanded="true" />
-                <element signature="e#29070#29093#0#HTML" expanded="true" />
-                <element signature="e#29479#29502#0#HTML" expanded="true" />
-                <element signature="e#29893#29916#0#HTML" expanded="true" />
-                <element signature="e#30305#30328#0#HTML" expanded="true" />
-                <element signature="e#30751#30798#0#HTML" expanded="true" />
-                <element signature="e#30850#30895#0#HTML" expanded="true" />
-                <element signature="e#30968#31039#0#HTML" expanded="true" />
-                <element signature="e#31107#31153#0#HTML" expanded="true" />
-                <element signature="e#31205#31250#0#HTML" expanded="true" />
-                <element signature="e#31337#31408#0#HTML" expanded="true" />
-                <element signature="e#31476#31522#0#HTML" expanded="true" />
-                <element signature="e#31570#31615#0#HTML" expanded="true" />
-                <element signature="e#31684#31755#0#HTML" expanded="true" />
-                <element signature="e#31823#31869#0#HTML" expanded="true" />
-                <element signature="e#31915#31960#0#HTML" expanded="true" />
-                <element signature="e#32028#32099#0#HTML" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="view_customer.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/view_customer.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="463">
-              <caret line="109" column="6" selection-start-line="79" selection-start-column="4" selection-end-line="109" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="view_invoices.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/view_invoices.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="481">
-              <caret line="78" column="0" selection-start-line="48" selection-start-column="4" selection-end-line="78" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="view_credit_notes.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/view_credit_notes.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="36">
-              <caret line="48" column="3" selection-start-line="48" selection-start-column="3" selection-end-line="77" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dashboard/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="513">
-              <caret line="325" column="48" selection-start-line="325" selection-start-column="48" selection-end-line="325" selection-end-column="48" />
+            <state relative-caret-position="549">
+              <caret line="389" column="19" selection-start-line="389" selection-start-column="19" selection-end-line="389" selection-end-column="19" />
               <folding>
                 <element signature="e#24#63#0" expanded="true" />
               </folding>
@@ -170,11 +58,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="view_delivery_notes.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/view_delivery_notes.html">
+      <file leaf-file-name="view_credit_notes.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/view_credit_notes.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="571">
-              <caret line="78" column="0" selection-start-line="48" selection-start-column="2" selection-end-line="78" selection-end-column="0" />
+            <state relative-caret-position="540">
+              <caret line="54" column="14" selection-start-line="54" selection-start-column="14" selection-end-line="54" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -183,8 +71,8 @@
       <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dashboard/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="490">
-              <caret line="40" column="60" selection-start-line="40" selection-start-column="60" selection-end-line="40" selection-end-column="60" />
+            <state relative-caret-position="494">
+              <caret line="47" column="69" selection-start-line="47" selection-start-column="69" selection-end-line="47" selection-end-column="69" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -192,11 +80,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="view_quotes.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/templates/view_quotes.html">
+      <file leaf-file-name="view_delivery_notes.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/view_delivery_notes.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="409">
-              <caret line="69" column="84" selection-start-line="69" selection-start-column="84" selection-end-line="69" selection-end-column="84" />
+            <state relative-caret-position="285">
+              <caret line="41" column="128" selection-start-line="41" selection-start-column="67" selection-end-line="41" selection-end-column="128" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="view_invoices.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/view_invoices.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="396">
+              <caret line="41" column="121" selection-start-line="41" selection-start-column="67" selection-end-line="41" selection-end-column="121" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="view_product.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/view_product.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="18">
+              <caret line="41" column="121" selection-start-line="41" selection-start-column="67" selection-end-line="41" selection-end-column="121" />
               <folding />
             </state>
           </provider>
@@ -205,8 +113,18 @@
       <file leaf-file-name="view_purchase_order.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/view_purchase_order.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="13">
-              <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="77" selection-end-column="6" />
+            <state relative-caret-position="499">
+              <caret line="41" column="128" selection-start-line="41" selection-start-column="67" selection-end-line="41" selection-end-column="128" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="view_quotes.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/view_quotes.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="41" column="120" selection-start-line="41" selection-start-column="120" selection-end-line="41" selection-end-column="120" />
               <folding />
             </state>
           </provider>
@@ -240,14 +158,14 @@
         <option value="$PROJECT_DIR$/templates/new_credit_notes.html" />
         <option value="$PROJECT_DIR$/templates/new_purchase_order.html" />
         <option value="$PROJECT_DIR$/templates/quote.html" />
-        <option value="$PROJECT_DIR$/dashboard/urls.py" />
         <option value="$PROJECT_DIR$/templates/new_quote.html" />
         <option value="$PROJECT_DIR$/dashboard/models.py" />
         <option value="$PROJECT_DIR$/templates/view_invoices.html" />
-        <option value="$PROJECT_DIR$/templates/view_credit_notes.html" />
         <option value="$PROJECT_DIR$/templates/view_delivery_notes.html" />
+        <option value="$PROJECT_DIR$/templates/view_credit_notes.html" />
         <option value="$PROJECT_DIR$/templates/view_purchase_order.html" />
         <option value="$PROJECT_DIR$/dashboard/views.py" />
+        <option value="$PROJECT_DIR$/dashboard/urls.py" />
         <option value="$PROJECT_DIR$/templates/view_quotes.html" />
       </list>
     </option>
@@ -624,14 +542,14 @@
     <frame x="43" y="764" width="1323" height="772" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21221614" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21534847" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5866873" sideWeight="0.5027408" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.89318883" sideWeight="0.4972592" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.89318883" sideWeight="0.4972592" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -640,7 +558,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="manage.py@quotes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32972136" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="manage.py@quotes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32972136" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1064,14 +982,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/view_product.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="41" column="117" selection-start-line="41" selection-start-column="117" selection-end-line="41" selection-end-column="117" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/new_customer.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="186">
@@ -1413,93 +1323,83 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dashboard/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="490">
-          <caret line="40" column="60" selection-start-line="40" selection-start-column="60" selection-end-line="40" selection-end-column="60" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/new_quote.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="62" column="95" selection-start-line="62" selection-start-column="95" selection-end-line="62" selection-end-column="95" />
           <folding>
-            <element signature="e#1161#1181#0#HTML" expanded="true" />
-            <element signature="e#1430#1449#0#HTML" expanded="true" />
-            <element signature="e#1577#1608#0#HTML" expanded="true" />
-            <element signature="e#1643#1749#0#HTML" expanded="true" />
-            <element signature="e#1924#1947#0#HTML" expanded="true" />
-            <element signature="e#2533#2612#0#HTML" expanded="true" />
-            <element signature="e#2897#2920#0#HTML" expanded="true" />
-            <element signature="e#3653#3677#0#HTML" expanded="true" />
-            <element signature="e#4270#4293#0#HTML" expanded="true" />
-            <element signature="e#4798#4822#0#HTML" expanded="true" />
-            <element signature="e#5257#5282#0#HTML" expanded="true" />
-            <element signature="e#5307#5331#0#HTML" expanded="true" />
-            <element signature="e#5419#5464#0#HTML" expanded="true" />
-            <element signature="e#5684#5702#0#HTML" expanded="true" />
-            <element signature="e#5774#5818#0#HTML" expanded="true" />
-            <element signature="e#6051#6077#0#HTML" expanded="true" />
-            <element signature="e#6145#6171#0#HTML" expanded="true" />
-            <element signature="e#6238#6264#0#HTML" expanded="true" />
-            <element signature="e#6333#6359#0#HTML" expanded="true" />
-            <element signature="e#6435#6461#0#HTML" expanded="true" />
-            <element signature="e#6528#6554#0#HTML" expanded="true" />
-            <element signature="e#6694#6713#0#HTML" expanded="true" />
-            <element signature="e#9245#9277#0#HTML" expanded="true" />
-            <element signature="e#9338#9370#0#HTML" expanded="true" />
-            <element signature="e#10072#10110#0#HTML" expanded="true" />
-            <element signature="e#10171#10203#0#HTML" expanded="true" />
-            <element signature="e#11112#11150#0#HTML" expanded="true" />
-            <element signature="e#11211#11243#0#HTML" expanded="true" />
-            <element signature="e#11345#11378#0#HTML" expanded="true" />
-            <element signature="e#11615#11653#0#HTML" expanded="true" />
-            <element signature="e#11714#11746#0#HTML" expanded="true" />
-            <element signature="e#11850#11883#0#HTML" expanded="true" />
-            <element signature="e#12439#12477#0#HTML" expanded="true" />
-            <element signature="e#12538#12570#0#HTML" expanded="true" />
-            <element signature="e#12677#12710#0#HTML" expanded="true" />
-            <element signature="e#12937#12975#0#HTML" expanded="true" />
-            <element signature="e#13036#13068#0#HTML" expanded="true" />
-            <element signature="e#13244#13276#0#HTML" expanded="true" />
-            <element signature="e#14227#14263#0#HTML" expanded="true" />
-            <element signature="e#22885#22965#0#HTML" expanded="true" />
-            <element signature="e#23009#23053#0#HTML" expanded="true" />
-            <element signature="e#23152#23184#0#HTML" expanded="true" />
-            <element signature="e#23237#23269#0#HTML" expanded="true" />
-            <element signature="e#23362#23382#0#HTML" expanded="true" />
-            <element signature="e#23544#23624#0#HTML" expanded="true" />
-            <element signature="e#23710#23749#0#HTML" expanded="true" />
-            <element signature="e#26000#26034#0#HTML" expanded="true" />
-            <element signature="e#26319#26355#0#HTML" expanded="true" />
-            <element signature="e#26485#26505#0#HTML" expanded="true" />
-            <element signature="e#26868#26947#0#HTML" expanded="true" />
-            <element signature="e#27010#27016#0#HTML" expanded="true" />
-            <element signature="e#27124#27144#0#HTML" expanded="true" />
-            <element signature="e#27393#27416#0#HTML" expanded="true" />
-            <element signature="e#27816#27839#0#HTML" expanded="true" />
-            <element signature="e#28225#28248#0#HTML" expanded="true" />
-            <element signature="e#28649#28672#0#HTML" expanded="true" />
-            <element signature="e#29070#29093#0#HTML" expanded="true" />
-            <element signature="e#29479#29502#0#HTML" expanded="true" />
-            <element signature="e#29893#29916#0#HTML" expanded="true" />
-            <element signature="e#30305#30328#0#HTML" expanded="true" />
-            <element signature="e#30751#30798#0#HTML" expanded="true" />
-            <element signature="e#30850#30895#0#HTML" expanded="true" />
-            <element signature="e#30968#31039#0#HTML" expanded="true" />
-            <element signature="e#31107#31153#0#HTML" expanded="true" />
-            <element signature="e#31205#31250#0#HTML" expanded="true" />
-            <element signature="e#31337#31408#0#HTML" expanded="true" />
-            <element signature="e#31476#31522#0#HTML" expanded="true" />
-            <element signature="e#31570#31615#0#HTML" expanded="true" />
-            <element signature="e#31684#31755#0#HTML" expanded="true" />
-            <element signature="e#31823#31869#0#HTML" expanded="true" />
-            <element signature="e#31915#31960#0#HTML" expanded="true" />
-            <element signature="e#32028#32099#0#HTML" expanded="true" />
+            <element signature="e#1161#1181#0#HTML" expanded="false" />
+            <element signature="e#1430#1449#0#HTML" expanded="false" />
+            <element signature="e#1577#1608#0#HTML" expanded="false" />
+            <element signature="e#1643#1749#0#HTML" expanded="false" />
+            <element signature="e#1924#1947#0#HTML" expanded="false" />
+            <element signature="e#2533#2612#0#HTML" expanded="false" />
+            <element signature="e#2897#2920#0#HTML" expanded="false" />
+            <element signature="e#3653#3677#0#HTML" expanded="false" />
+            <element signature="e#4270#4293#0#HTML" expanded="false" />
+            <element signature="e#4798#4822#0#HTML" expanded="false" />
+            <element signature="e#5257#5282#0#HTML" expanded="false" />
+            <element signature="e#5307#5331#0#HTML" expanded="false" />
+            <element signature="e#5419#5464#0#HTML" expanded="false" />
+            <element signature="e#5684#5702#0#HTML" expanded="false" />
+            <element signature="e#5774#5818#0#HTML" expanded="false" />
+            <element signature="e#6051#6077#0#HTML" expanded="false" />
+            <element signature="e#6145#6171#0#HTML" expanded="false" />
+            <element signature="e#6238#6264#0#HTML" expanded="false" />
+            <element signature="e#6333#6359#0#HTML" expanded="false" />
+            <element signature="e#6435#6461#0#HTML" expanded="false" />
+            <element signature="e#6528#6554#0#HTML" expanded="false" />
+            <element signature="e#6694#6713#0#HTML" expanded="false" />
+            <element signature="e#9245#9277#0#HTML" expanded="false" />
+            <element signature="e#9338#9370#0#HTML" expanded="false" />
+            <element signature="e#10072#10110#0#HTML" expanded="false" />
+            <element signature="e#10171#10203#0#HTML" expanded="false" />
+            <element signature="e#11112#11150#0#HTML" expanded="false" />
+            <element signature="e#11211#11243#0#HTML" expanded="false" />
+            <element signature="e#11345#11378#0#HTML" expanded="false" />
+            <element signature="e#11615#11653#0#HTML" expanded="false" />
+            <element signature="e#11714#11746#0#HTML" expanded="false" />
+            <element signature="e#11850#11883#0#HTML" expanded="false" />
+            <element signature="e#12439#12477#0#HTML" expanded="false" />
+            <element signature="e#12538#12570#0#HTML" expanded="false" />
+            <element signature="e#12677#12710#0#HTML" expanded="false" />
+            <element signature="e#12937#12975#0#HTML" expanded="false" />
+            <element signature="e#13036#13068#0#HTML" expanded="false" />
+            <element signature="e#13244#13276#0#HTML" expanded="false" />
+            <element signature="e#14227#14263#0#HTML" expanded="false" />
+            <element signature="e#22885#22965#0#HTML" expanded="false" />
+            <element signature="e#23009#23053#0#HTML" expanded="false" />
+            <element signature="e#23152#23184#0#HTML" expanded="false" />
+            <element signature="e#23237#23269#0#HTML" expanded="false" />
+            <element signature="e#23362#23382#0#HTML" expanded="false" />
+            <element signature="e#23544#23624#0#HTML" expanded="false" />
+            <element signature="e#23710#23749#0#HTML" expanded="false" />
+            <element signature="e#26000#26034#0#HTML" expanded="false" />
+            <element signature="e#26319#26355#0#HTML" expanded="false" />
+            <element signature="e#26485#26505#0#HTML" expanded="false" />
+            <element signature="e#26868#26947#0#HTML" expanded="false" />
+            <element signature="e#27010#27016#0#HTML" expanded="false" />
+            <element signature="e#27124#27144#0#HTML" expanded="false" />
+            <element signature="e#27393#27416#0#HTML" expanded="false" />
+            <element signature="e#27816#27839#0#HTML" expanded="false" />
+            <element signature="e#28225#28248#0#HTML" expanded="false" />
+            <element signature="e#28649#28672#0#HTML" expanded="false" />
+            <element signature="e#29070#29093#0#HTML" expanded="false" />
+            <element signature="e#29479#29502#0#HTML" expanded="false" />
+            <element signature="e#29893#29916#0#HTML" expanded="false" />
+            <element signature="e#30305#30328#0#HTML" expanded="false" />
+            <element signature="e#30751#30798#0#HTML" expanded="false" />
+            <element signature="e#30850#30895#0#HTML" expanded="false" />
+            <element signature="e#30968#31039#0#HTML" expanded="false" />
+            <element signature="e#31107#31153#0#HTML" expanded="false" />
+            <element signature="e#31205#31250#0#HTML" expanded="false" />
+            <element signature="e#31337#31408#0#HTML" expanded="false" />
+            <element signature="e#31476#31522#0#HTML" expanded="false" />
+            <element signature="e#31570#31615#0#HTML" expanded="false" />
+            <element signature="e#31684#31755#0#HTML" expanded="false" />
+            <element signature="e#31823#31869#0#HTML" expanded="false" />
+            <element signature="e#31915#31960#0#HTML" expanded="false" />
+            <element signature="e#32028#32099#0#HTML" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1512,44 +1412,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/view_invoices.html">
+    <entry file="file://$PROJECT_DIR$/templates/view_delivery_notes.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="481">
-          <caret line="78" column="0" selection-start-line="48" selection-start-column="4" selection-end-line="78" selection-end-column="0" />
+        <state relative-caret-position="285">
+          <caret line="41" column="128" selection-start-line="41" selection-start-column="67" selection-end-line="41" selection-end-column="128" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/view_credit_notes.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="48" column="3" selection-start-line="48" selection-start-column="3" selection-end-line="77" selection-end-column="6" />
+        <state relative-caret-position="540">
+          <caret line="54" column="14" selection-start-line="54" selection-start-column="14" selection-end-line="54" selection-end-column="14" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/view_delivery_notes.html">
+    <entry file="file://$PROJECT_DIR$/templates/view_product.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="571">
-          <caret line="78" column="0" selection-start-line="48" selection-start-column="2" selection-end-line="78" selection-end-column="0" />
+        <state relative-caret-position="18">
+          <caret line="41" column="121" selection-start-line="41" selection-start-column="67" selection-end-line="41" selection-end-column="121" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dashboard/views.py">
+    <entry file="file://$PROJECT_DIR$/templates/view_invoices.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="325" column="48" selection-start-line="325" selection-start-column="48" selection-end-line="325" selection-end-column="48" />
-          <folding>
-            <element signature="e#24#63#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/view_purchase_order.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="13">
-          <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="77" selection-end-column="6" />
+        <state relative-caret-position="396">
+          <caret line="41" column="121" selection-start-line="41" selection-start-column="67" selection-end-line="41" selection-end-column="121" />
           <folding />
         </state>
       </provider>
@@ -1557,17 +1447,45 @@
     <entry file="file://$PROJECT_DIR$/dashboard/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="580">
-          <caret line="238" column="0" selection-start-line="238" selection-start-column="0" selection-end-line="238" selection-end-column="0" />
+          <caret line="237" column="32" selection-start-line="237" selection-start-column="32" selection-end-line="237" selection-end-column="32" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/dashboard/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="549">
+          <caret line="389" column="19" selection-start-line="389" selection-start-column="19" selection-end-line="389" selection-end-column="19" />
+          <folding>
+            <element signature="e#24#63#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashboard/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="47" column="69" selection-start-line="47" selection-start-column="69" selection-end-line="47" selection-end-column="69" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/view_purchase_order.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="499">
+          <caret line="41" column="128" selection-start-line="41" selection-start-column="67" selection-end-line="41" selection-end-column="128" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/templates/view_quotes.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="409">
-          <caret line="69" column="84" selection-start-line="69" selection-start-column="84" selection-end-line="69" selection-end-column="84" />
+        <state relative-caret-position="180">
+          <caret line="41" column="120" selection-start-line="41" selection-start-column="120" selection-end-line="41" selection-end-column="120" />
           <folding />
         </state>
       </provider>
