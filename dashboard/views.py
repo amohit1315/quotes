@@ -260,16 +260,27 @@ def save_customer(request):
         return HttpResponse("Added Successfully")
 
 def view_credit_notes(request):
-    return render(request, "view_credit_notes.html")
+    current_user = request.user.email
+    x = DBUser.objects.get(email=current_user)
+    m = x.master_company
+    credit = Credit_Notes.objects.filter(master_company=m)
+    return render(request, "view_credit_notes.html",{'credit':credit})
 
 
 def view_delivery_notes(request):
-    return render(request, "view_delivery_notes.html")
+    current_user = request.user.email
+    x = DBUser.objects.get(email=current_user)
+    m = x.master_company
+    delivery = Delivery_Notes.objects.filter(master_company=m)
+    return render(request, "view_delivery_notes.html",{ 'delivery' : delivery})
 
 
 def view_invoices(request):
-
-    return render(request, "view_invoices.html")
+    current_user = request.user.email
+    x = DBUser.objects.get(email=current_user)
+    m = x.master_company
+    invoice = Invoice.objects.filter(master_company=m)
+    return render(request, "view_invoices.html",{'invoice':invoice})
 
 
 def view_preference(request):
@@ -300,11 +311,19 @@ def export_product(request):
 
 
 def view_purchase_order(request):
-    return render(request, "view_purchase_order.html")
+    current_user = request.user.email
+    x = DBUser.objects.get(email=current_user)
+    m = x.master_company
+    po = Purchase_Order.objects.filter(master_company=m)
+    return render(request, "view_purchase_order.html",{'po':po})
 
 
 def view_quotes(request):
-    return render(request, "view_quotes.html")
+    current_user = request.user.email
+    x = DBUser.objects.get(email=current_user)
+    m = x.master_company
+    q = Quotes.objects.filter(master_company=m)
+    return render(request, "view_quotes.html", {'q': q})
 
 
 def view_report(request):
