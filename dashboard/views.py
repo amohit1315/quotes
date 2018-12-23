@@ -268,6 +268,7 @@ def view_delivery_notes(request):
 
 
 def view_invoices(request):
+
     return render(request, "view_invoices.html")
 
 
@@ -298,7 +299,6 @@ def export_product(request):
 
 
 
-
 def view_purchase_order(request):
     return render(request, "view_purchase_order.html")
 
@@ -309,6 +309,8 @@ def view_quotes(request):
 
 def view_report(request):
     return render(request, "view_report.html")
+
+
 
 
 def new_invoice(request):
@@ -323,6 +325,55 @@ def new_invoice(request):
     userunit = UserUnit.objects.filter(master_company=m)
     return render(request, "new_invoice.html", {"prod": prod, "client": client, 'tax' : tax, 'unit': unit ,'usertax' : usertax, userunit : 'userunit'})
 
+def new_delivery_notes(request):
+    current_user = request.user.email
+    x = DBUser.objects.get(email=current_user)
+    m = x.master_company
+    prod = Product_Service.objects.filter(master_company=m)
+    client = Customer.objects.filter(master_company=m)
+    tax = Tax.objects.all()
+    usertax = UserTax.objects.filter(master_company=m)
+    unit = Unit.objects.all()
+    userunit = UserUnit.objects.filter(master_company=m)
+    return render(request, "new_delivery_notes.html", {"prod": prod, "client": client, 'tax' : tax, 'unit': unit ,'usertax' : usertax, userunit : 'userunit' })
+
+def new_credit_notes(request):
+    current_user = request.user.email
+    x = DBUser.objects.get(email=current_user)
+    m = x.master_company
+    prod = Product_Service.objects.filter(master_company=m)
+    client = Customer.objects.filter(master_company=m)
+    tax = Tax.objects.all()
+    usertax = UserTax.objects.filter(master_company=m)
+    unit = Unit.objects.all()
+    userunit = UserUnit.objects.filter(master_company=m)
+    invoice = Invoice.objects.filter(master_company=m)
+    return render(request, 'new_credit_notes.html', {'prod': prod, 'client': client, 'tax' : tax, 'unit': unit ,'usertax' : usertax,'userunit': userunit  ,'invoice':invoice })
+
+def new_purchase_order(request):
+    current_user = request.user.email
+    x = DBUser.objects.get(email=current_user)
+    m = x.master_company
+    prod = Product_Service.objects.filter(master_company=m)
+    client = Customer.objects.filter(master_company=m)
+    tax = Tax.objects.all()
+    usertax = UserTax.objects.filter(master_company=m)
+    unit = Unit.objects.all()
+    userunit = UserUnit.objects.filter(master_company=m)
+    return render(request, "new_purchase_order.html", {"prod": prod, "client": client, 'tax' : tax, 'unit': unit ,'usertax' : usertax, userunit : 'userunit'})
+
+def new_quote(request):
+    current_user = request.user.email
+    x = DBUser.objects.get(email=current_user)
+    m = x.master_company
+    prod = Product_Service.objects.filter(master_company=m)
+    client = Customer.objects.filter(master_company=m)
+    tax = Tax.objects.all()
+    usertax = UserTax.objects.filter(master_company=m)
+    unit = Unit.objects.all()
+    userunit = UserUnit.objects.filter(master_company=m)
+    return render(request, "new_quote.html",
+                  {"prod": prod, "client": client, 'tax': tax, 'unit': unit, 'usertax': usertax, userunit: 'userunit'})
 
 def new_product(request):
     current_user = request.user.email
@@ -570,7 +621,228 @@ def save_invoice(request):
             i.save()
         return HttpResponse("Added Successfully")
 
-      
+def save_delivery_note(request):
+    if request.method == 'POST':
+        client_name = request.POST['clientname']
+        no1 = request.POST['invoiceno1']
+        no2 = request.POST['invoiceno2']
+        no = no1 + ' ' + no2
+        date = request.POST['invoicedate']
+        po_no = request.POST['pono']
+        shipping_date = request.POST['duedate']
+        total_discount =  request.POST['d']
+        total_tax = request.POST['t']
+        total_price = request.POST['totalp']
+        shipping_price = request.POST['cship']
+        waybill_no = request.POST['waybillno']
+        challan_no = request.POST['challan']
+        vehicle_no = request.POST['vehicle']
+        lr_no = request.POST['lr']
+        ship_by = request.POST['ship']
+        transporter_name = request.POST['t1']
+        transporter_id = request.POST['t2']
+        transporter_gstin = request.POST['t3']
+        notes = request.POST['notes']
+        terms = request.POST['terms']
+        current_user = request.user.email
+        x = DBUser.objects.get(email=current_user)
+        m = x.master_company
+        delivery = Delivery_Notes()
+        delivery.client_name = client_name
+        delivery.no = no
+        delivery.date = date
+        delivery.po_no = po_no
+        delivery.shipping_date = shipping_date
+        delivery.total_discount = total_discount
+        delivery.total_tax = total_tax
+        delivery.total_amount = total_price
+        delivery.shipping_charges = shipping_price
+        delivery.waybill_no = waybill_no
+        delivery.challan_no = challan_no
+        delivery.vehicle_no = vehicle_no
+        delivery.lr_no = lr_no
+        delivery.ship_by = ship_by
+        delivery.transporter_name = transporter_name
+        delivery.transporter_gstin = transporter_gstin
+        delivery.tansporter_id = transporter_id
+        delivery.private_notes = notes
+        delivery.terms_conditions = terms
+        delivery.master_company = m
+        delivery.save()
+        counter = int(request.POST['counter'])
+        for x in range(0,counter-1):
+            item_name = request.POST['item'+str(x+1)]
+            unit = request.POST['unit'+str(x+1)]
+            quantity = request.POST['qty'+str(x+1)]
+            price = request.POST['price'+str(x+1)]
+            discount = request.POST['discount'+str(x+1)]
+            tax = request.POST['taxu'+str(x+1)]
+            description = request.POST['desc'+str(x+1)]
+            print(request.POST['total'+str(x+1)])
+            total = request.POST['total'+str(x+1)]
+            print x, counter
+            d = Dummy_Product.objects.create(name=item_name, unit=unit, quantity=quantity, price=price,
+                                             discount=discount, tax=tax, description=description, source='Delivery Notes',item_total=total)
+            i = Delivery_Notes.objects.get(no=no)
+            i.items.add(d)
+            i.save()
+        return HttpResponse("Added Successfully")
+
+def save_credit_note(request):
+    if request.method == 'POST':
+        client_name = request.POST['clientname']
+        no1 = request.POST['invoiceno1']
+        no2 = request.POST['invoiceno2']
+        no = no1 + ' ' + no2
+        date = request.POST['invoicedate']
+        invoice_no = request.POST['pono']
+        invoice_date = request.POST['duedate']
+        reason = request.POST['reason']
+        total_discount =  request.POST['d']
+        total_tax = request.POST['t']
+        total_price = request.POST['totalp']
+        shipping_price = request.POST['cship']
+        notes = request.POST['notes']
+        terms = request.POST['terms']
+        current_user = request.user.email
+        x = DBUser.objects.get(email=current_user)
+        m = x.master_company
+        credit = Credit_Notes()
+        credit.client_name = client_name
+        credit.no = no
+        credit.date = date
+        credit.invoice_no = invoice_no
+        credit.invoice_date = invoice_date
+        credit.total_discount = total_discount
+        credit.total_tax = total_tax
+        credit.total_amount = total_price
+        credit.shipping_charges = shipping_price
+        credit.private_notes = notes
+        credit.terms_conditions = terms
+        credit.master_company = m
+        credit.reason = reason
+        credit.save()
+        counter = int(request.POST['counter'])
+        for x in range(0,counter-1):
+            item_name = request.POST['item'+str(x+1)]
+            unit = request.POST['unit'+str(x+1)]
+            quantity = request.POST['qty'+str(x+1)]
+            price = request.POST['price'+str(x+1)]
+            discount = request.POST['discount'+str(x+1)]
+            tax = request.POST['taxu'+str(x+1)]
+            description = request.POST['desc'+str(x+1)]
+            print(request.POST['total'+str(x+1)])
+            total = request.POST['total'+str(x+1)]
+            print x, counter
+            d = Dummy_Product.objects.create(name=item_name, unit=unit, quantity=quantity, price=price,
+                                             discount=discount, tax=tax, description=description, source='Credit Notes',item_total=total)
+            i = Credit_Notes.objects.get(no=no)
+            i.items.add(d)
+            i.save()
+        return HttpResponse("Added Successfully")
+
+def save_purchase_order(request):
+    if request.method == 'POST':
+        client_name = request.POST['clientname']
+        no1 = request.POST['invoiceno1']
+        no2 = request.POST['invoiceno2']
+        no = no1 + ' ' + no2
+        po_date = request.POST['invoicedate']
+        ref_no = request.POST['refnumber']
+        due_date = request.POST['duedate']
+        total_discount =  request.POST['d']
+        total_tax = request.POST['t']
+        total_price = request.POST['totalp']
+        shipping_price = request.POST['cship']
+        notes = request.POST['notes']
+        terms = request.POST['terms']
+        current_user = request.user.email
+        x = DBUser.objects.get(email=current_user)
+        m = x.master_company
+        purchase = Purchase_Order()
+        purchase.client_name = client_name
+        purchase.no = no
+        purchase.po_date = po_date
+        purchase.ref_no = ref_no
+        purchase.due_date = due_date
+        purchase.total_discount = total_discount
+        purchase.total_tax = total_tax
+        purchase.total_amount = total_price
+        purchase.shipping_charges = shipping_price
+        purchase.private_notes = notes
+        purchase.terms_conditions = terms
+        purchase.master_company = m
+        purchase.save()
+        counter = int(request.POST['counter'])
+        for x in range(0,counter-1):
+            item_name = request.POST['item'+str(x+1)]
+            unit = request.POST['unit'+str(x+1)]
+            quantity = request.POST['qty'+str(x+1)]
+            price = request.POST['price'+str(x+1)]
+            discount = request.POST['discount'+str(x+1)]
+            tax = request.POST['taxu'+str(x+1)]
+            description = request.POST['desc'+str(x+1)]
+            print(request.POST['total'+str(x+1)])
+            total = request.POST['total'+str(x+1)]
+            print x, counter
+            d = Dummy_Product.objects.create(name=item_name, unit=unit, quantity=quantity, price=price,
+                                             discount=discount, tax=tax, description=description, source='Purchase Order',item_total=total)
+            i = Purchase_Order.objects.get(no=no)
+            i.items.add(d)
+            i.save()
+        return HttpResponse("Added Successfully")
+
+def save_quote(request):
+    if request.method == 'POST':
+        client_name = request.POST['clientname']
+        no1 = request.POST['invoiceno1']
+        no2 = request.POST['invoiceno2']
+        no = no1 + ' ' + no2
+        quote_date = request.POST['invoicedate']
+        po_no = request.POST['pono']
+        due_date = request.POST['duedate']
+        total_discount =  request.POST['d']
+        total_tax = request.POST['t']
+        total_price = request.POST['totalp']
+        shipping_price = request.POST['cship']
+        notes = request.POST['notes']
+        terms = request.POST['terms']
+        current_user = request.user.email
+        x = DBUser.objects.get(email=current_user)
+        m = x.master_company
+        quote = Quotes()
+        quote.client_name = client_name
+        quote.quotation_no = no
+        quote.quotation_date = quote_date
+        quote.po_no = po_no
+        quote.due_date = due_date
+        quote.total_discount = total_discount
+        quote.total_tax = total_tax
+        quote.total_amount = total_price
+        quote.shipping_charges = shipping_price
+        quote.private_notes = notes
+        quote.terms_conditions = terms
+        quote.master_company = m
+        quote.save()
+        counter = int(request.POST['counter'])
+        for x in range(0,counter-1):
+            item_name = request.POST['item'+str(x+1)]
+            unit = request.POST['unit'+str(x+1)]
+            quantity = request.POST['qty'+str(x+1)]
+            price = request.POST['price'+str(x+1)]
+            discount = request.POST['discount'+str(x+1)]
+            tax = request.POST['taxu'+str(x+1)]
+            description = request.POST['desc'+str(x+1)]
+            print(request.POST['total'+str(x+1)])
+            total = request.POST['total'+str(x+1)]
+            print x, counter
+            d = Dummy_Product.objects.create(name=item_name, unit=unit, quantity=quantity, price=price,
+                                             discount=discount, tax=tax, description=description, source='Quotes',item_total=total)
+            i = Quotes.objects.get(quotation_no=no)
+            i.items.add(d)
+            i.save()
+        return HttpResponse("Added Successfully")
+
 def filterclient(request):
     if request.method == 'POST':
         company = request.POST.get('cpname', "")

@@ -163,10 +163,10 @@ class Invoice(models.Model):
 
 class Delivery_Notes(models.Model):
     client_name = models.CharField(max_length=500)
-    invoice_no = models.CharField(max_length=500,primary_key=True)
-    invoice_date = models.CharField(max_length=500,blank=True,null=True)
+    no = models.CharField(max_length=500,primary_key=True)
+    date = models.CharField(max_length=500,blank=True,null=True)
     po_no = models.CharField(max_length=500,blank=True,null=True)
-    due_date = models.CharField(max_length=500,blank=True,null=True)
+    shipping_date = models.CharField(max_length=500,blank=True,null=True)
     items = models.ManyToManyField(Dummy_Product)
     waybill_no = models.CharField(max_length=500,blank=True,null=True)
     lr_no = models.CharField(max_length=500,blank=True,null=True)
@@ -183,7 +183,7 @@ class Delivery_Notes(models.Model):
     total_tax = models.CharField(max_length=500, blank=True, null=True)
     master_company = models.ForeignKey(MasterCompany, blank=True, null=True, on_delete=models.SET_NULL)
     def __str__(self):
-        return self.invoice_no
+        return self.no
 
 class Credit_Notes(models.Model):
     client_name = models.CharField(max_length=500)
@@ -207,7 +207,7 @@ class Purchase_Order(models.Model):
     client_name = models.CharField(max_length=500)
     no = models.CharField(max_length=500, primary_key=True)
     po_date = models.CharField(max_length=500, blank=True, null=True)
-    invoice_no = models.CharField(max_length=500,null=True,blank=True)
+    ref_no = models.CharField(max_length=500,null=True,blank=True)
     due_date = models.CharField(max_length=500, blank=True, null=True)
     items = models.ManyToManyField(Dummy_Product)
     shipping_charges = models.CharField(max_length=500, blank=True, null=True)
@@ -222,8 +222,8 @@ class Purchase_Order(models.Model):
 
 class Quotes(models.Model):
     client_name = models.CharField(max_length=500)
-    invoice_no = models.CharField(max_length=500, primary_key=True)
-    invoice_date = models.CharField(max_length=500, blank=True, null=True)
+    quotation_no = models.CharField(max_length=500, primary_key=True)
+    quotation_date = models.CharField(max_length=500, blank=True, null=True)
     po_no = models.CharField(max_length=500, blank=True, null=True)
     due_date = models.CharField(max_length=500, blank=True, null=True)
     items = models.ManyToManyField(Dummy_Product)
@@ -235,4 +235,4 @@ class Quotes(models.Model):
     total_tax = models.CharField(max_length=500, blank=True, null=True)
     master_company = models.ForeignKey(MasterCompany, blank=True, null=True, on_delete=models.SET_NULL)
     def __str__(self):
-        return self.invoice_no
+        return self.quotation_no
