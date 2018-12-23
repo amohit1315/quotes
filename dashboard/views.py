@@ -266,6 +266,19 @@ def view_credit_notes(request):
     credit = Credit_Notes.objects.filter(master_company=m)
     return render(request, "view_credit_notes.html",{'credit':credit})
 
+def export_credit_notes(request):
+    current_user = request.user.email
+    x = DBUser.objects.get(email=current_user)
+    m = x.master_company
+    inv = Credit_Notes.objects.filter(master_company=m)
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="Credit_Notes.csv"'
+    writer = csv.writer(response)
+    writer.writerow(['Client Name', 'No.', 'Date','Invoice No.','Invoice Date','Reason','Shipping Charges','Terms & Conditions','Total Amount','Total Discount','Total Tax'])
+    for prod in inv:
+        writer.writerow([prod.client_name,prod.no,prod.date,prod.invoice_no,prod.invoice_date,prod.reason,prod.shipping_charges,prod.terms_conditions,prod.total_amount,prod.total_discount,prod.total_tax])
+    return response
+
 
 def view_delivery_notes(request):
     current_user = request.user.email
@@ -273,6 +286,19 @@ def view_delivery_notes(request):
     m = x.master_company
     delivery = Delivery_Notes.objects.filter(master_company=m)
     return render(request, "view_delivery_notes.html",{ 'delivery' : delivery})
+
+def export_delivery_notes(request):
+    current_user = request.user.email
+    x = DBUser.objects.get(email=current_user)
+    m = x.master_company
+    inv = Delivery_Notes.objects.filter(master_company=m)
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="Delivery_Notes.csv"'
+    writer = csv.writer(response)
+    writer.writerow(['Client Name', 'No.', 'Date','PO No.','Shipping Date','Waybill No.','Lr No.','Challan No.','Vehicle No.','Ship By','Transporter Name','Transporter ID','Transporter GSTIN','Terms & Conditions','Total Amount','Total Discount','Total Tax'])
+    for prod in inv:
+        writer.writerow([prod.client_name,prod.no,prod.date,prod.po_no,prod.shipping_date,prod.waybill_no,prod.lr_no,prod.challan_no,prod.vehicle_no,prod.ship_by,prod.transporter_name,prod.tansporter_id,prod.transporter_gstin,prod.terms_conditions,prod.total_amount,prod.total_discount,prod.total_tax])
+    return response
 
 
 def view_invoices(request):
@@ -282,6 +308,18 @@ def view_invoices(request):
     invoice = Invoice.objects.filter(master_company=m)
     return render(request, "view_invoices.html",{'invoice':invoice})
 
+def export_invoice(request):
+    current_user = request.user.email
+    x = DBUser.objects.get(email=current_user)
+    m = x.master_company
+    inv = Invoice.objects.filter(master_company=m)
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="invoice.csv"'
+    writer = csv.writer(response)
+    writer.writerow(['Client Name', 'Invoice No.', 'Invoice Date', 'Payment Terms','PO No.','Due Date','Shipping Charges','Waybill No.','Lr No.','Challan No.','Vehicle No.','Ship By','Transporter Name','Transporter ID','Transporter GSTIN','Terms & Conditions','Total Amount','Total Discount','Total Tax'])
+    for prod in inv:
+        writer.writerow([prod.client_name,prod.invoice_no,prod.invoice_date,prod.payment_terms,prod.po_no,prod.due_date,prod.shipping_charges,prod.waybill_no,prod.lr_no,prod.challan_no,prod.vehicle_no,prod.ship_by,prod.transporter_name,prod.transporter_id,prod.transporter_gstin,prod.terms_conditions,prod.total_amount,prod.total_discount,prod.total_tax])
+    return response
 
 def view_preference(request):
     return render(request, "view_preferences.html")
@@ -317,6 +355,19 @@ def view_purchase_order(request):
     po = Purchase_Order.objects.filter(master_company=m)
     return render(request, "view_purchase_order.html",{'po':po})
 
+def export_purchase_order(request):
+    current_user = request.user.email
+    x = DBUser.objects.get(email=current_user)
+    m = x.master_company
+    inv = Purchase_Order.objects.filter(master_company=m)
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="Purchase_Orders.csv"'
+    writer = csv.writer(response)
+    writer.writerow(['Client Name', 'No.', 'PO Date','Ref No.','Due Date','Shipping Charges','Terms & Conditions','Total Amount','Total Discount','Total Tax'])
+    for prod in inv:
+        writer.writerow([prod.client_name,prod.no,prod.po_date,prod.ref_no,prod.due_date,prod.shipping_charges,prod.terms_conditions,prod.total_amount,prod.total_discount,prod.total_tax])
+    return response
+
 
 def view_quotes(request):
     current_user = request.user.email
@@ -324,6 +375,19 @@ def view_quotes(request):
     m = x.master_company
     q = Quotes.objects.filter(master_company=m)
     return render(request, "view_quotes.html", {'q': q})
+
+def export_quotes(request):
+    current_user = request.user.email
+    x = DBUser.objects.get(email=current_user)
+    m = x.master_company
+    inv = Quotes.objects.filter(master_company=m)
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="Quotes.csv"'
+    writer = csv.writer(response)
+    writer.writerow(['Client Name', 'Quotation No.', 'Quotation Date','PO No.','Due Date','Shipping Charges','Terms & Conditions','Total Amount','Total Discount','Total Tax'])
+    for prod in inv:
+        writer.writerow([prod.client_name,prod.quotation_no,prod.quotation_date,prod.po_no,prod.due_date,prod.shipping_charges,prod.terms_conditions,prod.total_amount,prod.total_discount,prod.total_tax])
+    return response
 
 
 def view_report(request):
