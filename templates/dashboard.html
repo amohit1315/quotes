@@ -74,7 +74,7 @@ div#content {
 <div class="sidebar">
     {% block sidebar %}
     {% load staticfiles %}
-  <a class="active" href="#home">Dashboard</a>
+  <a class="active" href="{%  url 'home' %}">Dashboard</a>
   <a href="{% url 'view_customer' %}">Customers</a>
   <a href="{% url 'view_product' %}">Products and Services</a>
   <a href="{% url 'view_invoices' %}">Invoices</a>

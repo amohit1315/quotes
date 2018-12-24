@@ -47,6 +47,7 @@ urlpatterns = [
     url(r'^export_purchase_orders/',views.export_purchase_order,name='export_purchase_order'),
     url(r'^export_quotes/',views.export_quotes,name='export_quotes'),
     url(r'^import_customer/',views.import_customer,name='import_customer'),
+    url(r'^import_product/',views.import_product,name='import_product'),
     url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
         views.activate, name='activate')
 ]

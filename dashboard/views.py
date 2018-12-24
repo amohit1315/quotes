@@ -157,17 +157,100 @@ def export_customer(request):
 
 
 def import_customer(request):
-    current_user = request.user.email
-    x = DBUser.objects.get(email=current_user)
-    m = x.master_company
     if request.method == 'POST':
-        csv_file = request.FILES['importfile']
-        fs = FileSystemStorage()
-        filename = fs.save(csv_file.name,csv_file)
-        uploaded_file_url = fs.url(filename)
-        print uploaded_file_url
+        csv_file = request.FILES['csv_file']
+        decoded_file = csv_file.read().decode('utf-8').splitlines()
+        reader = csv.reader(decoded_file)
+        next(reader)
+        for fields in reader:
+            customer_name = fields[0]
+            customer_phone = fields[1]
+            customer_email = fields[2]
+            customer_gstin = fields[3]
+            customer_pan = fields[4]
+            customer_tin = fields[5]
+            customer_vat = fields[6]
+            customer_website = fields[7]
+            customer_billing_address = fields[8]
+            customer_billing_country = fields[9]
+            customer_billing_state = fields[10]
+            customer_billing_city = fields[11]
+            customer_billing_pincode = fields[12]
+            customer_shipping_address = fields[13]
+            customer_shipping_country = fields[14]
+            customer_shipping_state = fields[15]
+            customer_shipping_city = fields[16]
+            customer_shipping_pincode = fields[17]
+            customer_facebook = fields[18]
+            customer_lst = fields[19]
+            customer_cst = fields[20]
+            customer_service_tax_no = fields[21]
+            customer_notes = fields[22]
+            customer_contact_person_name = fields[23]
+            customer_contact_person_phone = fields[24]
+            customer_contact_person_email = fields[25]
+            customer_contact_person_name_1 = fields[26]
+            customer_contact_person_phone_1 = fields[27]
+            customer_contact_person_email_1 = fields[28]
+            cust = Customer()
+            cust.cust_name = customer_name
+            cust.cust_phone = customer_phone
+            cust.cust_email = customer_email
+            cust.cust_gstin = customer_gstin
+            cust.cust_pan = customer_pan
+            cust.cust_tin = customer_tin
+            cust.cust_vat = customer_vat
+            cust.cust_website = customer_website
+            cust.cust_company_address = customer_billing_address
+            cust.cust_country = customer_billing_country
+            cust.cust_state = customer_billing_state
+            cust.cust_city = customer_billing_city
+            cust.cust_pincode = customer_billing_pincode
+            if customer_shipping_address:
+                cust.cust_shipping_address = customer_shipping_address
+            else:
+                cust.cust_shipping_address = customer_billing_address
+            if customer_shipping_country:
+                cust.cust_shiiping_country = customer_shipping_country
+            else:
+                cust.cust_shiiping_country = customer_billing_country
+            if customer_shipping_state:
+                cust.cust_shipping_state = customer_shipping_state
+            else:
+                cust.cust_shipping_state = customer_billing_state
+            if customer_shipping_city:
+                cust.cust_shipping_city = customer_shipping_city
+            else:
+                cust.cust_shipping_city = customer_billing_city
+            if customer_shipping_pincode:
+                cust.cust_shipping_pincode = customer_shipping_pincode
+            else:
+                cust.cust_shipping_pincode = customer_billing_pincode
+            cust.cust_facebook = customer_facebook
+            cust.cust_lst = customer_lst
+            cust.cust_cst = customer_cst
+            cust.cust_service_tax_no = customer_service_tax_no
+            cust.cust_notes = customer_notes
+            current_user = request.user.email
+            x = DBUser.objects.get(email=current_user)
+            m = x.master_company
+            cust.master_company = m
+            cust.save()
+            customer_contact = Contact.objects.create(name=customer_contact_person_name,
+                                                          phone=customer_contact_person_phone,
+                                                          email=customer_contact_person_email)
+            c = Customer.objects.get(cust_name=customer_name)
+            c.cust_contact.add(customer_contact)
+            c.save()
+            if customer_contact_person_email_1 and customer_contact_person_phone_1 and customer_contact_person_name_1:
+                customer_contact_1 = Contact.objects.create(name=customer_contact_person_name_1,
+                                                                phone=customer_contact_person_phone_1,
+                                                            email=customer_contact_person_email_1)
+            cu = Customer.objects.get(cust_name=customer_name)
+            cu.cust_contact.add(customer_contact_1)
+            cu.save()
 
-    return HttpResponse("Ajbds")
+    return redirect(view_customer)
 
 def new_customer(request):
     return render(request, "new_customer.html")
@@ -321,6 +404,7 @@ def export_invoice(request):
         writer.writerow([prod.client_name,prod.invoice_no,prod.invoice_date,prod.payment_terms,prod.po_no,prod.due_date,prod.shipping_charges,prod.waybill_no,prod.lr_no,prod.challan_no,prod.vehicle_no,prod.ship_by,prod.transporter_name,prod.transporter_id,prod.transporter_gstin,prod.terms_conditions,prod.total_amount,prod.total_discount,prod.total_tax])
     return response
 
+
 def view_preference(request):
     return render(request, "view_preferences.html")
 
@@ -346,7 +430,52 @@ def export_product(request):
         writer.writerow([prod.name,prod.description,prod.quantity,prod.unit,prod.tax,prod.hsn,prod.sales_unit_price,prod.sales_currency,prod.sales_cess_percent,prod.sales_cess,prod.purchase_unit_price,prod.puchase_currency,prod.purchase_cess_percent,prod.purchase_cess,prod.type,prod.sac])
     return response
 
+def import_product(request):
+    if request.method == 'POST':
+        csv_file = request.FILES['csv_file']
+        decoded_file = csv_file.read().decode('utf-8').splitlines()
+        reader = csv.reader(decoded_file)
+        next(reader)
+        for fields in reader:
+            item_name = fields[0]
+            item_description = fields[1]
+            item_quantity = fields[2]
+            item_unit = fields[3]
+            item_tax = fields[4]
+            item_hsn = fields[5]
+            item_sales_unit_price = fields[6]
+            item_sales_currency = fields[7]
+            item_sales_cess_percent = fields[8]
+            item_sales_cess = fields[9]
+            item_purchase_unit_price = fields[10]
+            item_purchase_currency = fields[11]
+            item_purchase_cess_percent = fields[12]
+            item_purchase_cess = fields[13]
+            item_type = fields[14]
+            item_sac = fields[15]
+            prod = Product_Service()
+            prod.name = item_name
+            prod.description = item_description
+            prod.quantity = item_quantity
+            prod.unit = item_unit
+            prod.tax = item_tax
+            prod.hsn = item_hsn
+            prod.sales_unit_price = item_sales_unit_price
+            prod.sales_currency = item_sales_currency
+            prod.sales_cess_percent = item_sales_currency
+            prod.purchase_unit_price = item_purchase_unit_price
+            prod.puchase_currency = item_purchase_currency
+            prod.purchase_cess_percent = item_purchase_cess_percent
+            prod.purchase_cess = item_purchase_cess
+            prod.type = item_type
+            prod.sac = item_sac
+            current_user = request.user.email
+            x = DBUser.objects.get(email=current_user)
+            m = x.master_company
+            prod.master_company = m
+            prod.save()
 
+    return redirect(view_product)
 
 def view_purchase_order(request):
     current_user = request.user.email
@@ -367,7 +496,6 @@ def export_purchase_order(request):
     for prod in inv:
         writer.writerow([prod.client_name,prod.no,prod.po_date,prod.ref_no,prod.due_date,prod.shipping_charges,prod.terms_conditions,prod.total_amount,prod.total_discount,prod.total_tax])
     return response
-
 
 def view_quotes(request):
     current_user = request.user.email
@@ -392,8 +520,6 @@ def export_quotes(request):
 
 def view_report(request):
     return render(request, "view_report.html")
-
-
 
 
 def new_invoice(request):
@@ -554,6 +680,8 @@ def save_product(request):
         prod.master_company = m
         prod.save()
         return HttpResponse("Added Successfully")
+
+
 
 def save_service(request):
     if request.method == 'POST':

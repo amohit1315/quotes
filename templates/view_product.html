@@ -40,12 +40,42 @@ button.left0 {
           <li><a href="#">JavaScript</a></li>
         </ul>
         <button type="button" class="btn btn-default btn-lg left2" onclick="location.href ='{% url 'export_product' %}' ">Export</button>&ensp;
-        <button type="button" class="btn btn-default btn-lg left2">Import</button>
+        <a data-toggle="modal" data-target ="#primary"><button type="button" class="btn btn-default btn-lg left2">Import</button></a>
         <a href="{% url 'new_product' %}" class="btn btn-success btn-lg left1" role="button">+ New</a>
 
 
     </div>
 </div>
+    <div class="modal fade" id="primary" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header modal-header-primary">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h3 align="center"><i class="fa fa-bar-chart-o"></i>Upload CSV File</h3>
+                </div>
+                <div class="modal-body">
+                <form action="{%  url 'import_product' %}" method="POST" enctype="multipart/form-data" class="form-horizontal">
+            {% csrf_token %}
+            <div class="form-group">
+            <label for="name" class="col-md-3 col-sm-3 col-xs-12 control-label">File: </label>
+            <div class="col-md-8">
+            <input type="file" name="csv_file" id="csv_file" required="True" class="form-control">
+            </div>
+            </div>
+<div class="form-group">
+    <div class="col-md-3 col-sm-3 col-xs-12 col-md-offset-3" style="margin-bottom:10px;">
+         <button class="btn btn-primary"> <span class="glyphicon glyphicon-upload" style="margin-right:5px;"></span>Upload </button>
+    </div>
+        </div>
+            </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+
 <div class="container" style="width: 100%">
     <div class="row" style="margin-left:-30px; margin-right:-30px">
                     <div class="col-sm-12">
@@ -55,7 +85,7 @@ button.left0 {
                                 <tr>
                                     <th class="col-sm-2">Name</th>
                                     <th class="col-sm-4">Description</th>
-                                    <th class="col-sm-1">Type</th>
+                                    <th class="col-sm-1" style="text-align:center;">Type</th>
                                     <th class="col-sm-2" style="text-align:center;">Price</th>
                                     <th class="col-sm-2" style="text-align:center;">Unit</th>
                                     <th class="col-sm-1" style="text-align:center;">Quantity</th>
