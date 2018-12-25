@@ -34,16 +34,58 @@ button.left0 {
     <div class="dropdown">
         <button class="btn btn-default dropdown-toggle btn-lg left0" type="button" data-toggle="dropdown">Filter Invoices
         &ensp;<span class="caret"></span></button>
-        <ul class="dropdown-menu">
-          <li><a href="#">HTML</a></li>
-          <li><a href="#">CSS</a></li>
-          <li><a href="#">JavaScript</a></li>
+        <ul class="dropdown-menu" style="padding:20px; width:40%;">
+          <form action="{% url 'filterinvoice' %}" method="post">
+              {% csrf_token %}
+              <div class="form-group">
+                    <label for="inputlg1" class="control-label" style="text-align:left">Client Name</label>
+                    <input class="form-control input-lg" id="inputlg1" type="text" name="name">
+              </div>
+              <div class="form-group">
+                    <label for="inputlg3" class="control-label" style="text-align:left">Invoice No.</label>
+                    <input class="form-control input-lg" id="inputlg3" type="text" name="invoiceno">
+              </div>
+              <div class="form-group">
+                  <div class="row">
+                  <div class="col-sm-6">
+                    <label for="inputlg4" class="control-label" style="text-align:left">Issued Between</label>
+                    <input class="form-control input-lg" id="inputlg4" type="date" name="issue1">
+                  </div>
+                  <div class="col-sm-6">
+                      <label for="inputlg4" class="control-label" style="text-align:left"></label>
+                    <input class="form-control input-lg" id="inputlg5" type="date" name="issue2">
+                  </div>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <div class="row">
+                  <div class="col-sm-6">
+                    <label for="inputlg4" class="control-label" style="text-align:left">Due Between</label>
+                    <input class="form-control input-lg" id="inputlg4" type="date" name="due1">
+                  </div>
+                  <div class="col-sm-6">
+                      <label for="inputlg4" class="control-label" style="text-align:left"></label>
+                    <input class="form-control input-lg" id="inputlg5" type="date" name="due2">
+                  </div>
+                  </div>
+              </div>
+              <div>
+              <input style="margin:10px 0px 5px 10px;padding:10px 30px 10px 30px;width:92%" type="submit" class="btn btn-success btn-lg" value="Apply">
+                  </div>
+          </form>
+            <div>
+                <form action="{% url 'clearinvoicefilter' %}">
+                    <input style="margin:10px 0px 5px 10px;padding:10px 30px 10px 30px;width:92%" type="submit" class="btn btn-danger btn-lg" value="Clear filter">
+                </form>
+            </div>
+
         </ul>
         <button type="button" class="btn btn-default btn-lg left2" onclick="location.href ='{% url 'export_invoice' %}' ">Export</button>&ensp;
+                <a data-toggle="modal" data-target ="#primary"><button type="button" class="btn btn-default btn-lg left2">Import</button></a>
         <a href="{% url 'new_invoice' %}" class="btn btn-success btn-lg left1" role="button">+ New</a>
 
     </div>
-</div>
+    </div>
     <div class="container" style="width: 100%">
     <div class="row" style="margin-left:-30px; margin-right:-30px">
                     <div class="col-sm-12">

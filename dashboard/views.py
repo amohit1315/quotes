@@ -340,7 +340,7 @@ def save_customer(request):
             cu = Customer.objects.get(cust_name=customer_name)
             cu.cust_contact.add(customer_contact_1)
             cu.save()
-        return HttpResponse("Added Successfully")
+        return redirect(view_customer)
 
 def view_credit_notes(request):
     current_user = request.user.email
@@ -414,7 +414,9 @@ def view_product(request):
     x = DBUser.objects.get(email=current_user)
     m = x.master_company
     ps = Product_Service.objects.filter(master_company=m)
-    return render(request, "view_product.html", {'ps':ps})
+    unit = Unit.objects.all()
+    userunit = UserUnit.objects.filter(master_company=m)
+    return render(request, "view_product.html", {'ps':ps,'unit':unit,'userunit':userunit})
 
 def export_product(request):
     current_user = request.user.email
@@ -439,11 +441,11 @@ def import_product(request):
         for fields in reader:
             item_name = fields[0]
             item_description = fields[1]
-            item_quantity = fields[2]
+            item_quantity = int(fields[2])
             item_unit = fields[3]
             item_tax = fields[4]
             item_hsn = fields[5]
-            item_sales_unit_price = fields[6]
+            item_sales_unit_price = int(fields[6])
             item_sales_currency = fields[7]
             item_sales_cess_percent = fields[8]
             item_sales_cess = fields[9]
@@ -620,13 +622,13 @@ def save_product(request):
             else :
                 prod.description = ''
             if product_sales_price != 'False':
-                prod.sales_unit_price = product_sales_price
+                prod.sales_unit_price = int(product_sales_price)
             else:
-                prod.sales_unit_price = ''
+                prod.sales_unit_price = 0
             if product_quantity != 'False':
-                prod.quantity = product_quantity
+                prod.quantity = int(product_quantity)
             else :
-                prod.quantity = ''
+                prod.quantity = 0
             if product_unit != 'False' :
                 prod.unit = product_unit
             else:
@@ -668,9 +670,9 @@ def save_product(request):
             else:
                 prod.purchase_cess = ''
             if product_purchase_currency != 'False':
-                prod.purchase_currency = product_purchase_currency
+                prod.puchase_currency = product_purchase_currency
             else:
-                prod.purchase_currency = ''
+                prod.puchase_currency = ''
             prod.type = 'Product'
             prod.sac= ''
 
@@ -679,7 +681,7 @@ def save_product(request):
         m = x.master_company
         prod.master_company = m
         prod.save()
-        return HttpResponse("Added Successfully")
+        return redirect(view_product)
 
 
 
@@ -723,9 +725,9 @@ def save_service(request):
         service.quantity = ''
         service.hsn = ''
         if service_sales_price != 'False':
-            service.sales_unit_price = service_sales_price
+            service.sales_unit_price = int(service_sales_price)
         else:
-            service.sales_unit_price = ''
+            service.sales_unit_price = 0
         if service_sales_cess_percent != 'False':
             service.sales_cess_percent = service_sales_cess_percent
         else:
@@ -751,16 +753,17 @@ def save_service(request):
         else:
             service.purchase_cess = ''
         if service_purchase_currency != 'False':
-            service.purchase_currency = service_purchase_currency
+            service.puchase_currency = service_purchase_currency
         else:
-            service.purchase_currency = ''
+            service.puchase_currency = ''
         service.type = 'Service'
+        service.quantity = 0
         current_user = request.user.email
         x = DBUser.objects.get(email=current_user)
         m = x.master_company
         service.master_company = m
         service.save()
-        return HttpResponse("Added Successfully")
+        return redirect(view_product)
 
 def save_invoice(request):
     if request.method == 'POST':
@@ -830,7 +833,7 @@ def save_invoice(request):
             print i
             i.items.add(d)
             i.save()
-        return HttpResponse("Added Successfully")
+        return redirect(view_invoices)
 
 def save_delivery_note(request):
     if request.method == 'POST':
@@ -897,7 +900,7 @@ def save_delivery_note(request):
             i = Delivery_Notes.objects.get(no=no)
             i.items.add(d)
             i.save()
-        return HttpResponse("Added Successfully")
+        return redirect(view_delivery_notes)
 
 def save_credit_note(request):
     if request.method == 'POST':
@@ -950,7 +953,7 @@ def save_credit_note(request):
             i = Credit_Notes.objects.get(no=no)
             i.items.add(d)
             i.save()
-        return HttpResponse("Added Successfully")
+        return redirect(view_credit_notes)
 
 def save_purchase_order(request):
     if request.method == 'POST':
@@ -1001,7 +1004,7 @@ def save_purchase_order(request):
             i = Purchase_Order.objects.get(no=no)
             i.items.add(d)
             i.save()
-        return HttpResponse("Added Successfully")
+        return redirect(view_purchase_order)
 
 def save_quote(request):
     if request.method == 'POST':
@@ -1052,7 +1055,7 @@ def save_quote(request):
             i = Quotes.objects.get(quotation_no=no)
             i.items.add(d)
             i.save()
-        return HttpResponse("Added Successfully")
+        return redirect(view_quotes)
 
 def filterclient(request):
     if request.method == 'POST':
@@ -1076,10 +1079,225 @@ def filterclient(request):
         customers = eval(temp)
         return render(request, "view_customer.html", {'customers': customers})
 
+def filteritem(request):
+    if request.method == 'POST':
+        name = request.POST.get('name', "")
+        unit = request.POST.get('unit', "")
+        price1 = request.POST.get('price1', "")
+        if price1:
+            price1 = int(price1)
+        price2 = request.POST.get('price2', "")
+        if price2:
+            price2 = int(price2)
+        quant1 = request.POST.get('quant1', "")
+        if quant1:
+            quant1 = int(quant1)
+        quant2 = request.POST.get('quant2', "")
+        if quant2:
+            quant2 = int(quant2)
+        type = request.POST.get('type',"")
+        current_user = request.user.email
+        x = DBUser.objects.get(email=current_user)
+        m = x.master_company
+        temp = "Product_Service.objects.filter(master_company=m"
+        if name != "":
+            temp = temp + ", name = name"
+        if unit != "":
+            temp = temp + ", unit = unit"
+        if price1 != "" and price2 != "":
+            temp = temp + " , sales_unit_price__gte = price1 , sales_unit_price__lte = price2"
+        else:
+            if price1 != "":
+                temp = temp + ", sales_unit_price__gte = price1"
+            if price2 != "":
+                temp = temp + ", sales_unit_price__lte = price2"
+        if quant1 != "" and quant2 != "":
+            temp = temp + " , quantity__gte = quant1 , quantity__lte = quant2"
+        else:
+            if quant1 != "":
+                temp = temp + " , quantity__gte = quant1"
+            if quant2 != "":
+                temp = temp + " , quantity__lte = quant2"
+        if type != "":
+            temp = temp + " , type = type"
+        temp = temp + ")"
+        ps = eval(temp)
+        return render(request,'view_product.html',{'ps':ps})
 
 
+def filterinvoice(request):
+    if request.method == 'POST':
+        client_name = request.POST.get('name', "")
+        invoice_no = request.POST.get('invoiceno', "")
+        issue_date1 = request.POST.get('issue1', "")
+        issue_date2 = request.POST.get('issue2', "")
+        due_date1 = request.POST.get('due1', "")
+        due_date2 = request.POST.get('due2', "")
+        current_user = request.user.email
+        x = DBUser.objects.get(email=current_user)
+        m = x.master_company
+        temp = "Invoice.objects.filter(master_company=m"
+        if client_name != "":
+            temp = temp + ", client_name = client_name"
+        if invoice_no != "":
+            temp = temp + ", invoice_no = invoice_no"
+        if issue_date1 != "" and issue_date2 != "":
+            temp = temp + ", invoice_date__gte = issue_date1 , invoice_date__lte = issue_date2"
+        else:
+            if issue_date1 != "":
+                temp = temp + ", invoice_date__gte = issue_date1"
+            if issue_date2 != "":
+                temp = temp + ", invoice_date__lte = issue_date2"
+        if due_date1 != "" and due_date2 != "":
+            temp = temp + ", due_date__gte = due_date1 , due_date__lte = due_date2"
+        else:
+            if due_date1 != "":
+                temp = temp + ", due_date__gte = due_date1"
+            if due_date2 != "":
+                temp = temp + ", due_date__lte = due_date2"
 
+        temp = temp + ")"
+        invoice = eval(temp)
+        return render(request, "view_invoices.html", {'invoice': invoice})
 
-        
+def filterquote(request):
+    if request.method == 'POST':
+        client_name = request.POST.get('name', "")
+        invoice_no = request.POST.get('invoiceno', "")
+        issue_date1 = request.POST.get('issue1', "")
+        issue_date2 = request.POST.get('issue2', "")
+        due_date1 = request.POST.get('due1', "")
+        due_date2 = request.POST.get('due2', "")
+        current_user = request.user.email
+        x = DBUser.objects.get(email=current_user)
+        m = x.master_company
+        temp = "Quotes.objects.filter(master_company=m"
+        if client_name != "":
+            temp = temp + ", client_name = client_name"
+        if invoice_no != "":
+            temp = temp + ", quotation_no = invoice_no"
+        if issue_date1 != "" and issue_date2 != "":
+            temp = temp + ", quotation_date__gte = issue_date1 , quotation_date__lte = issue_date2"
+        else:
+            if issue_date1 != "":
+                temp = temp + ", quotation_date__gte = issue_date1"
+            if issue_date2 != "":
+                temp = temp + ", quotation_date__lte = issue_date2"
+        if due_date1 != "" and due_date2 != "":
+            temp = temp + ", due_date__gte = due_date1 , due_date__lte = due_date2"
+        else:
+            if due_date1 != "":
+                temp = temp + ", due_date__gte = due_date1"
+            if due_date2 != "":
+                temp = temp + ", due_date__lte = due_date2"
+        temp = temp + ")"
+        q = eval(temp)
+        return render(request, "view_quotes.html", {'q': q})
 
+def filterdeliverynotes(request):
+    if request.method == 'POST':
+        client_name = request.POST.get('name', "")
+        invoice_no = request.POST.get('invoiceno', "")
+        issue_date1 = request.POST.get('issue1', "")
+        issue_date2 = request.POST.get('issue2', "")
+        due_date1 = request.POST.get('due1', "")
+        due_date2 = request.POST.get('due2', "")
+        current_user = request.user.email
+        x = DBUser.objects.get(email=current_user)
+        m = x.master_company
+        temp = "Delivery_Notes.objects.filter(master_company=m"
+        if client_name != "":
+            temp = temp + ", client_name = client_name"
+        if invoice_no != "":
+            temp = temp + ", no = invoice_no"
+        if issue_date1 != "" and issue_date2 != "":
+            temp = temp + ", date__gte = issue_date1 , date__lte = issue_date2"
+        else:
+            if issue_date1 != "":
+                temp = temp + ", date__gte = issue_date1"
+            if issue_date2 != "":
+                temp = temp + ", date__lte = issue_date2"
+        if due_date1 != "" and due_date2 != "":
+            temp = temp + ", shipping_date__gte = due_date1 , shipping_date__lte = due_date2"
+        else:
+            if due_date1 != "":
+                temp = temp + ", shipping_date__gte = due_date1"
+            if due_date2 != "":
+                temp = temp + ", shipping_date__lte = due_date2"
+        temp = temp + ")"
+        delivery = eval(temp)
+        return render(request, "view_delivery_notes.html", {'delivery': delivery})
 
+def filtercreditnotes(request):
+    if request.method == 'POST':
+        client_name = request.POST.get('name', "")
+        invoice_no = request.POST.get('invoiceno', "")
+        issue_date1 = request.POST.get('issue1', "")
+        issue_date2 = request.POST.get('issue2', "")
+        amount1 = request.POST.get('due1', "")
+        if amount1:
+            amount1 = int(amount1)
+        amount2 = request.POST.get('due2', "")
+        if amount2:
+            amount2 = int(amount2)
+        current_user = request.user.email
+        x = DBUser.objects.get(email=current_user)
+        m = x.master_company
+        temp = "Credit_Notes.objects.filter(master_company=m"
+        if client_name != "":
+            temp = temp + ", client_name = client_name"
+        if invoice_no != "":
+            temp = temp + ", no = invoice_no"
+        if issue_date1 != "" and issue_date2 != "":
+            temp = temp + ", date__gte = issue_date1 , date__lte = issue_date2"
+        else:
+            if issue_date1 != "":
+                temp = temp + ", date__gte = issue_date1"
+            if issue_date2 != "":
+                temp = temp + ", date__lte = issue_date2"
+        if amount1 != "" and amount2 != "":
+            temp = temp + ", total_amount__gte = amount1 , total_amount__lte = amount2"
+        else:
+            if amount1 != "":
+                temp = temp + ", total_amount__gte = amount1"
+            if amount2 != "":
+                temp = temp + ", total_amount__lte = amount2"
+
+        temp = temp + ")"
+        print temp
+        credit = eval(temp)
+        return render(request, "view_credit_notes.html", {'credit': credit})
+
+def filterpurchaseorder(request):
+    if request.method == 'POST':
+        client_name = request.POST.get('name', "")
+        invoice_no = request.POST.get('invoiceno', "")
+        issue_date1 = request.POST.get('issue1', "")
+        issue_date2 = request.POST.get('issue2', "")
+        due_date1 = request.POST.get('due1', "")
+        due_date2 = request.POST.get('due2', "")
+        current_user = request.user.email
+        x = DBUser.objects.get(email=current_user)
+        m = x.master_company
+        temp = "Purchase_Order.objects.filter(master_company=m"
+        if client_name != "":
+            temp = temp + ", client_name = client_name"
+        if invoice_no != "":
+            temp = temp + ", no = invoice_no"
+        if issue_date1 != "" and issue_date2 != "":
+            temp = temp + ", po_date__gte = issue_date1 , po_date__lte = issue_date2"
+        else:
+            if issue_date1 != "":
+                temp = temp + ", po_date__gte = issue_date1"
+            if issue_date2 != "":
+                temp = temp + ", po_date__lte = issue_date2"
+        if due_date1 != "" and due_date2 != "":
+            temp = temp + ", due_date__gte = due_date1 , due_date__lte = due_date2"
+        else:
+            if due_date1 != "":
+                temp = temp + ", due_date__gte = due_date1"
+            if due_date2 != "":
+                temp = temp + ", due_date__lte = due_date2"
+        temp = temp + ")"
+        po = eval(temp)
+        return render(request, "view_purchase_order.html", {'po': po})

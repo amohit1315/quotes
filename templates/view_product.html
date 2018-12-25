@@ -31,13 +31,70 @@ button.left0 {
 {% block content %}
 
 <div id="top_base">
-    <div class="dropdown">
-        <button class="btn btn-default dropdown-toggle btn-lg left0" type="button" data-toggle="dropdown">Filter Product and Services
+     <div class="dropdown">
+        <button class="btn btn-default dropdown-toggle btn-lg left0" type="button" data-toggle="dropdown">Filter Items
         &ensp;<span class="caret"></span></button>
-        <ul class="dropdown-menu">
-          <li><a href="#">HTML</a></li>
-          <li><a href="#">CSS</a></li>
-          <li><a href="#">JavaScript</a></li>
+        <ul class="dropdown-menu" style="padding:20px; width:40%;">
+          <form action="{% url 'filteritem' %}" method="post">
+              {% csrf_token %}
+              <div class="form-group">
+                    <label for="inputlg1" class="control-label" style="text-align:left">Name</label>
+                    <input class="form-control input-lg" id="inputlg1" type="text" name="name">
+              </div>
+              <div class="form-group">
+                    <label for="inputlg3" class="control-label" style="text-align:left">Unit</label>
+                    <select class="form-control input-lg sel" id="unit" name="unit">
+                    <option value=""></option>
+                        {% for cl in unit %}
+                            <option value="{{ cl.unit_type }}" >{{ cl.unit_type }}</option>
+                        {% endfor %}
+                        {% for cl in userunit %}
+                            <option value="{{ cl.unit_type }}" >{{ cl.unit_type }}</option>
+                        {% endfor %}
+                    </select>
+              </div>
+              <div class="form-group">
+                  <div class="row">
+                  <div class="col-sm-6">
+                    <label for="inputlg4" class="control-label" style="text-align:left">Price Between</label>
+                    <input class="form-control input-lg" id="inputlg4" type="number" name="price1">
+                  </div>
+                  <div class="col-sm-6">
+                      <label for="inputlg4" class="control-label" style="text-align:left"></label>
+                    <input class="form-control input-lg" id="inputlg5" type="text" name="price2">
+                  </div>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <div class="row">
+                  <div class="col-sm-6">
+                    <label for="inputlg4" class="control-label" style="text-align:left">Quantity Between</label>
+                    <input class="form-control input-lg" id="inputlg4" type="number" name="quant1">
+                  </div>
+                  <div class="col-sm-6">
+                      <label for="inputlg4" class="control-label" style="text-align:left"></label>
+                    <input class="form-control input-lg" id="inputlg5" type="text" name="quant2">
+                  </div>
+                  </div>
+              </div>
+              <div class="form-group">
+                    <label for="inputlg1" class="control-label" style="text-align:left">Type</label>
+                    <select class="form-control input-lg sel" id="unit" name="type">
+                        <option value=""></option>
+                        <option value="Product">Product</option>
+                        <option value="Service">Service</option>
+                    </select>
+              </div>
+              <div>
+              <input style="margin:10px 0px 5px 10px;padding:10px 30px 10px 30px;width:92%" type="submit" class="btn btn-success btn-lg" value="Apply">
+                  </div>
+          </form>
+            <div>
+                <form action="{% url 'clearitemfilter' %}">
+                    <input style="margin:10px 0px 5px 10px;padding:10px 30px 10px 30px;width:92%" type="submit" class="btn btn-danger btn-lg" value="Clear filter">
+                </form>
+            </div>
+
         </ul>
         <button type="button" class="btn btn-default btn-lg left2" onclick="location.href ='{% url 'export_product' %}' ">Export</button>&ensp;
         <a data-toggle="modal" data-target ="#primary"><button type="button" class="btn btn-default btn-lg left2">Import</button></a>
@@ -97,7 +154,7 @@ button.left0 {
                                     <td> {{  x.name }}</td>
                                     <td> {{ x.description }}</td>
                                     <td style="text-align:center"> {{  x.type }}</td>
-                                    <td style="text-align:center"> {{ x.purchase_unit_price }}</td>
+                                    <td style="text-align:center"> {{ x.sales_unit_price }}</td>
                                     <td style="text-align:center"> {{ x.unit }}</td>
                                     <td style="text-align:center"> {{ x.quantity }}</td>
                                 </tr>
